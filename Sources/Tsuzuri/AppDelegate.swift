@@ -534,10 +534,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                     addToHistory(text)
                     switch outcome {
-                    case .pasted:
-                        showResult(.message(text), hideAfter: 1.2)
-                    case .pastedAndCopied:
-                        showResult(.copied(text), hideAfter: 1.5)
+                    case .pasted, .pastedAndCopied:
+                        // The text shows up where the cursor is; repeating it in the overlay is noise.
+                        // (When the focus couldn't be checked, e.g. in Chrome, the text also stays on
+                        // the clipboard and in Recent, so nothing is lost without the notice.)
+                        if !recording { overlay.hide() }
                     case .copied:
                         showResult(.copied(String(localized: "Copied · ⌘V to paste: \(text)")), hideAfter: 2.5)
                     }
