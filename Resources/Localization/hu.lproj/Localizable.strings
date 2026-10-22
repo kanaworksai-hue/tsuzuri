@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Indítás…";
+"Recent (Click to Copy)" = "Legutóbbiak (kattintással másolható)";
+"(None yet)" = "(Még nincs)";
+"Clear" = "Törlés";
+"Model" = "Modell";
+"%@ (not downloaded)" = "%@ (nincs letöltve)";
+"Accurate" = "Pontos";
+"Fast" = "Gyors";
+"Spoken Language: %@" = "Beszélt nyelv: %@";
+"Auto (30 Languages, Mixing OK)" = "Automatikus (30 nyelv, keverhető)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "22 kínai nyelvjárást is felismer, például a szecsuánit, a vu-t és a déli min nyelvet.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Minden diktálásnál felismeri a nyelvet. Kínaira, angolra, japánra és ezek keverésére hangolva.";
+"Auto" = "Automatikus";
+"Polish" = "Szövegtisztítás";
+"Only for %@" = "Csak ezekhez: %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "A felismerés után egy kis helyi modell kiteszi az írásjeleket, eltávolítja a töltelékszavakat, alkalmazza a beszéd közbeni javításokat, és számjegyekkel írja a számokat. Csak ezekhez: %@; a többi nyelv a felismert formában kerül beillesztésre. Terminálokban nem használatos.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Billentyű (nyomva tartva: beszéd / koppintás: be/ki)";
+"Right Option ⌥" = "Jobb oldali Option ⌥";
+"Right Command ⌘" = "Jobb oldali Command ⌘";
+"Open Accessibility Settings…" = "Kisegítő lehetőségek beállításainak megnyitása…";
+"Open Microphone Settings…" = "Mikrofonbeállítások megnyitása…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Beillesztési teszt (3 mp múlva beilleszt az aktuális ablakba)";
+"Tsuzuri paste test" = "Tsuzuri beillesztési teszt";
+"Quit Tsuzuri" = "Kilépés a Tsuzuri alkalmazásból";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Engedély szükséges a Kisegítő lehetőségekhez (Rendszerbeállítások → Adatvédelem és biztonság)";
+"Loading model…" = "Modell betöltése…";
+"Ready · hold %@ to talk" = "Kész · beszédhez tartsa lenyomva: %@";
+"Model failed to load: %@" = "Nem sikerült betölteni a modellt: %@";
+
+/* Overlay */
+"Listening…" = "Figyelés…";
+"Transcribing…" = "Felismerés…";
+"Model is still loading…" = "A modell még töltődik…";
+"Can't record" = "Nem lehet hangot rögzíteni";
+"No microphone found" = "Nem található mikrofon";
+"Microphone access is off (menu → Open Microphone Settings…)" = "A mikrofonhoz való hozzáférés ki van kapcsolva (menü → Mikrofonbeállítások megnyitása…)";
+"Canceled" = "Megszakítva";
+"No speech heard" = "Nem hallható beszéd";
+"Recognition failed" = "A felismerés sikertelen";
+"Copied: %@" = "Másolva: %@";
+"Copied · ⌘V to paste: %@" = "Másolva · ⌘V a beillesztéshez: %@";
+"Copied (Accessibility not granted)" = "Másolva (nincs engedély a Kisegítő lehetőségekhez)";

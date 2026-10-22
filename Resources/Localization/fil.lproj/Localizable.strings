@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Nagsisimula…";
+"Recent (Click to Copy)" = "Kamakailan (I-click para Kopyahin)";
+"(None yet)" = "(Wala pa)";
+"Clear" = "I-clear";
+"Model" = "Model";
+"%@ (not downloaded)" = "%@ (hindi pa na-download)";
+"Accurate" = "Tumpak";
+"Fast" = "Mabilis";
+"Spoken Language: %@" = "Wikang Sinasalita: %@";
+"Auto (30 Languages, Mixing OK)" = "Awtomatiko (30 Wika, Puwedeng Paghaluin)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Nakikilala rin ang 22 diyalekto ng Chinese, gaya ng Sichuanese, Wu at Min Nan.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Awtomatikong tinutukoy ang wika sa bawat dictation. Inayos para sa Chinese, English, Japanese at sa paghahalo ng mga ito.";
+"Auto" = "Awtomatiko";
+"Polish" = "Paglilinis ng Teksto";
+"Only for %@" = "Para lang sa %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Pagkatapos ng recognition, isang maliit na local na model ang naglalagay ng bantas, nag-aalis ng mga filler word, naglalapat ng mga pagwawasto mo habang nagsasalita, at isinusulat ang mga numero bilang digit. Para lang sa %@; ang ibang wika ay ilalagay ayon sa pagkakakilala. Hindi ginagamit sa terminal.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Shortcut (Pindutin nang Matagal para Magsalita / I-tap para I-toggle)";
+"Right Option ⌥" = "Kanang Option ⌥";
+"Right Command ⌘" = "Kanang Command ⌘";
+"Open Accessibility Settings…" = "Buksan ang Accessibility Settings…";
+"Open Microphone Settings…" = "Buksan ang Microphone Settings…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Paste Test (Ipe-paste sa Kasalukuyang Window pagkalipas ng 3 s)";
+"Tsuzuri paste test" = "Paste test ng Tsuzuri";
+"Quit Tsuzuri" = "Umalis sa Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Kailangan ng pahintulot sa Accessibility (System Settings → Privacy & Security)";
+"Loading model…" = "Nilo-load ang model…";
+"Ready · hold %@ to talk" = "Handa na · pindutin nang matagal ang %@ para magsalita";
+"Model failed to load: %@" = "Hindi na-load ang model: %@";
+
+/* Overlay */
+"Listening…" = "Nakikinig…";
+"Transcribing…" = "Tina-transcribe…";
+"Model is still loading…" = "Nilo-load pa ang model…";
+"Can't record" = "Hindi makapag-record";
+"No microphone found" = "Walang nakitang mikropono";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Naka-off ang access sa mikropono (menu → Buksan ang Microphone Settings…)";
+"Canceled" = "Kinansela";
+"No speech heard" = "Walang narinig na pananalita";
+"Recognition failed" = "Hindi nakilala ang pananalita";
+"Copied: %@" = "Nakopya: %@";
+"Copied · ⌘V to paste: %@" = "Nakopya · ⌘V para i-paste: %@";
+"Copied (Accessibility not granted)" = "Nakopya (walang pahintulot sa Accessibility)";

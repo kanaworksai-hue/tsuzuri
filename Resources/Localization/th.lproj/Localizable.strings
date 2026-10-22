@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "กำลังเริ่ม…";
+"Recent (Click to Copy)" = "ล่าสุด (คลิกเพื่อคัดลอก)";
+"(None yet)" = "(ยังไม่มี)";
+"Clear" = "ล้าง";
+"Model" = "โมเดล";
+"%@ (not downloaded)" = "%@ (ยังไม่ได้ดาวน์โหลด)";
+"Accurate" = "แม่นยำ";
+"Fast" = "รวดเร็ว";
+"Spoken Language: %@" = "ภาษาที่พูด: %@";
+"Auto (30 Languages, Mixing OK)" = "อัตโนมัติ (30 ภาษา, พูดผสมได้)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "รู้จำภาษาจีนถิ่นได้อีก 22 ภาษา เช่น ภาษาเสฉวน ภาษาอู๋ และภาษาหมิ่นหนาน";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "ตรวจหาภาษาโดยอัตโนมัติทุกครั้งที่ป้อนตามคำบอก ปรับให้เหมาะกับภาษาจีน ภาษาอังกฤษ ภาษาญี่ปุ่น และการพูดผสมกัน";
+"Auto" = "อัตโนมัติ";
+"Polish" = "เกลาข้อความ";
+"Only for %@" = "เฉพาะ %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "หลังจากรู้จำเสียง โมเดลขนาดเล็กในเครื่องจะใส่เครื่องหมายวรรคตอน ตัดคำติดปาก แก้ไขตามที่คุณพูดแก้ และเขียนตัวเลขเป็นเลขอารบิก ใช้ได้เฉพาะ %@ ภาษาอื่นจะป้อนตามผลการรู้จำ ไม่ใช้ในเทอร์มินัล";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "ปุ่มลัด (กดค้างเพื่อพูด / แตะเพื่อเปิดปิด)";
+"Right Option ⌥" = "Option ขวา ⌥";
+"Right Command ⌘" = "Command ขวา ⌘";
+"Open Accessibility Settings…" = "เปิดการตั้งค่าการช่วยการเข้าถึง…";
+"Open Microphone Settings…" = "เปิดการตั้งค่าไมโครโฟน…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "ทดสอบการวาง (วางลงในหน้าต่างปัจจุบันใน 3 วินาที)";
+"Tsuzuri paste test" = "ทดสอบการวางของ Tsuzuri";
+"Quit Tsuzuri" = "ออกจาก Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "ต้องได้รับอนุญาตการช่วยการเข้าถึง (การตั้งค่าระบบ → ความเป็นส่วนตัวและความปลอดภัย)";
+"Loading model…" = "กำลังโหลดโมเดล…";
+"Ready · hold %@ to talk" = "พร้อม · กด %@ ค้างไว้เพื่อพูด";
+"Model failed to load: %@" = "โหลดโมเดลไม่สำเร็จ: %@";
+
+/* Overlay */
+"Listening…" = "กำลังฟัง…";
+"Transcribing…" = "กำลังถอดเสียง…";
+"Model is still loading…" = "โมเดลยังโหลดอยู่…";
+"Can't record" = "บันทึกเสียงไม่ได้";
+"No microphone found" = "ไม่พบไมโครโฟน";
+"Microphone access is off (menu → Open Microphone Settings…)" = "การเข้าถึงไมโครโฟนปิดอยู่ (เมนู → เปิดการตั้งค่าไมโครโฟน…)";
+"Canceled" = "ยกเลิกแล้ว";
+"No speech heard" = "ไม่ได้ยินเสียงพูด";
+"Recognition failed" = "รู้จำเสียงไม่สำเร็จ";
+"Copied: %@" = "คัดลอกแล้ว: %@";
+"Copied · ⌘V to paste: %@" = "คัดลอกแล้ว · กด ⌘V เพื่อวาง: %@";
+"Copied (Accessibility not granted)" = "คัดลอกแล้ว (ไม่ได้อนุญาตการช่วยการเข้าถึง)";

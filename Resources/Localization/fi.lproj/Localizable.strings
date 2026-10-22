@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Käynnistetään…";
+"Recent (Click to Copy)" = "Viimeisimmät (kopioi osoittamalla)";
+"(None yet)" = "(Ei vielä mitään)";
+"Clear" = "Tyhjennä";
+"Model" = "Malli";
+"%@ (not downloaded)" = "%@ (ei ladattu)";
+"Accurate" = "Tarkka";
+"Fast" = "Nopea";
+"Spoken Language: %@" = "Puhuttu kieli: %@";
+"Auto (30 Languages, Mixing OK)" = "Automaattinen (30 kieltä, sekoittaminen sallittu)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Tunnistaa myös 22 kiinan murretta, kuten sichuanin, wun ja minnanin.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Tunnistaa kielen jokaisella sanelukerralla. Viritetty kiinalle, englannille, japanille ja niiden sekoitukselle.";
+"Auto" = "Automaattinen";
+"Polish" = "Tekstin siistiminen";
+"Only for %@" = "Vain kielille %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Tunnistuksen jälkeen pieni paikallinen malli lisää välimerkit, poistaa täytesanat, huomioi puhujan omat korjaukset ja kirjoittaa luvut numeroina. Vain kielille %@; muut kielet lisätään sellaisinaan. Ei käytössä päätteissä.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Pikanäppäin (pidä painettuna puhuaksesi / napauta vaihtaaksesi)";
+"Right Option ⌥" = "Oikea Optio ⌥";
+"Right Command ⌘" = "Oikea Komento ⌘";
+"Open Accessibility Settings…" = "Avaa Käyttöapu-asetukset…";
+"Open Microphone Settings…" = "Avaa Mikrofoni-asetukset…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Sijoitustesti (sijoittaa nykyiseen ikkunaan 3 s kuluttua)";
+"Tsuzuri paste test" = "Tsuzurin sijoitustesti";
+"Quit Tsuzuri" = "Lopeta Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Käyttöapu-lupa tarvitaan (Järjestelmäasetukset → Tietosuoja ja turvallisuus)";
+"Loading model…" = "Ladataan mallia…";
+"Ready · hold %@ to talk" = "Valmis · pidä %@ painettuna ja puhu";
+"Model failed to load: %@" = "Mallin lataaminen epäonnistui: %@";
+
+/* Overlay */
+"Listening…" = "Kuunnellaan…";
+"Transcribing…" = "Tunnistetaan…";
+"Model is still loading…" = "Mallia ladataan vielä…";
+"Can't record" = "Tallentaminen ei onnistu";
+"No microphone found" = "Mikrofonia ei löytynyt";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Mikrofonin käyttö on pois päältä (valikko → Avaa Mikrofoni-asetukset…)";
+"Canceled" = "Peruttu";
+"No speech heard" = "Puhetta ei kuulunut";
+"Recognition failed" = "Tunnistus epäonnistui";
+"Copied: %@" = "Kopioitu: %@";
+"Copied · ⌘V to paste: %@" = "Kopioitu · sijoita painamalla ⌘V: %@";
+"Copied (Accessibility not granted)" = "Kopioitu (ei Käyttöapu-lupaa)";

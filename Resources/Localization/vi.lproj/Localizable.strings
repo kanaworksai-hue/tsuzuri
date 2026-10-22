@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Đang khởi động…";
+"Recent (Click to Copy)" = "Gần đây (Bấm để sao chép)";
+"(None yet)" = "(Chưa có)";
+"Clear" = "Xóa";
+"Model" = "Mô hình";
+"%@ (not downloaded)" = "%@ (chưa tải về)";
+"Accurate" = "Chính xác";
+"Fast" = "Nhanh";
+"Spoken Language: %@" = "Ngôn ngữ nói: %@";
+"Auto (30 Languages, Mixing OK)" = "Tự động (30 ngôn ngữ, có thể nói xen kẽ)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Cũng nhận dạng được 22 phương ngữ tiếng Trung, như tiếng Tứ Xuyên, tiếng Ngô và tiếng Mân Nam.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Tự động nhận biết ngôn ngữ trong mỗi lần đọc chính tả. Được tối ưu cho tiếng Trung, tiếng Anh, tiếng Nhật và khi nói xen kẽ các ngôn ngữ này.";
+"Auto" = "Tự động";
+"Polish" = "Làm gọn văn bản";
+"Only for %@" = "Chỉ hỗ trợ %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Sau khi nhận dạng, một mô hình nhỏ chạy trên máy sẽ thêm dấu câu, bỏ từ đệm, áp dụng những chỗ bạn tự sửa lời và viết số bằng chữ số. Chỉ hỗ trợ %@; các ngôn ngữ khác được nhập đúng như kết quả nhận dạng. Không áp dụng trong terminal.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Phím tắt (Nhấn giữ để nói / Nhấn nhanh để bật/tắt)";
+"Right Option ⌥" = "Option phải ⌥";
+"Right Command ⌘" = "Command phải ⌘";
+"Open Accessibility Settings…" = "Mở cài đặt Trợ năng…";
+"Open Microphone Settings…" = "Mở cài đặt Micrô…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Kiểm tra dán (Dán vào cửa sổ hiện tại sau 3 giây)";
+"Tsuzuri paste test" = "Kiểm tra dán của Tsuzuri";
+"Quit Tsuzuri" = "Thoát Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Cần quyền Trợ năng (Cài đặt hệ thống → Quyền riêng tư & Bảo mật)";
+"Loading model…" = "Đang tải mô hình…";
+"Ready · hold %@ to talk" = "Sẵn sàng · giữ %@ để nói";
+"Model failed to load: %@" = "Không thể tải mô hình: %@";
+
+/* Overlay */
+"Listening…" = "Đang nghe…";
+"Transcribing…" = "Đang chuyển thành văn bản…";
+"Model is still loading…" = "Mô hình vẫn đang tải…";
+"Can't record" = "Không thể ghi âm";
+"No microphone found" = "Không tìm thấy micrô";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Quyền truy cập micrô đang tắt (menu → Mở cài đặt Micrô…)";
+"Canceled" = "Đã hủy";
+"No speech heard" = "Không nghe thấy giọng nói";
+"Recognition failed" = "Không nhận dạng được";
+"Copied: %@" = "Đã sao chép: %@";
+"Copied · ⌘V to paste: %@" = "Đã sao chép · ⌘V để dán: %@";
+"Copied (Accessibility not granted)" = "Đã sao chép (chưa cấp quyền Trợ năng)";

@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Başlatılıyor…";
+"Recent (Click to Copy)" = "Son Tanınanlar (Kopyalamak İçin Tıklayın)";
+"(None yet)" = "(Henüz Yok)";
+"Clear" = "Temizle";
+"Model" = "Model";
+"%@ (not downloaded)" = "%@ (indirilmedi)";
+"Accurate" = "Hassas";
+"Fast" = "Hızlı";
+"Spoken Language: %@" = "Konuşma Dili: %@";
+"Auto (30 Languages, Mixing OK)" = "Otomatik (30 Dil, Karışık Konuşulabilir)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Ayrıca Siçuan, Wu ve Min Nan gibi 22 Çince lehçesini tanır.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Her diktede dili otomatik algılar. Çince, İngilizce, Japonca ve bunların karışık kullanımı için ayarlanmıştır.";
+"Auto" = "Otomatik";
+"Polish" = "Metin Düzeltme";
+"Only for %@" = "Yalnızca %@ için";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Tanımadan sonra küçük bir yerel model noktalama işaretleri ekler, dolgu sözcüklerini kaldırır, konuşurken yaptığınız düzeltmeleri uygular ve sayıları rakamla yazar. Yalnızca %@ için; diğer diller tanındığı gibi eklenir. Terminallerde uygulanmaz.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Kestirme (Konuşmak İçin Basılı Tutun / Açıp Kapatmak İçin Dokunun)";
+"Right Option ⌥" = "Sağ Option ⌥";
+"Right Command ⌘" = "Sağ Command ⌘";
+"Open Accessibility Settings…" = "Erişilebilirlik Ayarlarını Aç…";
+"Open Microphone Settings…" = "Mikrofon Ayarlarını Aç…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Yapıştırma Testi (3 sn Sonra Geçerli Pencereye Yapıştırır)";
+"Tsuzuri paste test" = "Tsuzuri yapıştırma testi";
+"Quit Tsuzuri" = "Tsuzuri'den Çık";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Erişilebilirlik izni gerekli (Sistem Ayarları → Gizlilik ve Güvenlik)";
+"Loading model…" = "Model yükleniyor…";
+"Ready · hold %@ to talk" = "Hazır · konuşmak için %@ tuşunu basılı tutun";
+"Model failed to load: %@" = "Model yüklenemedi: %@";
+
+/* Overlay */
+"Listening…" = "Dinleniyor…";
+"Transcribing…" = "Tanınıyor…";
+"Model is still loading…" = "Model hâlâ yükleniyor…";
+"Can't record" = "Kayıt yapılamıyor";
+"No microphone found" = "Mikrofon bulunamadı";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Mikrofon erişimi kapalı (menü → Mikrofon Ayarlarını Aç…)";
+"Canceled" = "İptal edildi";
+"No speech heard" = "Konuşma duyulmadı";
+"Recognition failed" = "Tanıma başarısız oldu";
+"Copied: %@" = "Kopyalandı: %@";
+"Copied · ⌘V to paste: %@" = "Kopyalandı · yapıştırmak için ⌘V: %@";
+"Copied (Accessibility not granted)" = "Kopyalandı (Erişilebilirlik izni verilmedi)";

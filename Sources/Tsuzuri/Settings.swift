@@ -23,20 +23,35 @@ enum TriggerKey: String, CaseIterable {
     }
 }
 
-enum RecognitionLanguage: String, CaseIterable {
-    case auto, chinese = "Chinese", english = "English", japanese = "Japanese"
+/// Auto-detect, or one of Qwen3-ASR's 30 languages. Stored as "auto" or the model's language name.
+struct RecognitionLanguage: Equatable {
+    var language: SpokenLanguage?
+
+    static let auto = RecognitionLanguage(language: nil)
+    /// Chinese, English and Japanese (and mixing them) are what Tsuzuri is tuned and tested for.
+    static let featured = ["Chinese", "English", "Japanese"].compactMap(SpokenLanguage.named)
+        .map { RecognitionLanguage(language: $0) }
+    static let others = SpokenLanguage.all
+        .filter { l in !featured.contains { $0.language == l } }
+        .sorted { $0.nativeName.localizedStandardCompare($1.nativeName) == .orderedAscending }
+        .map { RecognitionLanguage(language: $0) }
+
+    init(language: SpokenLanguage?) { self.language = language }
+
+    init?(rawValue: String) {
+        if rawValue == "auto" { self = .auto; return }
+        guard let language = SpokenLanguage.named(rawValue) else { return nil }
+        self.language = language
+    }
+
+    var rawValue: String { language?.name ?? "auto" }
 
     /// Language names are shown in their own language, like the system language list.
     var title: String {
-        switch self {
-        case .auto: String(localized: "Auto (Mixed Languages)")
-        case .chinese: "中文"
-        case .english: "English"
-        case .japanese: "日本語"
-        }
+        language?.nativeName ?? String(localized: "Auto (30 Languages, Mixing OK)")
     }
 
-    var modelValue: String? { self == .auto ? nil : rawValue }
+    var modelValue: String? { language?.name }
 }
 
 extension ASRModel {

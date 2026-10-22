@@ -10,6 +10,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private lazy var hotkey = HotkeyMonitor(trigger: Settings.trigger)
 
     private var statusItem: NSStatusItem!
+    private var languagesMenu: NSMenu?
     private let statusLine = NSMenuItem(title: "", action: nil, keyEquivalent: "")
     private var modelReady = false
     private var recording = false
@@ -43,6 +44,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self, selector: #selector(debugDictateFile(_:)), name: .init("tsuzuri.debug.dictateFile"), object: nil)
             DistributedNotificationCenter.default().addObserver(
                 self, selector: #selector(debugOverlay(_:)), name: .init("tsuzuri.debug.overlay"), object: nil)
+            DistributedNotificationCenter.default().addObserver(
+                self, selector: #selector(debugMenu(_:)), name: .init("tsuzuri.debug.menu"), object: nil)
         }
 
         Task { _ = await AudioRecorder.requestPermission() }
@@ -107,22 +110,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         addSubmenu(models, title: String(localized: "Model"), to: menu)
 
         let languages = NSMenu()
-        for language in RecognitionLanguage.allCases {
-            let item = NSMenuItem(title: language.title, action: #selector(selectLanguage(_:)), keyEquivalent: "")
-            item.representedObject = language.rawValue
-            item.state = language == Settings.language ? .on : .off
-            item.target = self
-            languages.addItem(item)
-        }
-        addSubmenu(languages, title: String(localized: "Spoken Language"), to: menu)
+        languages.addItem(languageItem(.auto))
+        languages.addItem(note(String(localized: "Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them.")))
+        languages.addItem(note(String(localized: "Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan.")))
+        languages.addItem(.separator())
+        RecognitionLanguage.featured.forEach { languages.addItem(languageItem($0)) }
+        languages.addItem(.separator())
+        RecognitionLanguage.others.forEach { languages.addItem(languageItem($0)) }
+        languagesMenu = languages
+        let current = Settings.language.language?.nativeName ?? String(localized: "Auto")
+        addSubmenu(languages, title: String(localized: "Spoken Language: \(current)"), to: menu)
 
         let polishTitle = String(localized: "Polish")
         let polish = item(PolishModel.isInstalled ? polishTitle : String(localized: "\(polishTitle) (not downloaded)"),
                           #selector(togglePolish))
         polish.state = Settings.polish && PolishModel.isInstalled ? .on : .off
         polish.isEnabled = PolishModel.isInstalled
-        polish.toolTip = String(localized: "After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Skipped in terminals.")
+        polish.toolTip = String(localized: "After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for \(polishLanguages); other languages are inserted as recognized. Skipped in terminals.")
         menu.addItem(polish)
+        menu.addItem(note(String(localized: "Only for \(polishLanguages)")))
 
         let triggers = NSMenu()
         for trigger in TriggerKey.allCases {
@@ -141,6 +147,26 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
         menu.addItem(item(String(localized: "Quit Tsuzuri"), #selector(quit), key: "q"))
         statusItem.menu = menu
+    }
+
+    private var polishLanguages: String {
+        PolishLanguages.supported.compactMap { SpokenLanguage.named($0)?.nativeName }.joined(separator: ", ")
+    }
+
+    private func languageItem(_ language: RecognitionLanguage) -> NSMenuItem {
+        let item = NSMenuItem(title: language.title, action: #selector(selectLanguage(_:)), keyEquivalent: "")
+        item.representedObject = language.rawValue
+        item.state = language == Settings.language ? .on : .off
+        item.target = self
+        return item
+    }
+
+    /// A greyed-out, indented line of explanation.
+    private func note(_ text: String) -> NSMenuItem {
+        let item = NSMenuItem(title: text, action: nil, keyEquivalent: "")
+        item.isEnabled = false
+        item.indentationLevel = 1
+        return item
     }
 
     private func addSubmenu(_ submenu: NSMenu, title: String, to menu: NSMenu) {
@@ -287,7 +313,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     return
                 }
                 var text = result.text
-                if polish {
+                let unsupported = PolishLanguages.skipReason(for: result.language)
+                if polish, let unsupported {
+                    Log.write("polish skipped: \(unsupported)")
+                } else if polish {
                     let p = await transcriber.polish(result.text)
                     text = p.text
                     Log.write(String(format: "polish %.0f ms, %d→%d tokens, %@: %@ ⇒ %@",
@@ -427,6 +456,22 @@ extension AppDelegate {
         case "transcribing": overlay.show(.transcribing)
         case "hide", nil: overlay.hide()
         case let text?: overlay.show(.message(text))
+        }
+    }
+
+    /// Debug hook for screenshots: `scripts/debug.sh menu main|languages` opens the menu
+    /// (or the Spoken Language submenu on its own) and closes it again after 4 s.
+    @objc fileprivate func debugMenu(_ note: Notification) {
+        guard let button = statusItem.button, let window = button.window else { return }
+        let menu: NSMenu? = note.object as? String == "languages" ? languagesMenu?.copy() as? NSMenu : statusItem.menu
+        guard let menu else { return }
+        let close = Timer(timeInterval: 4, repeats: false) { _ in menu.cancelTracking() }
+        RunLoop.main.add(close, forMode: .common)
+        if note.object as? String == "languages" {
+            let frame = window.convertToScreen(button.convert(button.bounds, to: nil))
+            menu.popUp(positioning: nil, at: NSPoint(x: frame.minX, y: frame.minY - 4), in: nil)
+        } else {
+            button.performClick(nil)
         }
     }
 }

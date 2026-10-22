@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Запуск…";
+"Recent (Click to Copy)" = "Недавние (нажмите, чтобы скопировать)";
+"(None yet)" = "(Пока нет)";
+"Clear" = "Очистить";
+"Model" = "Модель";
+"%@ (not downloaded)" = "%@ (не загружена)";
+"Accurate" = "Точная";
+"Fast" = "Быстрая";
+"Spoken Language: %@" = "Язык речи: %@";
+"Auto (30 Languages, Mixing OK)" = "Авто (30 языков, можно смешивать)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Также распознаёт 22 китайских диалекта, например сычуаньский, у и миньнань.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Язык определяется при каждой диктовке. Оптимизировано для китайского, английского, японского и их смешения.";
+"Auto" = "Авто";
+"Polish" = "Обработка текста";
+"Only for %@" = "Только для: %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "После распознавания небольшая локальная модель расставляет знаки препинания, убирает слова-паразиты, учитывает поправки по ходу речи и записывает числа цифрами. Только для: %@; текст на других языках вставляется в том виде, в каком был распознан. В терминалах не применяется.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Клавиша (удерживать — диктовка, нажать — вкл./выкл.)";
+"Right Option ⌥" = "Правый Option ⌥";
+"Right Command ⌘" = "Правый Command ⌘";
+"Open Accessibility Settings…" = "Открыть настройки универсального доступа…";
+"Open Microphone Settings…" = "Открыть настройки микрофона…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Проверка вставки (вставка в текущее окно через 3 с)";
+"Tsuzuri paste test" = "Проверка вставки Tsuzuri";
+"Quit Tsuzuri" = "Завершить Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Нужно разрешение для универсального доступа (Системные настройки → Конфиденциальность и безопасность)";
+"Loading model…" = "Загрузка модели…";
+"Ready · hold %@ to talk" = "Готово · удерживайте %@, чтобы говорить";
+"Model failed to load: %@" = "Не удалось загрузить модель: %@";
+
+/* Overlay */
+"Listening…" = "Слушаю…";
+"Transcribing…" = "Распознавание…";
+"Model is still loading…" = "Модель ещё загружается…";
+"Can't record" = "Не удаётся записать звук";
+"No microphone found" = "Микрофон не найден";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Доступ к микрофону выключен (меню → Открыть настройки микрофона…)";
+"Canceled" = "Отменено";
+"No speech heard" = "Речь не услышана";
+"Recognition failed" = "Не удалось распознать";
+"Copied: %@" = "Скопировано: %@";
+"Copied · ⌘V to paste: %@" = "Скопировано · ⌘V, чтобы вставить: %@";
+"Copied (Accessibility not granted)" = "Скопировано (универсальный доступ не разрешён)";

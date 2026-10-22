@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Startar…";
+"Recent (Click to Copy)" = "Senaste (klicka för att kopiera)";
+"(None yet)" = "(Inga ännu)";
+"Clear" = "Rensa";
+"Model" = "Modell";
+"%@ (not downloaded)" = "%@ (inte hämtad)";
+"Accurate" = "Noggrann";
+"Fast" = "Snabb";
+"Spoken Language: %@" = "Talat språk: %@";
+"Auto (30 Languages, Mixing OK)" = "Automatiskt (30 språk, blandning går bra)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Känner också igen 22 kinesiska dialekter, till exempel sichuanesiska, wu och min nan.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Identifierar språket vid varje diktering. Anpassad för kinesiska, engelska, japanska och blandningar av dem.";
+"Auto" = "Automatiskt";
+"Polish" = "Textputsning";
+"Only for %@" = "Endast för %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Efter igenkänningen lägger en liten lokal modell till skiljetecken, tar bort utfyllnadsord, tillämpar självrättelser och skriver tal med siffror. Endast för %@; andra språk infogas som de kändes igen. Används inte i terminaler.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Kortkommando (håll ned för att tala / tryck för att slå på eller av)";
+"Right Option ⌥" = "Höger alternativtangent ⌥";
+"Right Command ⌘" = "Höger kommandotangent ⌘";
+"Open Accessibility Settings…" = "Öppna inställningar för hjälpmedel…";
+"Open Microphone Settings…" = "Öppna inställningar för mikrofon…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Testa inklistring (klistrar in i aktuellt fönster om 3 s)";
+"Tsuzuri paste test" = "Tsuzuri inklistringstest";
+"Quit Tsuzuri" = "Avsluta Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Behörighet för hjälpmedel krävs (Systeminställningar → Integritet och säkerhet)";
+"Loading model…" = "Läser in modell…";
+"Ready · hold %@ to talk" = "Redo · håll ned %@ för att tala";
+"Model failed to load: %@" = "Det gick inte att läsa in modellen: %@";
+
+/* Overlay */
+"Listening…" = "Lyssnar…";
+"Transcribing…" = "Känner igen…";
+"Model is still loading…" = "Modellen läses fortfarande in…";
+"Can't record" = "Kan inte spela in";
+"No microphone found" = "Ingen mikrofon hittades";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Mikrofonåtkomst är avstängd (menyn → Öppna inställningar för mikrofon…)";
+"Canceled" = "Avbrutet";
+"No speech heard" = "Inget tal hördes";
+"Recognition failed" = "Igenkänningen misslyckades";
+"Copied: %@" = "Kopierat: %@";
+"Copied · ⌘V to paste: %@" = "Kopierat · ⌘V för att klistra in: %@";
+"Copied (Accessibility not granted)" = "Kopierat (behörighet för hjälpmedel saknas)";

@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Starten…";
+"Recent (Click to Copy)" = "Recent (klik om te kopiëren)";
+"(None yet)" = "(Nog niets)";
+"Clear" = "Wis";
+"Model" = "Model";
+"%@ (not downloaded)" = "%@ (niet gedownload)";
+"Accurate" = "Nauwkeurig";
+"Fast" = "Snel";
+"Spoken Language: %@" = "Gesproken taal: %@";
+"Auto (30 Languages, Mixing OK)" = "Automatisch (30 talen, mengen mag)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Herkent ook 22 Chinese dialecten, zoals Sichuanees, Wu en Min Nan.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Herkent bij elk dictaat de taal. Afgestemd op Chinees, Engels, Japans en een mix daarvan.";
+"Auto" = "Automatisch";
+"Polish" = "Tekst opschonen";
+"Only for %@" = "Alleen voor %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Na de herkenning voegt een klein lokaal model leestekens toe, verwijdert het stopwoorden, verwerkt het verbeteringen die je zelf uitspreekt en schrijft het getallen in cijfers. Alleen voor %@; andere talen worden ingevoegd zoals ze zijn herkend. Niet in terminals.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Toetscombinatie (ingedrukt houden om te praten / tikken om aan of uit te zetten)";
+"Right Option ⌥" = "Rechter Option-toets ⌥";
+"Right Command ⌘" = "Rechter Command-toets ⌘";
+"Open Accessibility Settings…" = "Open toegankelijkheidsinstellingen…";
+"Open Microphone Settings…" = "Open microfooninstellingen…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Plaktest (plakt over 3 s in het huidige venster)";
+"Tsuzuri paste test" = "Tsuzuri-plaktest";
+"Quit Tsuzuri" = "Stop Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Toegang voor toegankelijkheid vereist (Systeeminstellingen → Privacy en beveiliging)";
+"Loading model…" = "Model laden…";
+"Ready · hold %@ to talk" = "Gereed · houd %@ ingedrukt om te praten";
+"Model failed to load: %@" = "Kan model niet laden: %@";
+
+/* Overlay */
+"Listening…" = "Luisteren…";
+"Transcribing…" = "Herkennen…";
+"Model is still loading…" = "Model wordt nog geladen…";
+"Can't record" = "Kan niet opnemen";
+"No microphone found" = "Geen microfoon gevonden";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Microfoontoegang staat uit (menu → Open microfooninstellingen…)";
+"Canceled" = "Geannuleerd";
+"No speech heard" = "Geen spraak gehoord";
+"Recognition failed" = "Herkenning mislukt";
+"Copied: %@" = "Gekopieerd: %@";
+"Copied · ⌘V to paste: %@" = "Gekopieerd · ⌘V om te plakken: %@";
+"Copied (Accessibility not granted)" = "Gekopieerd (geen toegang voor toegankelijkheid)";

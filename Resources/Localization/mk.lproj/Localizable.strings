@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Се стартува…";
+"Recent (Click to Copy)" = "Неодамнешни (кликнете за копирање)";
+"(None yet)" = "(Сѐ уште нема)";
+"Clear" = "Исчисти";
+"Model" = "Модел";
+"%@ (not downloaded)" = "%@ (не е преземен)";
+"Accurate" = "Прецизен";
+"Fast" = "Брз";
+"Spoken Language: %@" = "Јазик на говорот: %@";
+"Auto (30 Languages, Mixing OK)" = "Автоматски (30 јазици, може мешано)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Препознава и 22 кинески дијалекти, како сечуански, ву и мин нан.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Го препознава јазикот при секое диктирање. Оптимизирано за кинески, англиски, јапонски и нивно мешање.";
+"Auto" = "Автоматски";
+"Polish" = "Средување текст";
+"Only for %@" = "Само за %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "По препознавањето, мал локален модел додава интерпункција, ги отстранува зборовите-полнила, ги применува поправките што ги правите додека зборувате и ги запишува броевите со цифри. Само за %@; другите јазици се внесуваат како што се препознаени. Не се применува во терминали.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Кратенка (држете за да зборувате / притиснете за вклучување и исклучување)";
+"Right Option ⌥" = "Десен Option ⌥";
+"Right Command ⌘" = "Десен Command ⌘";
+"Open Accessibility Settings…" = "Отвори ги поставките за пристапност…";
+"Open Microphone Settings…" = "Отвори ги поставките за микрофон…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Тест за залепување (залепува во тековниот прозорец за 3 с)";
+"Tsuzuri paste test" = "Tsuzuri тест за залепување";
+"Quit Tsuzuri" = "Излези од Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Потребна е дозвола за пристапност (Системски поставки → Приватност и безбедност)";
+"Loading model…" = "Се вчитува моделот…";
+"Ready · hold %@ to talk" = "Подготвено · држете %@ за да зборувате";
+"Model failed to load: %@" = "Моделот не можеше да се вчита: %@";
+
+/* Overlay */
+"Listening…" = "Слушам…";
+"Transcribing…" = "Се препознава…";
+"Model is still loading…" = "Моделот сѐ уште се вчитува…";
+"Can't record" = "Не може да се снима";
+"No microphone found" = "Не е пронајден микрофон";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Пристапот до микрофонот е исклучен (мени → Отвори ги поставките за микрофон…)";
+"Canceled" = "Откажано";
+"No speech heard" = "Не се слушна говор";
+"Recognition failed" = "Препознавањето не успеа";
+"Copied: %@" = "Копирано: %@";
+"Copied · ⌘V to paste: %@" = "Копирано · ⌘V за залепување: %@";
+"Copied (Accessibility not granted)" = "Копирано (нема дозвола за пристапност)";

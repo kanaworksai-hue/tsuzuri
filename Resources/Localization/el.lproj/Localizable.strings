@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Εκκίνηση…";
+"Recent (Click to Copy)" = "Πρόσφατα (κλικ για αντιγραφή)";
+"(None yet)" = "(Κανένα ακόμη)";
+"Clear" = "Εκκαθάριση";
+"Model" = "Μοντέλο";
+"%@ (not downloaded)" = "%@ (δεν έχει ληφθεί)";
+"Accurate" = "Ακριβές";
+"Fast" = "Γρήγορο";
+"Spoken Language: %@" = "Γλώσσα ομιλίας: %@";
+"Auto (30 Languages, Mixing OK)" = "Αυτόματα (30 γλώσσες, επιτρέπεται η ανάμειξη)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Αναγνωρίζει επίσης 22 κινεζικές διαλέκτους, όπως τη Σετσουάν, τη Γου και τη Μιν Ναν.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Εντοπίζει τη γλώσσα σε κάθε υπαγόρευση. Βελτιστοποιημένο για κινεζικά, αγγλικά, ιαπωνικά και την ανάμειξή τους.";
+"Auto" = "Αυτόματα";
+"Polish" = "Τακτοποίηση κειμένου";
+"Only for %@" = "Μόνο για %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Μετά την αναγνώριση, ένα μικρό τοπικό μοντέλο προσθέτει στίξη, αφαιρεί λέξεις-γεμίσματα, εφαρμόζει τις διορθώσεις που κάνετε μιλώντας και γράφει τους αριθμούς με ψηφία. Μόνο για %@· οι άλλες γλώσσες εισάγονται όπως αναγνωρίστηκαν. Δεν εφαρμόζεται στα τερματικά.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Συντόμευση (κρατήστε πατημένο για ομιλία / πατήστε για εναλλαγή)";
+"Right Option ⌥" = "Δεξί Option ⌥";
+"Right Command ⌘" = "Δεξί Command ⌘";
+"Open Accessibility Settings…" = "Άνοιγμα ρυθμίσεων Προσβασιμότητας…";
+"Open Microphone Settings…" = "Άνοιγμα ρυθμίσεων μικροφώνου…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Δοκιμή επικόλλησης (επικόλληση στο τρέχον παράθυρο σε 3 δευτ.)";
+"Tsuzuri paste test" = "Δοκιμή επικόλλησης Tsuzuri";
+"Quit Tsuzuri" = "Τερματισμός Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Απαιτείται άδεια Προσβασιμότητας (Ρυθμίσεις συστήματος → Απόρρητο και ασφάλεια)";
+"Loading model…" = "Φόρτωση μοντέλου…";
+"Ready · hold %@ to talk" = "Έτοιμο · κρατήστε πατημένο το %@ για ομιλία";
+"Model failed to load: %@" = "Αποτυχία φόρτωσης μοντέλου: %@";
+
+/* Overlay */
+"Listening…" = "Ακρόαση…";
+"Transcribing…" = "Αναγνώριση…";
+"Model is still loading…" = "Το μοντέλο φορτώνεται ακόμη…";
+"Can't record" = "Δεν είναι δυνατή η εγγραφή";
+"No microphone found" = "Δεν βρέθηκε μικρόφωνο";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Η πρόσβαση στο μικρόφωνο είναι απενεργοποιημένη (μενού → Άνοιγμα ρυθμίσεων μικροφώνου…)";
+"Canceled" = "Ακυρώθηκε";
+"No speech heard" = "Δεν ακούστηκε ομιλία";
+"Recognition failed" = "Η αναγνώριση απέτυχε";
+"Copied: %@" = "Αντιγράφηκε: %@";
+"Copied · ⌘V to paste: %@" = "Αντιγράφηκε · ⌘V για επικόλληση: %@";
+"Copied (Accessibility not granted)" = "Αντιγράφηκε (δεν έχει δοθεί άδεια Προσβασιμότητας)";

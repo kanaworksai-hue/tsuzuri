@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Starter…";
+"Recent (Click to Copy)" = "Seneste (klik for at kopiere)";
+"(None yet)" = "(Ingen endnu)";
+"Clear" = "Ryd";
+"Model" = "Model";
+"%@ (not downloaded)" = "%@ (ikke hentet)";
+"Accurate" = "Præcis";
+"Fast" = "Hurtig";
+"Spoken Language: %@" = "Talt sprog: %@";
+"Auto (30 Languages, Mixing OK)" = "Automatisk (30 sprog, også blandet)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Genkender også 22 kinesiske dialekter, f.eks. sichuanesisk, wu og min nan.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Registrerer sproget ved hver diktering. Tilpasset kinesisk, engelsk, japansk og blandinger af dem.";
+"Auto" = "Automatisk";
+"Polish" = "Tekstoprydning";
+"Only for %@" = "Kun for %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Efter genkendelsen tilføjer en lille lokal model tegnsætning, fjerner fyldord, udfører selvrettelser og skriver tal med cifre. Kun for %@; andre sprog indsættes, som de blev genkendt. Bruges ikke i terminaler.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Genvej (hold nede for at tale / tryk for at slå til eller fra)";
+"Right Option ⌥" = "Højre alternativtast ⌥";
+"Right Command ⌘" = "Højre kommandotast ⌘";
+"Open Accessibility Settings…" = "Åbn indstillinger for tilgængelighed…";
+"Open Microphone Settings…" = "Åbn indstillinger for mikrofon…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Test indsætning (indsætter i det aktuelle vindue om 3 s)";
+"Tsuzuri paste test" = "Tsuzuri-indsætningstest";
+"Quit Tsuzuri" = "Slut Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Tilladelse til tilgængelighed kræves (Systemindstillinger → Anonymitet og sikkerhed)";
+"Loading model…" = "Indlæser model…";
+"Ready · hold %@ to talk" = "Klar · hold %@ nede for at tale";
+"Model failed to load: %@" = "Modellen kunne ikke indlæses: %@";
+
+/* Overlay */
+"Listening…" = "Lytter…";
+"Transcribing…" = "Genkender…";
+"Model is still loading…" = "Modellen indlæses stadig…";
+"Can't record" = "Kan ikke optage";
+"No microphone found" = "Ingen mikrofon fundet";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Adgang til mikrofon er slået fra (menu → Åbn indstillinger for mikrofon…)";
+"Canceled" = "Annulleret";
+"No speech heard" = "Ingen tale hørt";
+"Recognition failed" = "Genkendelsen mislykkedes";
+"Copied: %@" = "Kopieret: %@";
+"Copied · ⌘V to paste: %@" = "Kopieret · ⌘V for at indsætte: %@";
+"Copied (Accessibility not granted)" = "Kopieret (ingen tilladelse til tilgængelighed)";

@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Memulakan…";
+"Recent (Click to Copy)" = "Terkini (Klik untuk Salin)";
+"(None yet)" = "(Belum ada)";
+"Clear" = "Kosongkan";
+"Model" = "Model";
+"%@ (not downloaded)" = "%@ (belum dimuat turun)";
+"Accurate" = "Tepat";
+"Fast" = "Pantas";
+"Spoken Language: %@" = "Bahasa Pertuturan: %@";
+"Auto (30 Languages, Mixing OK)" = "Automatik (30 Bahasa, Boleh Bercampur)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Turut mengecam 22 dialek Cina, seperti Sichuan, Wu dan Min Nan.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Mengesan bahasa bagi setiap imlak. Dioptimumkan untuk bahasa Cina, Inggeris, Jepun dan campurannya.";
+"Auto" = "Automatik";
+"Polish" = "Kemaskan Teks";
+"Only for %@" = "Hanya untuk %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Selepas pengecaman, model setempat yang kecil menambah tanda baca, membuang kata pengisi, menggunakan pembetulan yang anda sebut dan menulis nombor sebagai digit. Hanya untuk %@; bahasa lain dimasukkan seperti yang dikecam. Tidak digunakan dalam terminal.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Pintasan (Tahan untuk Bercakap / Ketik untuk Togol)";
+"Right Option ⌥" = "Option Kanan ⌥";
+"Right Command ⌘" = "Command Kanan ⌘";
+"Open Accessibility Settings…" = "Buka Seting Kebolehcapaian…";
+"Open Microphone Settings…" = "Buka Seting Mikrofon…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Ujian Tampal (Menampal ke Tetingkap Semasa dalam 3 saat)";
+"Tsuzuri paste test" = "Ujian tampal Tsuzuri";
+"Quit Tsuzuri" = "Keluar Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Keizinan kebolehcapaian diperlukan (Seting Sistem → Privasi & Keselamatan)";
+"Loading model…" = "Memuatkan model…";
+"Ready · hold %@ to talk" = "Sedia · tahan %@ untuk bercakap";
+"Model failed to load: %@" = "Model gagal dimuatkan: %@";
+
+/* Overlay */
+"Listening…" = "Mendengar…";
+"Transcribing…" = "Mentranskripsi…";
+"Model is still loading…" = "Model masih dimuatkan…";
+"Can't record" = "Tidak dapat merakam";
+"No microphone found" = "Tiada mikrofon ditemui";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Akses mikrofon dimatikan (menu → Buka Seting Mikrofon…)";
+"Canceled" = "Dibatalkan";
+"No speech heard" = "Tiada pertuturan didengar";
+"Recognition failed" = "Pengecaman gagal";
+"Copied: %@" = "Disalin: %@";
+"Copied · ⌘V to paste: %@" = "Disalin · ⌘V untuk tampal: %@";
+"Copied (Accessibility not granted)" = "Disalin (Kebolehcapaian tidak dibenarkan)";

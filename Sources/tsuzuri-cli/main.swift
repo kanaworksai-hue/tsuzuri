@@ -32,7 +32,8 @@ func usage() -> Never {
                        [--no-vad] [--polish] [--app NAME] [--jsonl] [--repeat N] AUDIO...
            tsuzuri-cli --polish-text [--app NAME] [--jsonl] TEXTFILE...
            tsuzuri-cli --guard-only RESULTS.jsonl...
-      --polish        clean up the transcript with \(PolishModel.directoryName) (falls back to raw on guard failure)
+      --polish        clean up the transcript with \(PolishModel.directoryName) (falls back to raw on guard failure;
+                      skipped unless the detected language is one of \(PolishLanguages.supported.joined(separator: ", ")))
       --polish-text   polish each line of TEXTFILE; JSONL lines use "in" (and pass id/cat/ref through)
       --guard-only    apply the polish guard to existing {"in","out"} records, no model
       --polish-dir    polish model directory (default: models dir/\(PolishModel.directoryName))
@@ -199,7 +200,15 @@ do {
         for run in 0..<options.repeatCount {
             let t = try await transcriber.transcribe(samples, language: options.language,
                                                      context: options.context, trimSilence: options.vad)
-            let p = options.polish ? await transcriber.polish(t.text, app: options.app, timeout: options.timeout) : nil
+            // Same rule as the app: only polish languages cleanup-1 was trained on.
+            var p: Polish?
+            if options.polish {
+                if let reason = PolishLanguages.skipReason(for: t.language) {
+                    p = .skipped(t.text, reason: reason)
+                } else {
+                    p = await transcriber.polish(t.text, app: options.app, timeout: options.timeout)
+                }
+            }
             let mem = await transcriber.memoryStats()
             if options.jsonl {
                 var rec: [String: Any] = ["event": "result", "file": file.lastPathComponent, "run": run,

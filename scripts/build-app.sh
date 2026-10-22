@@ -22,7 +22,7 @@ cp .build/release/Tsuzuri "$APP/Contents/MacOS/"
 cp .build/mlx.metallib "$APP/Contents/Resources/"
 cp Resources/Info.plist "$APP/Contents/"
 cp Resources/AppIcon.icns "$APP/Contents/Resources/"
-# UI strings: English keys in the source, zh-Hans / ja tables here (scripts/check-l10n.py).
+# UI strings: English keys in the source, one table per language here (scripts/check-l10n.py).
 cp -R Resources/Localization/*.lproj "$APP/Contents/Resources/"
 # License notices: ours, THIRD_PARTY.md and the license of every resolved Swift package
 # (MIT / Apache-2.0 require shipping them with the binary).

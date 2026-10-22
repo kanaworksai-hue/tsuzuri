@@ -25,6 +25,11 @@ public struct Polish: Sendable {
     public var promptTokens = 0
     public var generatedTokens = 0
 
+    /// Polish that did not run (unsupported language, terminal…): the raw text is used.
+    public static func skipped(_ raw: String, reason: String) -> Polish {
+        Polish(raw: raw, candidate: "", rejection: "skipped: \(reason)", elapsed: 0)
+    }
+
     public var accepted: Bool { rejection == nil }
     public var text: String { accepted ? candidate : raw }
 }

@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "啟動中…";
+"Recent (Click to Copy)" = "最近辨識（按一下即可拷貝）";
+"(None yet)" = "（尚無項目）";
+"Clear" = "清除";
+"Model" = "模型";
+"%@ (not downloaded)" = "%@（未下載）";
+"Accurate" = "準確";
+"Fast" = "快速";
+"Spoken Language: %@" = "辨識語言：%@";
+"Auto (30 Languages, Mixing OK)" = "自動（30 種語言，可混合使用）";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "也能辨識 22 種中文方言，例如四川話、吳語、閩南語。";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "每次聽寫都會自動判斷語言。針對中文、英文、日文及混合使用進行最佳化。";
+"Auto" = "自動";
+"Polish" = "文字潤飾";
+"Only for %@" = "僅支援 %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "辨識後由本機小型模型加上標點、刪去贅詞、依說話時的更正修改內容，並將數字寫成阿拉伯數字。僅支援 %@；其他語言會依辨識結果直接輸入。在終端機中不會潤飾。";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "快速鍵（按住說話／輕按切換）";
+"Right Option ⌥" = "右 Option ⌥";
+"Right Command ⌘" = "右 Command ⌘";
+"Open Accessibility Settings…" = "打開輔助使用設定…";
+"Open Microphone Settings…" = "打開麥克風設定…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "貼上測試（3 秒後貼到目前的視窗）";
+"Tsuzuri paste test" = "Tsuzuri 貼上測試";
+"Quit Tsuzuri" = "結束 Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "需要輔助使用權限（系統設定 → 隱私權與安全性）";
+"Loading model…" = "正在載入模型…";
+"Ready · hold %@ to talk" = "就緒 · 按住 %@ 說話";
+"Model failed to load: %@" = "無法載入模型：%@";
+
+/* Overlay */
+"Listening…" = "正在聆聽…";
+"Transcribing…" = "正在辨識…";
+"Model is still loading…" = "模型仍在載入…";
+"Can't record" = "無法錄音";
+"No microphone found" = "找不到麥克風";
+"Microphone access is off (menu → Open Microphone Settings…)" = "麥克風權限未開啟（選單 → 打開麥克風設定…）";
+"Canceled" = "已取消";
+"No speech heard" = "沒有聽到聲音";
+"Recognition failed" = "辨識失敗";
+"Copied: %@" = "已拷貝：%@";
+"Copied · ⌘V to paste: %@" = "已拷貝 · 按 ⌘V 貼上：%@";
+"Copied (Accessibility not granted)" = "已拷貝（未取得輔助使用權限）";

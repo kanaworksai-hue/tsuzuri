@@ -23,14 +23,28 @@ public enum PolishGuard {
 
     // MARK: - Script mix (translation)
 
-    enum Script: String, CaseIterable { case han, kana, latin }
+    enum Script: String, CaseIterable { case han, kana, latin, cyrillic, greek }
 
     static func script(of scalar: Unicode.Scalar) -> Script? {
         switch scalar.value {
         case 0x4E00...0x9FFF, 0x3400...0x4DBF, 0xF900...0xFAFF, 0x3005: .han
         case 0x3040...0x30FF, 0x31F0...0x31FF: .kana
-        case 0x41...0x5A, 0x61...0x7A: .latin
+        // ASCII letters plus accented ones (é, ü, ñ, ß, ő, ș, ế…); not × ÷.
+        case 0x41...0x5A, 0x61...0x7A, 0xC0...0xD6, 0xD8...0xF6, 0xF8...0x24F, 0x1E00...0x1EFF: .latin
+        case 0x400...0x4FF: .cyrillic
+        case 0x370...0x3FF, 0x1F00...0x1FFF: .greek
         default: nil
+        }
+    }
+
+    /// Letters that make up words separated by spaces: Latin (with accents), Cyrillic, Greek.
+    static func isWordLetter(_ c: Character) -> Bool {
+        guard c.isLetter else { return false }
+        return c.unicodeScalars.allSatisfy { scalar in
+            switch script(of: scalar) {
+            case .latin, .cyrillic, .greek: true
+            default: scalar.properties.generalCategory == .nonspacingMark
+            }
         }
     }
 
@@ -69,13 +83,14 @@ public enum PolishGuard {
         return nil
     }
 
+    /// Space-separated words (Latin, Cyrillic, Greek): "können" stays one word.
     static func latinWords(_ s: String) -> [String] {
-        s.split(whereSeparator: { !($0.isASCII && $0.isLetter) }).map(String.init)
+        s.split(whereSeparator: { !isWordLetter($0) }).map(String.init)
     }
 
     // MARK: - New words
 
-    /// cleanup-1 keeps the speaker's wording, so every latin word it writes must come
+    /// cleanup-1 keeps the speaker's wording, so every word it writes must come
     /// from the input (ignoring case; adjacent words may be joined: "git hub" → GitHub,
     /// "A S A P" → ASAP), and it must not introduce new Han characters. This catches
     /// translations (memory → 内存), garbled terms (ASAPで → SAS也で) and hallucinated
@@ -120,6 +135,7 @@ public enum PolishGuard {
         }
         known.formUnion(CJKNumbers.candidates(in: input))
         known.formUnion(EnglishNumbers.candidates(in: input))
+        known.formUnion(EuropeanNumbers.candidates(in: input))
         let hasMyriad = input.contains { "万萬亿億".contains($0) }
         for n in outNumbers {
             if hasMyriad, n.value.count >= 5, !n.followedByMyriad { return "number: \(n.value) instead of 万/亿" }
@@ -130,7 +146,9 @@ public enum PolishGuard {
 
     struct DigitRun { var value: String; var followedByMyriad: Bool }
 
-    private static let thousandsSeparator = try! NSRegularExpression(pattern: "(?<=[0-9]),(?=[0-9]{3}(?![0-9]))")
+    // 2,500 / 2.500 / 2 500 (also no-break and narrow no-break spaces, as French writes it).
+    private static let thousandsSeparator = try! NSRegularExpression(
+        pattern: "(?<=[0-9])[,. \u{00A0}\u{202F}](?=[0-9]{3}(?![0-9]))")
     private static let digitRun = try! NSRegularExpression(pattern: "[0-9]+")
 
     /// Digit runs, thousands separators removed (2,500 → 2500), leading zeros stripped.
@@ -240,7 +258,7 @@ enum EnglishNumbers {
         var tokens: [String] = []
         var word = ""
         for ch in s.lowercased() {
-            if ch.isASCII, ch.isLetter {
+            if PolishGuard.isWordLetter(ch) {
                 word.append(ch)
             } else {
                 if !word.isEmpty { tokens.append(word) }
@@ -274,7 +292,11 @@ enum EnglishNumbers {
     }
 
     private static func candidates(of group: [String]) -> Set<String> {
-        let values = group.compactMap { words[$0] }
+        candidates(ofValues: group.compactMap { words[$0] })
+    }
+
+    /// Values a run of number words may stand for, given each word's value in order.
+    static func candidates(ofValues values: [Int]) -> Set<String> {
         var out = Set(values.map(String.init))
         // Standard reading of every contiguous piece: "two thousand five hundred" = 2500.
         for a in 0..<values.count {
@@ -320,5 +342,125 @@ enum EnglishNumbers {
             }
         }
         return total + current
+    }
+}
+
+/// Values that spoken German, French, Spanish and Russian numbers may stand for
+/// (the other languages cleanup-1 writes digits for). Each word must split completely
+/// into number parts: "dreiundzwanzig" → 3 und 20, "doscientos" → 200, "vingt-cinq" → 20 5.
+enum EuropeanNumbers {
+    /// Joins units and tens the other way round: German "drei und zwanzig" = 23.
+    private static let und = -1
+
+    static let parts: [String: Int] = {
+        var p: [String: Int] = [:]
+        func add(_ values: [Int], _ words: String) {
+            for (v, w) in zip(values, words.split(separator: " ")) { p[String(w)] = v }
+        }
+        let units = Array(0...19)
+        let tens = [20, 30, 40, 50, 60, 70, 80, 90]
+        let hundreds = [200, 300, 400, 500, 600, 700, 800, 900]
+        // German (compounds are split below: "zweihundertfünfzig" → zwei hundert fünfzig)
+        add(units, "null eins zwei drei vier fünf sechs sieben acht neun zehn elf zwölf dreizehn vierzehn fünfzehn sechzehn siebzehn achtzehn neunzehn")
+        add(tens, "zwanzig dreißig vierzig fünfzig sechzig siebzig achtzig neunzig")
+        add([1, 1, 2, 6, 7, 30], "ein eine zwo sech sieb dreissig")
+        p["und"] = und
+        add([100, 1000, 1_000_000, 1_000_000, 1_000_000_000, 1_000_000_000], "hundert tausend million millionen milliarde milliarden")
+        // French ("quatre-vingt" = 80 is handled when composing)
+        add(units, "zéro un deux trois quatre cinq six sept huit neuf dix onze douze treize quatorze quinze seize")
+        add([1, 20, 30, 40, 50, 60, 100, 100, 1000, 1_000_000, 1_000_000, 1_000_000_000, 1_000_000_000],
+            "une vingt trente quarante cinquante soixante cent cents mille million millions milliard milliards")
+        p["vingts"] = 20
+        // Spanish ("veinti" + unit: veintitrés)
+        add(units, "cero uno dos tres cuatro cinco seis siete ocho nueve diez once doce trece catorce quince dieciséis diecisiete dieciocho diecinueve")
+        add([1, 1, 20, 20, 16, 22, 23, 26], "un una veinte veinti dieciseis veintidós veintitrés veintiséis")
+        add(tens.dropFirst().map { $0 }, "treinta cuarenta cincuenta sesenta setenta ochenta noventa")
+        add([100, 100] + hundreds, "cien ciento doscientos trescientos cuatrocientos quinientos seiscientos setecientos ochocientos novecientos")
+        add([200, 300, 400, 500, 600, 700, 800, 900], "doscientas trescientas cuatrocientas quinientas seiscientas setecientas ochocientas novecientas")
+        add([1000, 1_000_000, 1_000_000], "mil millón millones")
+        // Russian
+        add(units, "ноль один два три четыре пять шесть семь восемь девять десять одиннадцать двенадцать тринадцать четырнадцать пятнадцать шестнадцать семнадцать восемнадцать девятнадцать")
+        add([1, 1, 2], "одна одно две")
+        add(tens, "двадцать тридцать сорок пятьдесят шестьдесят семьдесят восемьдесят девяносто")
+        add([100] + hundreds, "сто двести триста четыреста пятьсот шестьсот семьсот восемьсот девятьсот")
+        add([1000, 1000, 1000, 1_000_000, 1_000_000, 1_000_000],
+            "тысяча тысячи тысяч миллион миллиона миллионов")
+        return p
+    }()
+    private static let longestPart = parts.keys.map(\.count).max() ?? 0
+
+    /// Splits `word` into number parts (longest first), or nil if any part is not a number.
+    static func split(_ word: String) -> [Int]? {
+        let chars = Array(word)
+        var values: [Int] = []
+        var i = 0
+        outer: while i < chars.count {
+            for n in stride(from: min(longestPart, chars.count - i), through: 2, by: -1) {
+                if let v = parts[String(chars[i..<(i + n)])] {
+                    values.append(v)
+                    i += n
+                    continue outer
+                }
+            }
+            return nil
+        }
+        return values
+    }
+
+    /// Word values in spoken order → values for `EnglishNumbers.candidates(ofValues:)`.
+    static func normalize(_ values: [Int]) -> [Int] {
+        var out: [Int] = []
+        var k = 0
+        while k < values.count {
+            let v = values[k]
+            if v == und {
+                // drei und zwanzig → 23
+                if let unit = out.popLast(), k + 1 < values.count { out.append(values[k + 1] + unit); k += 2 } else { k += 1 }
+            } else if v == 20, out.last == 4 {
+                out[out.count - 1] = 80 // quatre-vingt(s)
+                k += 1
+            } else if v == 20, k + 1 < values.count, (1...9).contains(values[k + 1]),
+                      out.last.map({ $0 >= 20 && $0 < 100 }) != true {
+                out.append(20 + values[k + 1]) // veinti + tres
+                k += 2
+            } else {
+                out.append(v)
+                k += 1
+            }
+        }
+        return out
+    }
+
+    static func candidates(in s: String) -> Set<String> {
+        var out = Set<String>()
+        var group: [Int] = []
+        func flush() {
+            if !group.isEmpty { out.formUnion(EnglishNumbers.candidates(ofValues: normalize(group))) }
+            group = []
+        }
+        // Hyphens join (vingt-cinq); other non-letters end a number phrase.
+        var word = ""
+        func endWord() {
+            defer { word = "" }
+            guard !word.isEmpty else { return }
+            if let values = split(word) {
+                group += values
+            } else if ["y", "et", "и"].contains(word), !group.isEmpty {
+                return // treinta y cinco, vingt et un
+            } else {
+                flush()
+            }
+        }
+        for ch in s.lowercased() {
+            if PolishGuard.isWordLetter(ch) {
+                word.append(ch)
+            } else {
+                endWord()
+                if !ch.isWhitespace, ch != "-" { flush() }
+            }
+        }
+        endWord()
+        flush()
+        return out
     }
 }

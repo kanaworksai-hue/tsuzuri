@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Spouštění…";
+"Recent (Click to Copy)" = "Nedávné (kliknutím zkopírujete)";
+"(None yet)" = "(Zatím nic)";
+"Clear" = "Vymazat";
+"Model" = "Model";
+"%@ (not downloaded)" = "%@ (nestaženo)";
+"Accurate" = "Přesný";
+"Fast" = "Rychlý";
+"Spoken Language: %@" = "Jazyk řeči: %@";
+"Auto (30 Languages, Mixing OK)" = "Automaticky (30 jazyků, lze míchat)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Rozpozná také 22 čínských dialektů, například sečuánštinu, wu a jižní min.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Jazyk se rozpozná při každém diktování. Vyladěno pro čínštinu, angličtinu, japonštinu a jejich kombinace.";
+"Auto" = "Automaticky";
+"Polish" = "Úprava textu";
+"Only for %@" = "Jen pro: %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Po rozpoznání malý místní model doplní interpunkci, odstraní vycpávková slova, zohlední opravy vyslovené během mluvení a zapíše čísla číslicemi. Jen pro: %@; ostatní jazyky se vloží tak, jak byly rozpoznány. V terminálech se nepoužívá.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Zkratka (podržením mluvit / klepnutím zapnout či vypnout)";
+"Right Option ⌥" = "Pravý Option ⌥";
+"Right Command ⌘" = "Pravý Command ⌘";
+"Open Accessibility Settings…" = "Otevřít nastavení zpřístupnění…";
+"Open Microphone Settings…" = "Otevřít nastavení mikrofonu…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Test vkládání (za 3 s vloží do aktuálního okna)";
+"Tsuzuri paste test" = "Test vkládání Tsuzuri";
+"Quit Tsuzuri" = "Ukončit Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Je potřeba oprávnění pro zpřístupnění (Nastavení systému → Soukromí a zabezpečení)";
+"Loading model…" = "Načítání modelu…";
+"Ready · hold %@ to talk" = "Připraveno · podržte %@ a mluvte";
+"Model failed to load: %@" = "Model se nepodařilo načíst: %@";
+
+/* Overlay */
+"Listening…" = "Poslouchám…";
+"Transcribing…" = "Rozpoznávání…";
+"Model is still loading…" = "Model se ještě načítá…";
+"Can't record" = "Nelze nahrávat";
+"No microphone found" = "Mikrofon nebyl nalezen";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Přístup k mikrofonu je vypnutý (nabídka → Otevřít nastavení mikrofonu…)";
+"Canceled" = "Zrušeno";
+"No speech heard" = "Nebyla zachycena žádná řeč";
+"Recognition failed" = "Rozpoznání se nezdařilo";
+"Copied: %@" = "Zkopírováno: %@";
+"Copied · ⌘V to paste: %@" = "Zkopírováno · vložte pomocí ⌘V: %@";
+"Copied (Accessibility not granted)" = "Zkopírováno (zpřístupnění není povoleno)";

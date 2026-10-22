@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "جارٍ البدء…";
+"Recent (Click to Copy)" = "الأحدث (انقر للنسخ)";
+"(None yet)" = "(لا يوجد بعد)";
+"Clear" = "مسح";
+"Model" = "النموذج";
+"%@ (not downloaded)" = "%@ (لم يتم تنزيله)";
+"Accurate" = "دقيق";
+"Fast" = "سريع";
+"Spoken Language: %@" = "لغة الكلام: %@";
+"Auto (30 Languages, Mixing OK)" = "تلقائي (30 لغة، يمكن المزج بينها)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "يتعرّف أيضًا على 22 لهجة صينية، مثل السيتشوانية والوو والمين نان.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "يكتشف لغة كل إملاء تلقائيًا. مُحسَّن للصينية والإنجليزية واليابانية والمزج بينها.";
+"Auto" = "تلقائي";
+"Polish" = "تنقيح النص";
+"Only for %@" = "لـ %@ فقط";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "بعد التعرّف على الكلام، يضيف نموذج محلي صغير علامات الترقيم، ويحذف كلمات الحشو، ويطبّق التصحيحات التي تقولها أثناء الكلام، ويكتب الأعداد بالأرقام. لـ %@ فقط؛ أما اللغات الأخرى فتُدرَج كما تم التعرّف عليها. لا يُطبَّق في الطرفية.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "الاختصار (اضغط مطولًا للتحدث / اضغط ضغطة قصيرة للتبديل)";
+"Right Option ⌥" = "Option الأيمن ⌥";
+"Right Command ⌘" = "Command الأيمن ⌘";
+"Open Accessibility Settings…" = "فتح إعدادات تسهيلات الاستخدام…";
+"Open Microphone Settings…" = "فتح إعدادات الميكروفون…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "اختبار اللصق (يلصق في النافذة الحالية بعد 3 ث)";
+"Tsuzuri paste test" = "اختبار اللصق في Tsuzuri";
+"Quit Tsuzuri" = "إنهاء Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "يلزم إذن تسهيلات الاستخدام (إعدادات النظام ← الخصوصية والأمن)";
+"Loading model…" = "جارٍ تحميل النموذج…";
+"Ready · hold %@ to talk" = "جاهز · اضغط مطولًا على %@ للتحدث";
+"Model failed to load: %@" = "تعذّر تحميل النموذج: %@";
+
+/* Overlay */
+"Listening…" = "جارٍ الاستماع…";
+"Transcribing…" = "جارٍ تحويل الكلام إلى نص…";
+"Model is still loading…" = "لا يزال النموذج قيد التحميل…";
+"Can't record" = "تعذّر التسجيل";
+"No microphone found" = "لم يتم العثور على ميكروفون";
+"Microphone access is off (menu → Open Microphone Settings…)" = "الوصول إلى الميكروفون متوقف (القائمة ← فتح إعدادات الميكروفون…)";
+"Canceled" = "تم الإلغاء";
+"No speech heard" = "لم يُسمع أي كلام";
+"Recognition failed" = "فشل التعرّف على الكلام";
+"Copied: %@" = "تم النسخ: %@";
+"Copied · ⌘V to paste: %@" = "تم النسخ · ⌘V للصق: %@";
+"Copied (Accessibility not granted)" = "تم النسخ (لم يُمنح إذن تسهيلات الاستخدام)";

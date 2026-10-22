@@ -7,10 +7,14 @@
 "%@ (not downloaded)" = "%@（未下载）";
 "Accurate" = "准确";
 "Fast" = "快速";
-"Spoken Language" = "识别语言";
-"Auto (Mixed Languages)" = "自动（混说）";
+"Spoken Language: %@" = "识别语言：%@";
+"Auto (30 Languages, Mixing OK)" = "自动（30 种语言，可混说）";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "还能识别 22 种中文方言，例如四川话、吴语、闽南语。";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "每次自动判断语言。针对中文、英语、日语及其混说做了优化。";
+"Auto" = "自动";
 "Polish" = "润色";
-"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Skipped in terminals." = "识别后用本地小模型加标点、去口头禅、处理改口、数字写成阿拉伯数字。终端里不润色。";
+"Only for %@" = "只支持 %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "识别后用本地小模型加标点、去掉口头禅、按改口修正，并把数字写成阿拉伯数字。只支持 %@；其他语言按识别结果直接输入。终端里不润色。";
 "Shortcut (Hold to Talk / Tap to Toggle)" = "快捷键（按住说话 / 轻按切换）";
 "Right Option ⌥" = "右 Option ⌥";
 "Right Command ⌘" = "右 Command ⌘";

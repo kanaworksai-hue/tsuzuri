@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "Wird gestartet …";
+"Recent (Click to Copy)" = "Zuletzt erkannt (zum Kopieren klicken)";
+"(None yet)" = "(Noch keine)";
+"Clear" = "Löschen";
+"Model" = "Modell";
+"%@ (not downloaded)" = "%@ (nicht heruntergeladen)";
+"Accurate" = "Genau";
+"Fast" = "Schnell";
+"Spoken Language: %@" = "Gesprochene Sprache: %@";
+"Auto (30 Languages, Mixing OK)" = "Automatisch (30 Sprachen, auch gemischt)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "Erkennt auch 22 chinesische Dialekte, etwa Sichuanisch, Wu und Min Nan.";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "Erkennt bei jedem Diktat die Sprache. Optimiert für Chinesisch, Englisch, Japanisch und deren Mischung.";
+"Auto" = "Automatisch";
+"Polish" = "Textbereinigung";
+"Only for %@" = "Nur für %@";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Nach der Erkennung setzt ein kleines lokales Modell Satzzeichen, entfernt Füllwörter, übernimmt Selbstkorrekturen und schreibt Zahlen als Ziffern. Nur für %@; andere Sprachen werden wie erkannt eingefügt. In Terminals nicht aktiv.";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Kurzbefehl (halten zum Sprechen / tippen zum Umschalten)";
+"Right Option ⌥" = "Rechte Wahltaste ⌥";
+"Right Command ⌘" = "Rechte Befehlstaste ⌘";
+"Open Accessibility Settings…" = "Einstellungen für Bedienungshilfen öffnen …";
+"Open Microphone Settings…" = "Einstellungen für Mikrofon öffnen …";
+"Paste Test (Pastes into the Current Window in 3 s)" = "Einsetzen testen (setzt nach 3 s ins aktuelle Fenster ein)";
+"Tsuzuri paste test" = "Tsuzuri-Einsetztest";
+"Quit Tsuzuri" = "Tsuzuri beenden";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "Zugriff auf Bedienungshilfen erforderlich (Systemeinstellungen → Datenschutz & Sicherheit)";
+"Loading model…" = "Modell wird geladen …";
+"Ready · hold %@ to talk" = "Bereit · %@ zum Sprechen gedrückt halten";
+"Model failed to load: %@" = "Modell konnte nicht geladen werden: %@";
+
+/* Overlay */
+"Listening…" = "Hört zu …";
+"Transcribing…" = "Wird erkannt …";
+"Model is still loading…" = "Modell wird noch geladen …";
+"Can't record" = "Aufnahme nicht möglich";
+"No microphone found" = "Kein Mikrofon gefunden";
+"Microphone access is off (menu → Open Microphone Settings…)" = "Mikrofonzugriff ist deaktiviert (Menü → Einstellungen für Mikrofon öffnen …)";
+"Canceled" = "Abgebrochen";
+"No speech heard" = "Keine Spracheingabe erkannt";
+"Recognition failed" = "Erkennung fehlgeschlagen";
+"Copied: %@" = "Kopiert: %@";
+"Copied · ⌘V to paste: %@" = "Kopiert · Mit ⌘V einsetzen: %@";
+"Copied (Accessibility not granted)" = "Kopiert (kein Zugriff auf Bedienungshilfen)";

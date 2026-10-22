@@ -1,0 +1,45 @@
+/* Menu */
+"Starting…" = "शुरू हो रहा है…";
+"Recent (Click to Copy)" = "हाल के (कॉपी करने के लिए क्लिक करें)";
+"(None yet)" = "(अभी कोई नहीं)";
+"Clear" = "साफ़ करें";
+"Model" = "मॉडल";
+"%@ (not downloaded)" = "%@ (डाउनलोड नहीं किया गया)";
+"Accurate" = "सटीक";
+"Fast" = "तेज़";
+"Spoken Language: %@" = "बोली जाने वाली भाषा: %@";
+"Auto (30 Languages, Mixing OK)" = "स्वचालित (30 भाषाएँ, मिलाकर बोल सकते हैं)";
+"Also recognizes 22 Chinese dialects, such as Sichuanese, Wu and Min Nan." = "सिचुआनी, वू और मिन नान जैसी 22 चीनी बोलियाँ भी पहचानता है।";
+"Detects the language of each dictation. Tuned for Chinese, English, Japanese and mixing them." = "हर डिक्टेशन की भाषा अपने-आप पहचानता है। चीनी, अंग्रेज़ी, जापानी और इनके मिश्रण के लिए अनुकूलित।";
+"Auto" = "स्वचालित";
+"Polish" = "टेक्स्ट सुधार";
+"Only for %@" = "केवल %@ के लिए";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "पहचान के बाद, एक छोटा लोकल मॉडल विराम चिह्न जोड़ता है, भराव शब्द हटाता है, बोलते समय किए गए सुधार लागू करता है और संख्याओं को अंकों में लिखता है। केवल %@ के लिए; अन्य भाषाएँ जैसी पहचानी गईं वैसी ही डाली जाती हैं। टर्मिनल में लागू नहीं होता।";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "शॉर्टकट (बोलने के लिए दबाकर रखें / टॉगल करने के लिए टैप करें)";
+"Right Option ⌥" = "दायाँ Option ⌥";
+"Right Command ⌘" = "दायाँ Command ⌘";
+"Open Accessibility Settings…" = "ऐक्सेसिबिलिटी सेटिंग्ज़ खोलें…";
+"Open Microphone Settings…" = "माइक्रोफ़ोन सेटिंग्ज़ खोलें…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "पेस्ट टेस्ट (3 सेकंड में मौजूदा विंडो में पेस्ट करता है)";
+"Tsuzuri paste test" = "Tsuzuri पेस्ट टेस्ट";
+"Quit Tsuzuri" = "Tsuzuri बंद करें";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "ऐक्सेसिबिलिटी अनुमति आवश्यक है (सिस्टम सेटिंग्ज़ → गोपनीयता और सुरक्षा)";
+"Loading model…" = "मॉडल लोड हो रहा है…";
+"Ready · hold %@ to talk" = "तैयार · बोलने के लिए %@ दबाकर रखें";
+"Model failed to load: %@" = "मॉडल लोड नहीं हो सका: %@";
+
+/* Overlay */
+"Listening…" = "सुन रहा है…";
+"Transcribing…" = "टेक्स्ट में बदल रहा है…";
+"Model is still loading…" = "मॉडल अभी भी लोड हो रहा है…";
+"Can't record" = "रिकॉर्ड नहीं हो सकता";
+"No microphone found" = "कोई माइक्रोफ़ोन नहीं मिला";
+"Microphone access is off (menu → Open Microphone Settings…)" = "माइक्रोफ़ोन ऐक्सेस बंद है (मेनू → माइक्रोफ़ोन सेटिंग्ज़ खोलें…)";
+"Canceled" = "रद्द किया गया";
+"No speech heard" = "कोई आवाज़ सुनाई नहीं दी";
+"Recognition failed" = "पहचान विफल रही";
+"Copied: %@" = "कॉपी किया गया: %@";
+"Copied · ⌘V to paste: %@" = "कॉपी किया गया · पेस्ट करने के लिए ⌘V: %@";
+"Copied (Accessibility not granted)" = "कॉपी किया गया (ऐक्सेसिबिलिटी अनुमति नहीं दी गई)";

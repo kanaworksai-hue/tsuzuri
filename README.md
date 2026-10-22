@@ -14,11 +14,11 @@
 
 **English** | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
 
-[Install](#-install) · [Use it](#%EF%B8%8F-use-it) · [Polish](#-polish-optional) · [Build from source](#-build-from-source) · [Command line](#-command-line) · [FAQ](#-faq)
+[Install](#-install) · [Use it](#%EF%B8%8F-use-it) · [Languages](#-languages) · [Polish](#-polish-optional) · [Build from source](#-build-from-source) · [Command line](#-command-line) · [FAQ](#-faq)
 
 </div>
 
-**Tsuzuri 綴** (Japanese for "to stitch words together") is offline voice dictation for macOS. Hold a key, speak, let go: the text appears wherever your cursor is. It understands **Chinese, English and Japanese, and any mix of them in one sentence**, without switching modes.
+**Tsuzuri 綴** (Japanese for "to stitch words together") is offline voice dictation for macOS. Hold a key, speak, let go: the text appears wherever your cursor is. It recognizes **30 languages and 22 Chinese dialects**, and is tuned for **Chinese, English and Japanese, including any mix of them in one sentence**, without switching modes.
 
 Recognition runs entirely on your Mac with [Qwen3-ASR](https://github.com/QwenLM/Qwen3-ASR) on Apple Silicon via [MLX](https://github.com/ml-explore/mlx-swift). No cloud, no account, and no audio leaves your computer.
 
@@ -26,13 +26,14 @@ Recognition runs entirely on your Mac with [Qwen3-ASR](https://github.com/QwenLM
 
 - **Menu bar app**, no Dock icon
 - **Push-to-talk**: hold the trigger key (right ⌥ Option by default; right ⌘ Command or Fn also work) while you speak, or tap it to start and tap again to stop. Esc cancels.
+- **30 languages**, detected automatically every time (see [Languages](#-languages))
 - **Mixed-language speech**: "明日の stand-up は skip して、PR の review を先にやろう" just works
 - **Works in any app**, also with Chinese or Japanese input methods turned on: the text is pasted through the clipboard, and your clipboard is restored afterwards
 - **Nothing you said gets lost**: if no text field has focus, the text stays on the clipboard, and the menu keeps your last 10 results (in memory only)
 - **Two model sizes**: Qwen3-ASR 1.7B (more accurate) and 0.6B (faster)
-- **Polish** (optional): a small local model adds punctuation, removes filler words and writes numbers as digits
+- **Polish** (optional): a small local model adds punctuation, removes filler words and writes numbers as digits (in 7 languages)
 - Silence trimming with [Silero VAD](https://github.com/snakers4/silero-vad)
-- Menus in English, Simplified Chinese and Japanese, following your macOS language
+- Menus in all 30 languages, following your macOS language
 
 ## 📦 Install
 
@@ -72,11 +73,25 @@ This downloads about 1.5 GB. For the faster, smaller model, add `Qwen3-ASR-0.6B-
 
 Tap the key instead of holding it to keep recording hands-free; tap again to stop. Press Esc, or another key while holding the trigger, to cancel.
 
-From the menu bar icon you can choose the model, the spoken language (Auto for mixed speech, or a fixed language), the trigger key, turn Polish on or off, and copy one of your recent results again.
+From the menu bar icon you can choose the model, the spoken language (Auto, or one of the 30 languages), the trigger key, turn Polish on or off, and copy one of your recent results again.
+
+## 🌐 Languages
+
+Tsuzuri recognizes all the languages of Qwen3-ASR. In **Auto** mode (the default) it detects the language of each dictation, so you never switch modes. If a short phrase comes out in the wrong language, pick your language in the menu under **Spoken Language**.
+
+| | |
+|---|---|
+| **Tuned and tested for** | English, Japanese and Chinese, including mixing them in one sentence |
+| **Also recognized** | Arabic, Cantonese, Czech, Danish, Dutch, Filipino, Finnish, French, German, Greek, Hindi, Hungarian, Indonesian, Italian, Korean, Macedonian, Malay, Persian, Polish, Portuguese, Romanian, Russian, Spanish, Swedish, Thai, Turkish, Vietnamese |
+| **Chinese dialects (22)** | Anhui, Dongbei, Fujian, Gansu, Guizhou, Hebei, Henan, Hubei, Hunan, Jiangxi, Ningxia, Shandong, Shaanxi, Shanxi, Sichuan, Tianjin, Yunnan, Zhejiang, Cantonese (Hong Kong), Cantonese (Guangdong), Wu, Min Nan |
+| **Polish** | English, German, Spanish, French, Chinese, Russian, Japanese |
+| **Menus** | All 30 languages (Cantonese uses Traditional Chinese) |
 
 ## 🪡 Polish (optional)
 
 Polish runs a second small model, [spokenly/cleanup-1](https://huggingface.co/spokenly/cleanup-1), after recognition. It adds punctuation, removes filler words ("um", "uh", "えーと"), keeps only the corrected version when you correct yourself, and writes numbers as digits. It never translates or answers what you said.
+
+The model was trained on **English, German, Spanish, French, Chinese, Russian and Japanese**. Tsuzuri checks the language each dictation was recognized as and skips Polish for every other language, so those are pasted exactly as recognized.
 
 If the result looks wrong (much longer, a different script, words or numbers you didn't say, or slower than 1 second), Tsuzuri pastes the raw transcript instead. Polish is skipped in terminal apps, where you usually dictate commands. It adds about 0.35 GB of memory.
 
@@ -106,7 +121,7 @@ If `xcode-select` points at the Command Line Tools, the scripts use `DEVELOPER_D
 
 `scripts/release.sh <version>` builds a DMG signed with a "Developer ID Application" certificate and notarizes it (see the comments in the script; `SKIP_NOTARIZE=1` only signs). Please use your own icon if you publish your own build (see [Brand](#-license)).
 
-**Translations:** UI strings are written in English in the source (`String(localized:)` and SwiftUI `Text`). The Chinese and Japanese translations are in `Resources/Localization/`. After adding or changing a string, run `python3 scripts/check-l10n.py` to find missing translations.
+**Translations:** UI strings are written in English in the source (`String(localized:)` and SwiftUI `Text`). The translations, one folder per language, are in `Resources/Localization/`. After adding or changing a string, run `python3 scripts/check-l10n.py` to find missing translations.
 
 ## ⌨️ Command line
 
@@ -114,7 +129,7 @@ If `xcode-select` points at the Command Line Tools, the scripts use `DEVELOPER_D
 
 ```bash
 .build/release/tsuzuri-cli recording.wav
-.build/release/tsuzuri-cli --model Qwen3-ASR-0.6B-8bit --language Japanese a.wav b.m4a
+.build/release/tsuzuri-cli --model Qwen3-ASR-0.6B-8bit --language Japanese a.wav b.m4a   # or German, Korean, …
 .build/release/tsuzuri-cli --jsonl *.wav                      # one JSON line per file, with timings
 .build/release/tsuzuri-cli --polish recording.wav             # recognition, then Polish
 .build/release/tsuzuri-cli --polish-text lines.txt            # Polish text only
