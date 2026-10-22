@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri ghi âm giọng nói của bạn khi bạn giữ phím đọc chính tả và chuyển thành văn bản ngay trên máy Mac này. Âm thanh không bao giờ rời khỏi máy tính của bạn.";
+"NSMicrophoneUsageDescription" = "Tsuzuri chỉ dùng micrô khi bạn đọc chính tả (trong lúc bạn giữ phím tắt, hoặc từ lần nhấn nhanh này đến lần nhấn tiếp theo) và chuyển thành văn bản ngay trên máy Mac này. Âm thanh không bao giờ được lưu lại hay gửi đi bất cứ đâu.";

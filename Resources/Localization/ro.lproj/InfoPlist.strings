@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri vă înregistrează vocea cât timp țineți apăsată tasta de dictare și o transcrie pe acest Mac. Sunetul nu părăsește niciodată computerul dvs.";
+"NSMicrophoneUsageDescription" = "Tsuzuri folosește microfonul doar în timp ce dictați (cât timp țineți apăsată scurtătura sau de la o apăsare scurtă până la următoarea) și transcrie pe acest Mac. Sunetul nu este niciodată salvat și nu este trimis nicăieri.";

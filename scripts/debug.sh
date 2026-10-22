@@ -1,8 +1,9 @@
 #!/bin/bash
 # Pokes a running Tsuzuri.app through distributed notifications (debug hooks).
-# The hooks are off unless the app was started with TSUZURI_DEBUG_HOOKS=1:
+# The hooks only exist in a build made with DEBUG_HOOKS=1 scripts/build-app.sh (never in
+# releases), and are off unless that app was started with TSUZURI_DEBUG_HOOKS=1:
 #
-#   open --env TSUZURI_DEBUG_HOOKS=1 /Applications/Tsuzuri.app
+#   open --env TSUZURI_DEBUG_HOOKS=1 build/Tsuzuri.app
 #
 #   scripts/debug.sh dictate FILE.wav    # transcribe FILE and paste into the frontmost app
 #   scripts/debug.sh overlay listening   # show the overlay (also: transcribing, hide, or any text)

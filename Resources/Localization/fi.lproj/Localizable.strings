@@ -42,7 +42,7 @@
 "Set Up Tsuzuri" = "Ota Tsuzuri käyttöön";
 "Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri tarvitsee kaksi lupaa. Kaikki pysyy tällä Macilla.";
 "Microphone" = "Mikrofoni";
-"To hear you while you hold the shortcut key." = "Jotta Tsuzuri kuulee sinut, kun pidät pikanäppäintä painettuna.";
+"To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Jotta Tsuzuri kuulee sinut sanelun aikana: kun pidät pikanäppäintä painettuna tai yhdestä napautuksesta seuraavaan.";
 "Accessibility" = "Käyttöapu";
 "To notice the shortcut key and paste the text where your cursor is." = "Jotta Tsuzuri tunnistaa pikanäppäimen ja sijoittaa tekstin kohdistimen kohtaan.";
 "Allow…" = "Salli…";

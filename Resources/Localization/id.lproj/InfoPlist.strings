@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri merekam suara Anda selama Anda menahan tombol dikte dan mentranskripsikannya di Mac ini. Audio tidak pernah keluar dari komputer Anda.";
+"NSMicrophoneUsageDescription" = "Tsuzuri hanya menggunakan mikrofon saat Anda mendikte (selama Anda menahan tombol pintasan, atau dari satu ketukan ke ketukan berikutnya) dan mentranskripsikannya di Mac ini. Audio tidak pernah disimpan atau dikirim ke mana pun.";

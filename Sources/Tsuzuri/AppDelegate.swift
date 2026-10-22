@@ -46,8 +46,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             self?.hotkey.reset()
             self?.stopRecording()
         }
-        // Debug hooks (scripts/debug.sh) only when asked for: any process can post these
-        // notifications, and dictateFile pastes into the frontmost app.
+        // Debug hooks (scripts/debug.sh) exist only in builds made with DEBUG_HOOKS=1 and are
+        // registered only when started with TSUZURI_DEBUG_HOOKS=1: any process can post these
+        // notifications, and dictateFile pastes into the frontmost app. Never in releases.
+        #if TSUZURI_DEBUG_HOOKS
         if ProcessInfo.processInfo.environment["TSUZURI_DEBUG_HOOKS"] == "1" {
             DistributedNotificationCenter.default().addObserver(
                 self, selector: #selector(debugDictateFile(_:)), name: .init("tsuzuri.debug.dictateFile"), object: nil)
@@ -58,6 +60,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             DistributedNotificationCenter.default().addObserver(
                 self, selector: #selector(debugPermissions(_:)), name: .init("tsuzuri.debug.permissions"), object: nil)
         }
+        #endif
 
         // The permissions window asks for the microphone and explains Accessibility; without
         // Accessibility the shortcut key is never seen, so pressing it can't tell the user anything.
@@ -535,6 +538,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         NSApp.terminate(nil)
     }
 
+    #if TSUZURI_DEBUG_HOOKS
     /// Debug hook: transcribes a file and pastes the result into the frontmost app,
     /// exercising everything except the microphone. Post with `scripts/debug.sh dictate FILE`.
     @objc private func debugDictateFile(_ note: Notification) {
@@ -546,8 +550,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             Log.write("debug dictate failed: \(error)")
         }
     }
+    #endif
 }
 
+#if TSUZURI_DEBUG_HOOKS
 extension AppDelegate {
     /// Debug hook for screenshots: `scripts/debug.sh overlay listening|transcribing|<text>`.
     @objc fileprivate func debugOverlay(_ note: Notification) {
@@ -587,6 +593,7 @@ extension AppDelegate {
         }
     }
 }
+#endif
 
 enum Log {
     private static let url = FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]

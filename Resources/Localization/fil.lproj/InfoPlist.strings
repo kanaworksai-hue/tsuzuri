@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Nire-record ng Tsuzuri ang boses mo habang pinipindot mo ang dictation key, at tina-transcribe ito sa Mac na ito. Hindi kailanman lumalabas sa computer mo ang audio.";
+"NSMicrophoneUsageDescription" = "Ginagamit lang ng Tsuzuri ang mikropono habang nagdidikta ka (habang pinipindot mo nang matagal ang shortcut key, o mula sa isang tap hanggang sa susunod), at tina-transcribe ito sa Mac na ito. Hindi kailanman sine-save o ipinapadala kahit saan ang audio.";

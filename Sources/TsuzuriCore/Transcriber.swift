@@ -138,34 +138,97 @@ public actor Transcriber {
         let inputSeconds = Double(samples.count) / Double(Self.sampleRate)
         let start = Date()
 
-        var speech = samples
-        if trimSilence, let vad {
-            guard let trimmed = try trimToSpeech(samples, vad: vad) else {
+        // Speech ranges (sample indices) from the VAD; without it, the whole input.
+        var ranges = [0..<samples.count]
+        if trimSilence, let vad, samples.count > Self.sampleRate / 2 {  // VAD is unreliable on very short clips
+            ranges = try speechRanges(samples, vad: vad)
+            guard !ranges.isEmpty else {
                 return Transcription(text: "", language: nil, audioSeconds: 0, inputSeconds: inputSeconds,
                                      elapsed: Date().timeIntervalSince(start))
             }
-            speech = trimmed
         }
+        let speech = ranges.first!.lowerBound..<ranges.last!.upperBound
 
-        // Scale the token budget with the audio so long dictations (up to 3 min) are not cut
-        // off; fast Chinese / Japanese speech is around 6–8 tokens per second. Not much more:
-        // a repetition loop runs until the budget is used up, and the user waits for it.
-        let seconds = Double(speech.count) / Double(Self.sampleRate)
-        let output = asr.generate(
-            audio: MLXArray(speech),
-            maxTokens: max(1024, Int(seconds * 10)),
-            context: context,
-            language: language,
-            repetitionPenalty: 1.05
-        )
-        Memory.clearCache()
+        // Long dictations are recognised in pieces cut at pauses: in one pass over minutes of
+        // speech the model can drift into translating or into a repetition loop.
+        var texts: [String] = []
+        var languages: [String] = []
+        let pieces = Self.pieces(speech, pauses: ranges)
+        for piece in pieces {
+            let seconds = Double(piece.count) / Double(Self.sampleRate)
+            // Fast Chinese / Japanese is ~6–8 tokens/s; a loop runs until the budget is used up.
+            let output = asr.generate(
+                audio: MLXArray(Array(samples[piece])),
+                maxTokens: max(pieces.count > 1 ? 256 : 1024, Int(seconds * 10)),
+                context: context,
+                language: language,
+                repetitionPenalty: 1.05
+            )
+            Memory.clearCache()
+            let text = output.text.trimmingCharacters(in: .whitespacesAndNewlines)
+            if !text.isEmpty { texts.append(text) }
+            for l in (Self.cleanLanguage(output.language) ?? "").split(separator: ",").map(String.init)
+            where !languages.contains(l) {
+                languages.append(l)
+            }
+        }
         return Transcription(
-            text: output.text.trimmingCharacters(in: .whitespacesAndNewlines),
-            language: Self.cleanLanguage(output.language),
+            text: Self.join(texts),
+            language: languages.isEmpty ? nil : languages.joined(separator: ","),
             audioSeconds: Double(speech.count) / Double(Self.sampleRate),
             inputSeconds: inputSeconds,
             elapsed: Date().timeIntervalSince(start)
         )
+    }
+
+    /// Up to this much speech is recognised in one pass; longer input is split into pieces
+    /// of at most `pieceSeconds`, at the pauses between the VAD's speech ranges.
+    static let singlePassSeconds = 45.0
+    static let pieceSeconds = 30.0
+
+    static func pieces(_ speech: Range<Int>, pauses ranges: [Range<Int>]) -> [Range<Int>] {
+        let single = Int(singlePassSeconds * Double(sampleRate))
+        let limit = Int(pieceSeconds * Double(sampleRate))
+        guard speech.count > single else { return [speech] }
+        // Ranges longer than a piece (no pause for 30 s) are cut into equal parts, so no
+        // tiny leftover piece is recognised on its own.
+        var parts: [Range<Int>] = []
+        for r in ranges {
+            let n = (r.count + limit - 1) / limit
+            for k in 0..<n {
+                parts.append(r.lowerBound + r.count * k / n..<r.lowerBound + r.count * (k + 1) / n)
+            }
+        }
+        // Join neighbouring ranges (including the pause between them) while they fit.
+        var out: [Range<Int>] = []
+        for part in parts {
+            if let last = out.last, part.upperBound - last.lowerBound <= limit {
+                out[out.count - 1] = last.lowerBound..<part.upperBound
+            } else {
+                out.append(part)
+            }
+        }
+        return out
+    }
+
+    /// Joins piece transcripts: no space next to Chinese / Japanese text, a space otherwise.
+    static func join(_ texts: [String]) -> String {
+        var out = ""
+        for text in texts {
+            if let a = out.last, let b = text.first, !isCJK(a), !isCJK(b), !".,;:!?)".contains(b) { out += " " }
+            out += text
+        }
+        return out
+    }
+
+    private static func isCJK(_ c: Character) -> Bool {
+        c.unicodeScalars.contains { s in
+            switch s.value {
+            case 0x3000...0x30FF, 0x3100...0x312F, 0x31F0...0x31FF, 0x3400...0x4DBF, 0x4E00...0x9FFF,
+                 0xF900...0xFAFF, 0xFF00...0xFFEF, 0x20000...0x3FFFF: true
+            default: false
+            }
+        }
     }
 
     /// Qwen3-ASR reports "None" for segments without a language (e.g. a click or breath),
@@ -174,19 +237,25 @@ public actor Transcriber {
         let parts = (language ?? "").split(separator: ",")
             .map { $0.trimmingCharacters(in: .whitespaces) }
             .filter { !$0.isEmpty && $0 != "None" }
+            // Rarely the model writes the native name ("中文"); report the English one.
+            .map { part in SpokenLanguage.all.first { $0.nativeName == part }?.name ?? part }
         return parts.isEmpty ? nil : parts.joined(separator: ",")
     }
 
-    /// Cuts leading and trailing non-speech. Returns nil when no speech is found.
-    private func trimToSpeech(_ samples: [Float], vad: SileroVAD) throws -> [Float]? {
-        // Very short clips: VAD is unreliable, keep as-is.
-        guard samples.count > Self.sampleRate / 2 else { return samples }
+    /// Speech ranges in sample indices (padded by 200 ms, overlaps merged); empty when there is no speech.
+    private func speechRanges(_ samples: [Float], vad: SileroVAD) throws -> [Range<Int>] {
         let stamps = try vad.getSpeechTimestamps(MLXArray(samples), sampleRate: Self.sampleRate, speechPadMs: 200)
-        guard let first = stamps.first, let last = stamps.last else { return nil }
-        let lo = max(0, first.start)
-        let hi = min(samples.count, last.end)
-        guard hi > lo else { return nil }
-        return Array(samples[lo..<hi])
+        var out: [Range<Int>] = []
+        for stamp in stamps {
+            let lo = max(0, stamp.start), hi = min(samples.count, stamp.end)
+            guard hi > lo else { continue }
+            if let last = out.last, lo <= last.upperBound {
+                out[out.count - 1] = last.lowerBound..<max(last.upperBound, hi)
+            } else {
+                out.append(lo..<hi)
+            }
+        }
+        return out
     }
 
     public struct MemoryStats: Sendable {

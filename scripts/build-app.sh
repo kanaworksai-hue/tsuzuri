@@ -3,6 +3,7 @@
 #
 #   scripts/build-app.sh            # sign with the first "Apple Development" identity, else ad-hoc
 #   SIGN_IDENTITY=- scripts/build-app.sh
+#   DEBUG_HOOKS=1 scripts/build-app.sh   # include the scripts/debug.sh hooks (screenshots; never for releases)
 #
 # A stable signing identity matters: macOS ties the Accessibility / Microphone
 # grants to the signature, so ad-hoc builds lose them on every rebuild.
@@ -13,7 +14,11 @@ if [ -z "${DEVELOPER_DIR:-}" ] && [[ "$(xcode-select -p 2>/dev/null)" != *.app/*
   export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
 fi
 
-swift build -c release
+if [ "${DEBUG_HOOKS:-0}" = 1 ]; then
+  swift build -c release -Xswiftc -DTSUZURI_DEBUG_HOOKS
+else
+  swift build -c release
+fi
 scripts/metallib.sh
 cp .build/mlx.metallib .build/release/mlx.metallib
 

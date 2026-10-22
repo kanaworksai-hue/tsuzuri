@@ -42,7 +42,7 @@
 "Set Up Tsuzuri" = "Tsuzuri の設定";
 "Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri には 2 つの許可が必要です。データはすべてこの Mac の中だけで処理されます。";
 "Microphone" = "マイク";
-"To hear you while you hold the shortcut key." = "ショートカットキーを押している間、あなたの声を聞き取るため。";
+"To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "音声入力中に声を聞き取るため：ショートカットキーを押している間、または短押しから次の短押しまで。";
 "Accessibility" = "アクセシビリティ";
 "To notice the shortcut key and paste the text where your cursor is." = "ショートカットキーを検知し、カーソルの位置にテキストを貼り付けるため。";
 "Allow…" = "許可…";

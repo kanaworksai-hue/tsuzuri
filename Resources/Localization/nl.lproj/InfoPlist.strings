@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri neemt je stem op zolang je de dicteertoets ingedrukt houdt en zet deze op deze Mac om in tekst. Audio verlaat je computer nooit.";
+"NSMicrophoneUsageDescription" = "Tsuzuri gebruikt de microfoon alleen terwijl je dicteert (zolang je de sneltoets ingedrukt houdt, of van de ene tik tot de volgende) en zet spraak op deze Mac om in tekst. Audio wordt nooit bewaard of ergens naartoe gestuurd.";

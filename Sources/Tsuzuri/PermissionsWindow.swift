@@ -74,7 +74,7 @@ private struct PermissionsView: View {
             row(granted: model.microphone == .authorized,
                 symbol: "mic",
                 title: String(localized: "Microphone"),
-                detail: String(localized: "To hear you while you hold the shortcut key."),
+                detail: String(localized: "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next."),
                 button: microphoneButton)
 
             row(granted: model.accessibility,

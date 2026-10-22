@@ -42,7 +42,7 @@
 "Set Up Tsuzuri" = "إعداد Tsuzuri";
 "Tsuzuri needs two permissions. Everything stays on this Mac." = "يحتاج Tsuzuri إلى إذنين. تبقى جميع البيانات على هذا الـ Mac.";
 "Microphone" = "الميكروفون";
-"To hear you while you hold the shortcut key." = "لسماعك أثناء الضغط مع الاستمرار على مفتاح الاختصار.";
+"To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "لسماعك أثناء الإملاء: طوال ضغطك مع الاستمرار على مفتاح الاختصار، أو من ضغطة قصيرة حتى الضغطة التالية.";
 "Accessibility" = "تسهيلات الاستخدام";
 "To notice the shortcut key and paste the text where your cursor is." = "لاكتشاف مفتاح الاختصار ولصق النص في موضع المؤشر.";
 "Allow…" = "سماح…";

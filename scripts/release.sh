@@ -41,7 +41,10 @@ DMG=$OUT/Tsuzuri-$VERSION.dmg
 ZIP=$OUT/Tsuzuri-$VERSION.zip
 
 # Build with an ad-hoc signature, then re-sign a copy so build/Tsuzuri.app stays a dev build.
-SIGN_IDENTITY=- scripts/build-app.sh
+DEBUG_HOOKS=0 SIGN_IDENTITY=- scripts/build-app.sh
+if grep -q "tsuzuri.debug" build/Tsuzuri.app/Contents/MacOS/Tsuzuri; then
+  echo "debug hooks found in the release binary" >&2; exit 1
+fi
 rm -rf "$OUT" && mkdir -p "$OUT"
 ditto build/Tsuzuri.app "$APP"
 plutil -replace CFBundleShortVersionString -string "$VERSION" "$APP/Contents/Info.plist"

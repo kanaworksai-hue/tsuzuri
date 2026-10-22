@@ -42,7 +42,7 @@
 "Set Up Tsuzuri" = "A Tsuzuri beállítása";
 "Tsuzuri needs two permissions. Everything stays on this Mac." = "A Tsuzurinak két engedélyre van szüksége. Minden ezen a Macen marad.";
 "Microphone" = "Mikrofon";
-"To hear you while you hold the shortcut key." = "Hogy hallja Önt, amíg nyomva tartja a billentyűparancsot.";
+"To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Hogy hallja Önt diktálás közben: amíg nyomva tartja a billentyűparancsot, vagy az egyik koppintástól a következőig.";
 "Accessibility" = "Kisegítő lehetőségek";
 "To notice the shortcut key and paste the text where your cursor is." = "Hogy érzékelje a billentyűparancsot, és a kurzor helyére illessze be a szöveget.";
 "Allow…" = "Engedélyezés…";

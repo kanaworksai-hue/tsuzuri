@@ -42,7 +42,7 @@
 "Set Up Tsuzuri" = "Tsuzuri’yi Ayarla";
 "Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri’nin iki izne ihtiyacı var. Her şey bu Mac’te kalır.";
 "Microphone" = "Mikrofon";
-"To hear you while you hold the shortcut key." = "Kısayol tuşunu basılı tuttuğunuz sürece sizi duyabilmek için.";
+"To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Dikte sırasında sizi duyabilmek için: kısayol tuşunu basılı tuttuğunuz sürece veya bir dokunuştan bir sonrakine kadar.";
 "Accessibility" = "Erişilebilirlik";
 "To notice the shortcut key and paste the text where your cursor is." = "Kısayol tuşunu algılamak ve metni imlecin olduğu yere yapıştırmak için.";
 "Allow…" = "İzin Ver…";

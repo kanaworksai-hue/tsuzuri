@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri nimmt deine Stimme auf, solange du die Diktiertaste gedrückt hältst, und wandelt sie auf diesem Mac in Text um. Audiodaten verlassen deinen Computer nie.";
+"NSMicrophoneUsageDescription" = "Tsuzuri verwendet das Mikrofon nur beim Diktieren (solange du den Kurzbefehl gedrückt hältst oder vom einen Tippen bis zum nächsten) und wandelt die Sprache auf diesem Mac in Text um. Audiodaten werden nie gespeichert oder irgendwohin gesendet.";

@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri graba tu voz mientras mantienes pulsada la tecla de dictado y la transcribe en este Mac. El audio nunca sale de tu ordenador.";
+"NSMicrophoneUsageDescription" = "Tsuzuri solo usa el micrófono mientras dictas (mientras mantienes pulsado el atajo o desde una pulsación hasta la siguiente) y transcribe en este Mac. El audio nunca se guarda ni se envía a ningún sitio.";

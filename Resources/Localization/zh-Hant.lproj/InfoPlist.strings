@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "按住聽寫鍵時，Tsuzuri 會錄下你的聲音，並在這部 Mac 上轉成文字。音訊絕不會離開你的電腦。";
+"NSMicrophoneUsageDescription" = "Tsuzuri 只在你聽寫時使用麥克風（按住快速鍵期間，或從輕按一次到再輕按一次），並在這部 Mac 上轉成文字。音訊絕不會被儲存，也不會傳送到任何地方。";

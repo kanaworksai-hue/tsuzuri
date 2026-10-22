@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri optager din stemme, mens du holder dikteringstasten nede, og omdanner den til tekst på denne Mac. Lyden forlader aldrig din computer.";
+"NSMicrophoneUsageDescription" = "Tsuzuri bruger kun mikrofonen, mens du dikterer (mens du holder genvejstasten nede, eller fra ét tryk til det næste), og omdanner talen til tekst på denne Mac. Lyden bliver aldrig gemt eller sendt nogen steder hen.";

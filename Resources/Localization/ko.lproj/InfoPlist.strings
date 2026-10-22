@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri는 받아쓰기 키를 누르고 있는 동안 음성을 녹음하고 이 Mac에서 텍스트로 변환합니다. 오디오는 컴퓨터 밖으로 전송되지 않습니다.";
+"NSMicrophoneUsageDescription" = "Tsuzuri는 받아쓰기 중에만(단축키를 누르고 있는 동안 또는 한 번 탭한 후 다음 탭까지) 마이크를 사용하며 이 Mac에서 텍스트로 변환합니다. 오디오는 저장되거나 어디로도 전송되지 않습니다.";

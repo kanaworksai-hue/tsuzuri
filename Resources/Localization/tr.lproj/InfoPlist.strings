@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri, dikte tuşunu basılı tuttuğunuz sürece sesinizi kaydeder ve bu Mac'te metne dönüştürür. Ses hiçbir zaman bilgisayarınızdan çıkmaz.";
+"NSMicrophoneUsageDescription" = "Tsuzuri mikrofonu yalnızca dikte sırasında kullanır (kısayol tuşunu basılı tuttuğunuz sürece veya bir dokunuştan bir sonrakine kadar) ve bu Mac'te metne dönüştürür. Ses hiçbir zaman saklanmaz ve hiçbir yere gönderilmez.";

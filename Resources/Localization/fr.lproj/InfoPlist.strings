@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri enregistre votre voix tant que vous maintenez la touche de dictée enfoncée et la transcrit sur ce Mac. L’audio ne quitte jamais votre ordinateur.";
+"NSMicrophoneUsageDescription" = "Tsuzuri n’utilise le micro que pendant la dictée (tant que vous maintenez le raccourci, ou d’un appui au suivant) et transcrit sur ce Mac. L’audio n’est jamais conservé ni envoyé nulle part.";

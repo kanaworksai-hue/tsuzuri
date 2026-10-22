@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "A Tsuzuri rögzíti a hangját, amíg nyomva tartja a diktálási billentyűt, és ezen a Macen szöveggé alakítja. A hang soha nem hagyja el a számítógépét.";
+"NSMicrophoneUsageDescription" = "A Tsuzuri csak diktálás közben használja a mikrofont (amíg nyomva tartja a billentyűparancsot, vagy az egyik koppintástól a következőig), és ezen a Macen alakítja szöveggé a beszédet. A hangot soha nem menti, és sehova nem küldi el.";

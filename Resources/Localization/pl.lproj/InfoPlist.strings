@@ -1,1 +1,1 @@
-"NSMicrophoneUsageDescription" = "Tsuzuri nagrywa Twój głos, gdy przytrzymujesz klawisz dyktowania, i rozpoznaje mowę na tym Macu. Dźwięk nigdy nie opuszcza Twojego komputera.";
+"NSMicrophoneUsageDescription" = "Tsuzuri używa mikrofonu tylko podczas dyktowania (gdy przytrzymujesz skrót lub od jednego stuknięcia do następnego) i rozpoznaje mowę na tym Macu. Dźwięk nigdy nie jest zapisywany ani nigdzie wysyłany.";
