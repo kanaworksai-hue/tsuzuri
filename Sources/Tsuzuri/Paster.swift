@@ -29,6 +29,11 @@ enum Paster {
     /// when nothing editable has focus so the dictation is not lost.
     @MainActor
     static func insert(_ text: String, focus: FocusInfo) -> Outcome {
+        // A password field: paste and restore the clipboard, never leave the text on it.
+        if focus.secure {
+            paste(text, concealed: true)
+            return .pasted
+        }
         switch focus.target {
         case .textInput:
             paste(text, concealed: focus.secure)
@@ -159,6 +164,15 @@ struct FocusInfo: Sendable {
     /// and report `.unknown` (paste, and keep the text on the clipboard).
     @MainActor
     static func current(timeout: TimeInterval = 0.5) async -> FocusInfo {
+        var info = await query(timeout: timeout)
+        // Browsers often expose no accessibility tree (Chrome reports no focused element), but
+        // they turn on secure keyboard input while a password field has focus.
+        if IsSecureEventInputEnabled() { info.secure = true }
+        return info
+    }
+
+    @MainActor
+    private static func query(timeout: TimeInterval) async -> FocusInfo {
         let front = NSWorkspace.shared.frontmostApplication
         let appName = front?.bundleIdentifier ?? front?.localizedName ?? "-"
         guard let pid = front?.processIdentifier else { return FocusInfo(target: .unknown, role: "-", app: appName) }
