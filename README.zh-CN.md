@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/banner-zh.jpg" alt="Tsuzuri 綴：Mac 离线语音输入。按住说话，松开即上屏。中文、英文、日文，混着说也行" width="820">
+<img src="docs/assets/banner-zh.jpg" alt="Tsuzuri 綴：Mac 离线语音输入。按住说话，松开即上屏。支持 30 种语言和 22 种中文方言，混着说也行" width="820">
 
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-4b5bff?style=flat-square"></a>

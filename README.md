@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/banner-en.jpg" alt="Tsuzuri 綴: offline voice dictation for Mac. Hold a key, speak, let go. Chinese, English, Japanese, or any mix" width="820">
+<img src="docs/assets/banner-en.jpg" alt="Tsuzuri 綴: offline voice dictation for Mac. Hold a key, speak, let go. 30 languages + 22 Chinese dialects, mixing OK" width="820">
 
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-4b5bff?style=flat-square"></a>
