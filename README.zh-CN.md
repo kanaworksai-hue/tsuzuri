@@ -153,7 +153,7 @@ rm -rf /Applications/Tsuzuri.app && ditto build/Tsuzuri.app /Applications/Tsuzur
 
 **我说的话会被保存吗？** 声音不会写入磁盘。最近的识别结果只为菜单保存在内存里，退出就没了。`~/Library/Logs/Tsuzuri.log` 只记录耗时和错误，不记录你说的内容（调试时可以用 `defaults write com.kanaworks.tsuzuri logText -bool true` 让它记录文字）。
 
-**为什么用剪贴板粘贴，而不是模拟打字？** 粘贴在任何应用、任何输入法下的表现都一样。Tsuzuri 之后会恢复你原来的剪贴板。如果判断不了是否有文本框获得焦点（部分 Electron 应用），它会粘贴，同时把文字留在剪贴板里，方便你再粘贴一次。
+**为什么用剪贴板粘贴，而不是模拟打字？** 粘贴在任何应用、任何输入法下的表现都一样。Tsuzuri 之后会恢复你原来的剪贴板。如果判断不了是否有文本框获得焦点（Chrome 里的网页、部分 Electron 应用），它会粘贴，同时把文字留在剪贴板里，方便你再粘贴一次。在桌面或 Finder 窗口里只复制、不粘贴（粘贴会生成一个文本剪辑文件），小提示会告诉你按 ⌘V。
 
 **该用哪个模型？** 先用 Qwen3-ASR 1.7B（4bit）。想要更快或更省内存，试试 0.6B（8bit）。
 

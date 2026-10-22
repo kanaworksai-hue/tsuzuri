@@ -153,7 +153,7 @@ Run `tsuzuri-cli --help` for all options. Set `TSUZURI_MODELS_DIR` to use a diff
 
 **Is my speech saved anywhere?** Audio is never written to disk. Recent results are kept in memory for the menu and are gone when you quit. `~/Library/Logs/Tsuzuri.log` records timings and errors but not what you said (`defaults write com.kanaworks.tsuzuri logText -bool true` adds the text, for debugging).
 
-**Why does it paste through the clipboard instead of typing?** Pasting works the same in every app and with every input method turned on. Tsuzuri puts your previous clipboard back afterwards. When it can't tell whether a text field has focus (some Electron apps), it pastes and leaves the text on the clipboard so you can paste it again.
+**Why does it paste through the clipboard instead of typing?** Pasting works the same in every app and with every input method turned on. Tsuzuri puts your previous clipboard back afterwards. When it can't tell whether a text field has focus (web pages in Chrome, some Electron apps), it pastes and leaves the text on the clipboard so you can paste it again. On the desktop or in a Finder window it only copies the text (pasting there would create a text clipping file); the overlay tells you to press ⌘V.
 
 **Which model should I use?** Start with Qwen3-ASR 1.7B (4bit). If you want faster results or less memory use, try 0.6B (8bit).
 
