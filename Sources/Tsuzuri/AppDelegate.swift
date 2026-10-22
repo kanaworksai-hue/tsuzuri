@@ -23,6 +23,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var recordingStarted = Date()
     private var maxDurationWork: DispatchWorkItem?
     private var trustTimer: Timer?
+    /// Results are pasted one after another, in the order they were spoken.
+    private var lastDelivery: Task<Void, Never>?
     private var permissionsTimer: Timer?
     /// Recent results, newest first. Kept in memory only so nothing said is lost
     /// when the paste goes nowhere.
@@ -165,7 +167,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private var polishLanguages: String {
-        PolishLanguages.supported.compactMap { SpokenLanguage.named($0)?.nativeName }.joined(separator: ", ")
+        ListFormatter.localizedString(byJoining: PolishLanguages.supported.compactMap { SpokenLanguage.named($0)?.nativeName })
     }
 
     private func languageItem(_ language: RecognitionLanguage) -> NSMenuItem {
@@ -199,9 +201,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     /// Global key monitors only deliver events once the app is trusted, so
     /// (re)install them as soon as the user grants Accessibility.
     private func waitForAccessibility() {
+        trustTimer?.invalidate()
         if Paster.isTrusted {
             hotkey.start()
             refreshStatus()
+            watchAccessibilityRevoked()
             return
         }
         refreshStatus()
@@ -217,6 +221,27 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self.rebuildMenu()
                 // Keep the window's microphone row live until it is closed.
                 self.pollPermissionsWindow()
+                self.watchAccessibilityRevoked()
+            }
+        }
+    }
+
+    /// The user can switch Accessibility off (or remove the app) while it runs: the shortcut
+    /// then stops working silently, so show the warning again and wait for it to come back.
+    private func watchAccessibilityRevoked() {
+        trustTimer?.invalidate()
+        trustTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: true) { [weak self] timer in
+            Task { @MainActor in
+                guard let self, !Paster.isTrusted else { return }
+                timer.invalidate()
+                Log.write("accessibility permission was turned off")
+                // Esc and the key release can't be seen any more: don't leave a recording running.
+                self.cancelRecording()
+                self.hotkey.stop()
+                self.hotkey.reset()
+                self.setIcon(recording: self.recording)
+                self.rebuildMenu()
+                self.waitForAccessibility()
             }
         }
     }
@@ -383,35 +408,47 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // The app the text is for; decided now, before the user can switch away.
         let targetApp = NSWorkspace.shared.frontmostApplication?.bundleIdentifier
         let polish = PolishPolicy.shouldPolish(bundleID: targetApp)
-        Task {
+        let previous = lastDelivery
+        lastDelivery = Task {
+            await previous?.value
             do {
                 let result = try await transcriber.transcribe(samples, language: language, context: context)
+                // Where the text goes, known before Polish and logging: a password field gets the
+                // raw text, and it is never shown, kept or logged.
+                let focus = Paster.isTrusted && !result.text.isEmpty ? await FocusInfo.current() : nil
+                let secure = focus?.secure ?? false
                 Log.write(String(format: "%.2fs in → %.2fs speech, %.3fs, RTF %.3f, %@: %@",
                                  result.inputSeconds, result.audioSeconds, result.elapsed, result.rtf,
-                                 result.language ?? "-", Log.redact(result.text)))
+                                 result.language ?? "-", secure ? "<secure field>" : Log.redact(result.text)))
                 if result.text.isEmpty {
                     showResult(.message(String(localized: "No speech heard")), hideAfter: 1)
                     return
                 }
                 var text = result.text
                 let unsupported = PolishLanguages.skipReason(for: result.language)
-                if polish, let unsupported {
+                if secure {
+                    // No Polish: it could rewrite what was spelled out.
+                } else if polish, let unsupported {
                     Log.write("polish skipped: \(unsupported)")
                 } else if polish {
                     let p = await transcriber.polish(result.text)
                     text = p.text
                     Log.write(String(format: "polish %.0f ms, %d→%d tokens, %@: %@ ⇒ %@",
                                      p.elapsed * 1000, p.promptTokens, p.generatedTokens,
-                                     p.rejection.map { "kept raw (\($0))" } ?? "used",
+                                     p.rejection.map { "kept raw (\(Log.redactReason($0)))" } ?? "used",
                                      Log.redact(p.raw), Log.redact(p.candidate)))
                 } else if Settings.polish {
                     Log.write("polish skipped in \(targetApp ?? "-")")
                 }
-                addToHistory(text)
-                if Paster.isTrusted {
-                    let focus = await FocusInfo.current()
+                if let focus {
                     let outcome = Paster.insert(text, focus: focus)
-                    Log.write("focus \(focus.app) \(focus.role) → \(outcome)")
+                    Log.write("focus \(focus.app) \(focus.role)\(secure ? " (secure)" : "") → \(outcome)")
+                    if secure, outcome == .pasted {
+                        // A password field: don't show the text or keep it in Recent.
+                        showResult(.message("••••••"), hideAfter: 1)
+                        return
+                    }
+                    addToHistory(text)
                     switch outcome {
                     case .pasted:
                         showResult(.message(text), hideAfter: 1.2)
@@ -422,6 +459,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                 } else {
                     // Without Accessibility we cannot send ⌘V; leave the text on the clipboard.
+                    addToHistory(text)
                     Paster.copy(text)
                     showResult(.copied(String(localized: "Copied (Accessibility not granted)")), hideAfter: 1.5)
                 }
@@ -538,7 +576,8 @@ extension AppDelegate {
         guard let button = statusItem.button, let window = button.window else { return }
         let menu: NSMenu? = note.object as? String == "languages" ? languagesMenu?.copy() as? NSMenu : statusItem.menu
         guard let menu else { return }
-        let close = Timer(timeInterval: 4, repeats: false) { _ in menu.cancelTracking() }
+        nonisolated(unsafe) let tracked = menu  // only touched on the main run loop
+        let close = Timer(timeInterval: 4, repeats: false) { _ in tracked.cancelTracking() }
         RunLoop.main.add(close, forMode: .common)
         if note.object as? String == "languages" {
             let frame = window.convertToScreen(button.convert(button.bounds, to: nil))
@@ -558,12 +597,31 @@ enum Log {
         UserDefaults.standard.bool(forKey: "logText") ? text : "<\(text.count) chars>"
     }
 
+    /// Why Polish kept the raw text, without the words or numbers it quotes ("new word: X" → "new word").
+    static func redactReason(_ reason: String) -> String {
+        guard !UserDefaults.standard.bool(forKey: "logText") else { return reason }
+        for prefix in ["new word", "new character", "number"] where reason.hasPrefix(prefix + ":") {
+            return prefix
+        }
+        return reason
+    }
+
+    private static let sizeLimit: UInt64 = 5 << 20
+
     static func write(_ message: String) {
         let line = "\(ISO8601DateFormatter().string(from: Date())) \(message)\n"
+        // Keep one old file (Tsuzuri.log.1) once the log reaches 5 MB.
+        let fm = FileManager.default
+        if let size = (try? fm.attributesOfItem(atPath: url.path))?[.size] as? UInt64, size > sizeLimit {
+            let old = url.appendingPathExtension("1")
+            try? fm.removeItem(at: old)
+            try? fm.moveItem(at: url, to: old)
+        }
+        // The throwing FileHandle API: the old write(_:) raises an ObjC exception (crash) on I/O errors.
         if let handle = try? FileHandle(forWritingTo: url) {
-            handle.seekToEndOfFile()
-            handle.write(Data(line.utf8))
-            try? handle.close()
+            defer { try? handle.close() }
+            _ = try? handle.seekToEnd()
+            try? handle.write(contentsOf: Data(line.utf8))
         } else {
             try? Data(line.utf8).write(to: url)
         }

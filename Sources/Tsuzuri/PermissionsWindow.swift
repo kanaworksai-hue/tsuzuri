@@ -98,6 +98,7 @@ private struct PermissionsView: View {
                 if model.allGranted {
                     Label(String(localized: "All set. Hold \(Settings.trigger.title) to talk."), systemImage: "checkmark.circle.fill")
                         .foregroundStyle(.green)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 Spacer()
                 Button(model.allGranted ? String(localized: "Done") : String(localized: "Later"), action: close)

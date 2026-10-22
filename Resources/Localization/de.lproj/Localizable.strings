@@ -49,7 +49,7 @@
 "Open System Settings…" = "Systemeinstellungen öffnen …";
 "Allowed" = "Erlaubt";
 "Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Aktiviere Tsuzuri in der Liste. Ist es schon aktiviert und funktioniert trotzdem nicht, wähle es aus, entferne es mit − und füge Tsuzuri dann mit + wieder hinzu.";
-"All set. Hold %@ to talk." = "Fertig eingerichtet. Halte %@ gedrückt, um zu sprechen.";
+"All set. Hold %@ to talk." = "Fertig eingerichtet. Zum Sprechen %@ gedrückt halten.";
 "Done" = "Fertig";
 "Later" = "Später";
 "Permissions…" = "Berechtigungen …";

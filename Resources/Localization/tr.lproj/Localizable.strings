@@ -15,10 +15,10 @@
 "Polish" = "Metin Düzeltme";
 "Only for %@" = "Yalnızca %@ için";
 "After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Tanımadan sonra küçük bir yerel model noktalama işaretleri ekler, dolgu sözcüklerini kaldırır, konuşurken yaptığınız düzeltmeleri uygular ve sayıları rakamla yazar. Yalnızca %@ için; diğer diller tanındığı gibi eklenir. Terminallerde uygulanmaz.";
-"Shortcut (Hold to Talk / Tap to Toggle)" = "Kestirme (Konuşmak İçin Basılı Tutun / Açıp Kapatmak İçin Dokunun)";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Kısayol (Konuşmak İçin Basılı Tutun / Açıp Kapatmak İçin Dokunun)";
 "Right Option ⌥" = "Sağ Option ⌥";
 "Right Command ⌘" = "Sağ Command ⌘";
-"Quit Tsuzuri" = "Tsuzuri'den Çık";
+"Quit Tsuzuri" = "Tsuzuri’den Çık";
 
 /* Status line */
 "Loading model…" = "Model yükleniyor…";

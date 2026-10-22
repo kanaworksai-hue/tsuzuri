@@ -8,7 +8,10 @@
 # grants to the signature, so ad-hoc builds lose them on every rebuild.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-export DEVELOPER_DIR="${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}"
+# Use the selected Xcode; only fall back to /Applications/Xcode.app when xcode-select points at the CLT.
+if [ -z "${DEVELOPER_DIR:-}" ] && [[ "$(xcode-select -p 2>/dev/null)" != *.app/* ]]; then
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+fi
 
 swift build -c release
 scripts/metallib.sh
@@ -35,6 +38,19 @@ cp THIRD_PARTY.md "$APP/Contents/Resources/"
   while read -r file; do
     printf '\n\n===== %s =====\n\n' "$file"
     cat ".build/checkouts/$file"
+  done
+  # Code inside MLX whose license lives only in the source file's header comment
+  # (linked into the binary or compiled into mlx.metallib).
+  mlx=mlx-swift/Source/Cmlx/mlx/mlx
+  for file in $mlx/3rdparty/pocketfft.h $mlx/threadpool.h $mlx/small_vector.h \
+              $mlx/backend/metal/kernels/expm1f.h $mlx/backend/metal/kernels/cexpf.h; do
+    [ -f ".build/checkouts/$file" ] || { echo "missing license source: $file" >&2; exit 1; }
+    printf '\n\n===== %s (header) =====\n\n' "$file"
+    # Every comment block that mentions a copyright.
+    awk 'function flush() { if (buf ~ /[Cc]opyright/) printf "%s\n", buf; buf = "" }
+         /^\/\*/ { c = 1 }
+         c || /^[[:space:]]*\/\// { buf = buf $0 "\n"; if (/\*\//) c = 0; next }
+         { flush() } END { flush() }' ".build/checkouts/$file"
   done
 } > "$APP/Contents/Resources/Licenses.txt"
 

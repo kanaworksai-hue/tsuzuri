@@ -5,7 +5,7 @@
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-4b5bff?style=flat-square"></a>
   <img alt="macOS 14+ on Apple Silicon" src="https://img.shields.io/badge/macOS_14+-Apple_Silicon-111?style=flat-square&logo=apple">
-  <img alt="Swift 6.2" src="https://img.shields.io/badge/swift-6.2-f05138?style=flat-square&logo=swift&logoColor=white">
+  <img alt="Swift 6.3+" src="https://img.shields.io/badge/swift-6.3%2B-f05138?style=flat-square&logo=swift&logoColor=white">
   <a href="https://github.com/kanaworksai-hue/tsuzuri/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/kanaworksai-hue/tsuzuri?style=flat-square&label=download"></a>
   <a href="https://github.com/kanaworksai-hue/tsuzuri/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/kanaworksai-hue/tsuzuri?style=flat-square&logo=github&label=stars&color=f5c518"></a>
 </p>
@@ -62,7 +62,7 @@ This downloads about 1.6 GB. For the faster, smaller model, add `Qwen3-ASR-0.6B-
 
 1. Open **Tsuzuri** from Applications. A small icon appears in the menu bar.
 2. A **Set Up Tsuzuri** window asks for two permissions: click **Allow…** for the **Microphone**, then **Open System Settings…** and turn on Tsuzuri under **Accessibility**. Tsuzuri needs Accessibility to notice the shortcut key and to paste; until it is on, the shortcut does nothing and the menu bar icon shows a warning badge. The window turns green when both are allowed, and you can open it again from the menu (**Permissions…**).
-3. If you downloaded the models while Tsuzuri was running, quit and reopen it.
+3. If you downloaded the speech model while Tsuzuri was running, just press the shortcut: Tsuzuri picks it up (or quit and reopen it).
 
 ## 🎙️ Use it
 
@@ -105,13 +105,17 @@ Then reopen Tsuzuri and turn on **Polish** in the menu. It is off by default.
 
 ## 🛠️ Build from source
 
-You need Xcode 26 or later (Swift 6.2).
+You need Xcode 26 or later with Swift 6.3 or later (`swift --version`), plus its Metal Toolchain, which Xcode 26 downloads separately:
+
+```bash
+xcodebuild -downloadComponent MetalToolchain
+```
 
 ```bash
 git clone https://github.com/kanaworksai-hue/tsuzuri.git
 cd tsuzuri
 scripts/build-app.sh          # → build/Tsuzuri.app and .build/release/tsuzuri-cli
-ditto build/Tsuzuri.app /Applications/Tsuzuri.app
+rm -rf /Applications/Tsuzuri.app && ditto build/Tsuzuri.app /Applications/Tsuzuri.app   # quit Tsuzuri first
 ```
 
 If `xcode-select` points at the Command Line Tools, the scripts use `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer` automatically.

@@ -16,6 +16,26 @@ final class Overlay {
     final class Model: ObservableObject {
         @Published var phase: Phase = .listening
         @Published var level: Float = 0
+        @Published var size = Overlay.compactSize
+    }
+
+    nonisolated static let compactSize = CGSize(width: 240, height: 44)
+    /// Messages often say what to do next ("menu → Permissions…"): widen the capsule and
+    /// allow a second line instead of cutting them off.
+    private static let maxWidth: CGFloat = 480
+    private static let chrome: CGFloat = 16 * 2 + 20 + 10 + 6  // padding, icon, spacing, slack
+    static let font = NSFont.systemFont(ofSize: 13, weight: .medium)
+
+    private static func size(for phase: Phase) -> CGSize {
+        let text: String
+        switch phase {
+        case .listening, .transcribing: return compactSize
+        case .message(let t), .copied(let t): text = t
+        }
+        let width = ceil((text as NSString).size(withAttributes: [.font: font]).width) + chrome
+        if width <= compactSize.width { return compactSize }
+        if width <= maxWidth { return CGSize(width: width, height: compactSize.height) }
+        return CGSize(width: maxWidth, height: 62)
     }
 
     private let model = Model()
@@ -30,7 +50,9 @@ final class Overlay {
         panel.hasShadow = true
         panel.ignoresMouseEvents = true
         panel.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary, .stationary]
-        panel.contentView = NSHostingView(rootView: OverlayView(model: model))
+        let host = NSHostingView(rootView: OverlayView(model: model))
+        host.sizingOptions = []  // show() sets the size; don't let SwiftUI resize the panel
+        panel.contentView = host
         return panel
     }()
 
@@ -38,6 +60,9 @@ final class Overlay {
         hideWork?.cancel()
         model.phase = phase
         if phase == .listening { model.level = 0 }
+        let size = Self.size(for: phase)
+        model.size = size
+        panel.setContentSize(size)
         position()
         panel.orderFrontRegardless()
     }
@@ -76,17 +101,18 @@ private struct OverlayView: View {
                 Text("Transcribing…").foregroundStyle(.secondary)
             case .message(let text):
                 Image(systemName: "text.bubble").foregroundStyle(.secondary)
-                Text(text).lineLimit(1).truncationMode(.tail)
+                Text(text).lineLimit(2).truncationMode(.tail)
             case .copied(let text):
                 Image(systemName: "doc.on.clipboard").foregroundStyle(.secondary)
-                Text(text).lineLimit(1).truncationMode(.tail)
+                Text(text).lineLimit(2).truncationMode(.tail)
             }
         }
-        .font(.system(size: 13, weight: .medium))
+        .font(Font(Overlay.font))
         .padding(.horizontal, 16)
-        .frame(width: 240, height: 44)
-        .background(.regularMaterial, in: Capsule())
-        .overlay(Capsule().strokeBorder(.white.opacity(0.15)))
+        .frame(width: model.size.width, height: model.size.height,
+               alignment: model.size.height > Overlay.compactSize.height ? .leading : .center)
+        .background(.regularMaterial, in: RoundedRectangle(cornerRadius: 22, style: .continuous))
+        .overlay(RoundedRectangle(cornerRadius: 22, style: .continuous).strokeBorder(.white.opacity(0.15)))
     }
 }
 

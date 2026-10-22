@@ -48,10 +48,10 @@
 "Allow…" = "Engedélyezés…";
 "Open System Settings…" = "Rendszerbeállítások megnyitása…";
 "Allowed" = "Engedélyezve";
-"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Kapcsolja be a Tsuzurit a listában. Ha már be van kapcsolva, mégsem működik, jelölje ki, távolítsa el a − gombbal, majd adja hozzá újra a Tsuzurit a + gombbal.";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Kapcsolja be a Tsuzurit a listában. Ha már be van kapcsolva, de mégsem működik, jelölje ki, távolítsa el a − gombbal, majd adja hozzá újra a Tsuzurit a + gombbal.";
 "All set. Hold %@ to talk." = "Minden kész. Tartsa nyomva a(z) %@ billentyűt a beszédhez.";
 "Done" = "Kész";
 "Later" = "Később";
 "Permissions…" = "Engedélyek…";
-"Shortcut needs Accessibility permission · Click to Set Up" = "A billentyűparancshoz kisegítő engedély kell · Kattintson a beállításhoz";
+"Shortcut needs Accessibility permission · Click to Set Up" = "A billentyűparancshoz engedély kell a Kisegítő lehetőségekben · Kattintson a beállításhoz";
 "Microphone access is off (menu → Permissions…)" = "A mikrofonhoz való hozzáférés ki van kapcsolva (menü → Engedélyek…)";

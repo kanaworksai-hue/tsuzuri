@@ -300,7 +300,7 @@ enum EnglishNumbers {
         var out = Set(values.map(String.init))
         // Standard reading of every contiguous piece: "two thousand five hundred" = 2500.
         for a in 0..<values.count {
-            for b in (a + 1)...values.count {
+            for b in (a + 1)...min(values.count, a + 16) {
                 if let v = standard(Array(values[a..<b])) { out.insert(String(v)) }
             }
         }
@@ -330,18 +330,27 @@ enum EnglishNumbers {
     }
 
     private static func standard(_ values: [Int]) -> Int? {
+        // Overflow-checked: a repetition loop ("hundred hundred hundred …") must not trap.
         var total = 0, current = 0
         for v in values {
             if v == 100 {
-                current = max(current, 1) * 100
+                let (m, o) = max(current, 1).multipliedReportingOverflow(by: 100)
+                if o { return nil }
+                current = m
             } else if v >= 1000 {
-                total += max(current, 1) * v
+                let (m, o1) = max(current, 1).multipliedReportingOverflow(by: v)
+                let (t, o2) = total.addingReportingOverflow(m)
+                if o1 || o2 { return nil }
+                total = t
                 current = 0
             } else {
-                current += v
+                let (c, o) = current.addingReportingOverflow(v)
+                if o { return nil }
+                current = c
             }
         }
-        return total + current
+        let (sum, o) = total.addingReportingOverflow(current)
+        return o ? nil : sum
     }
 }
 

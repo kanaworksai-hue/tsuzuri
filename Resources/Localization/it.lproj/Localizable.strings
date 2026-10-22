@@ -15,7 +15,7 @@
 "Polish" = "Rifinitura del testo";
 "Only for %@" = "Solo per %@";
 "After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Dopo il riconoscimento, un piccolo modello locale aggiunge la punteggiatura, rimuove le parole riempitive, applica le autocorrezioni e scrive i numeri in cifre. Solo per %@; le altre lingue vengono inserite così come riconosciute. Non attivo nei terminali.";
-"Shortcut (Hold to Talk / Tap to Toggle)" = "Abbreviazione (tieni premuto per parlare / premi per attivare o disattivare)";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Scorciatoia (tieni premuto per parlare / premi per attivare o disattivare)";
 "Right Option ⌥" = "Tasto Opzione destro ⌥";
 "Right Command ⌘" = "Tasto Comando destro ⌘";
 "Quit Tsuzuri" = "Esci da Tsuzuri";

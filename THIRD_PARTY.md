@@ -13,6 +13,11 @@ The app bundle includes the full license and NOTICE texts of all Swift packages 
 | [fmt](https://github.com/fmtlib/fmt), bundled in mlx-swift | MIT | String formatting in MLX |
 | [nlohmann/json](https://github.com/nlohmann/json), bundled in mlx-swift | MIT | JSON parsing in MLX |
 | [metal-cpp](https://developer.apple.com/metal/cpp/), bundled in mlx-swift | Apache-2.0 | Metal C++ bindings in MLX |
+| [pocketfft](https://github.com/mreineck/pocketfft), bundled in MLX | BSD-3-Clause | FFT |
+| [ThreadPool](https://github.com/progschj/ThreadPool), adapted in MLX | Zlib | Thread pool |
+| Small vector from [V8](https://v8.dev), adapted in MLX | BSD-3-Clause | Small arrays |
+| `expm1f` by Norbert Juffa, adapted in MLX kernels | BSD-2-Clause | Math kernel |
+| `cexpf` from [NVIDIA CCCL](https://github.com/NVIDIA/cccl) (Thrust), adapted in MLX kernels | Apache-2.0 | Math kernel |
 | [mlx-audio-swift](https://github.com/Blaizzy/mlx-audio-swift) | MIT | Qwen3-ASR and Silero VAD model code, audio loading |
 | [mlx-swift-lm](https://github.com/ml-explore/mlx-swift-lm) | MIT | LLM runtime for Polish |
 | [swift-transformers](https://github.com/huggingface/swift-transformers) | Apache-2.0 | Tokenizers |

@@ -40,7 +40,7 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Поставување на Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "На Tsuzuri му требаат две дозволи. Сè останува на овој Mac.";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "На Tsuzuri му требаат две дозволи. Сѐ останува на овој Mac.";
 "Microphone" = "Микрофон";
 "To hear you while you hold the shortcut key." = "За да ве слушне додека го држите копчето за кратенка.";
 "Accessibility" = "Пристапност";
@@ -49,7 +49,7 @@
 "Open System Settings…" = "Отвори ги системските поставки…";
 "Allowed" = "Дозволено";
 "Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Вклучете го Tsuzuri во листата. Ако веќе е вклучен, а сепак не работи, изберете го, отстранете го со −, па повторно додајте го Tsuzuri со +.";
-"All set. Hold %@ to talk." = "Сè е подготвено. Држете %@ за да зборувате.";
+"All set. Hold %@ to talk." = "Сѐ е подготвено. Држете %@ за да зборувате.";
 "Done" = "Готово";
 "Later" = "Подоцна";
 "Permissions…" = "Дозволи…";

@@ -3,7 +3,7 @@
 #   build/release/Tsuzuri-<version>.dmg   download for users (signed, notarized, stapled)
 #   build/release/Tsuzuri-<version>.zip   stapled app, for Sparkle / Homebrew
 #
-#   scripts/release.sh 0.2.0
+#   scripts/release.sh 1.0.0
 #
 # Needs a "Developer ID Application" identity in the login keychain and a notarytool
 # keychain profile (default "tsuzuri-notary"; create it with
@@ -17,7 +17,10 @@
 # for Microphone / Accessibility again the first time it runs.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-export DEVELOPER_DIR="${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}"
+# Use the selected Xcode; only fall back to /Applications/Xcode.app when xcode-select points at the CLT.
+if [ -z "${DEVELOPER_DIR:-}" ] && [[ "$(xcode-select -p 2>/dev/null)" != *.app/* ]]; then
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+fi
 
 VERSION=${1:?usage: scripts/release.sh VERSION}
 BUILD=$(git rev-list --count HEAD)

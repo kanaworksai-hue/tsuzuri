@@ -5,7 +5,7 @@
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-4b5bff?style=flat-square"></a>
   <img alt="macOS 14+ on Apple Silicon" src="https://img.shields.io/badge/macOS_14+-Apple_Silicon-111?style=flat-square&logo=apple">
-  <img alt="Swift 6.2" src="https://img.shields.io/badge/swift-6.2-f05138?style=flat-square&logo=swift&logoColor=white">
+  <img alt="Swift 6.3+" src="https://img.shields.io/badge/swift-6.3%2B-f05138?style=flat-square&logo=swift&logoColor=white">
   <a href="https://github.com/kanaworksai-hue/tsuzuri/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/kanaworksai-hue/tsuzuri?style=flat-square&label=download"></a>
   <a href="https://github.com/kanaworksai-hue/tsuzuri/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/kanaworksai-hue/tsuzuri?style=flat-square&logo=github&label=stars&color=f5c518"></a>
 </p>
@@ -62,7 +62,7 @@ done
 
 1. アプリケーションフォルダから **Tsuzuri** を開きます。メニューバーに小さなアイコンが表示されます。
 2. 「Tsuzuri の設定」ウインドウが開き、2 つの許可を求めます。**マイク** は「許可…」、**アクセシビリティ** は「システム設定を開く…」から Tsuzuri をオンにします。アクセシビリティはショートカットキーの検知と貼り付けに必要で、オンにするまではキーを押しても反応せず、メニューバーのアイコンに警告マークが付きます。両方許可されるとウインドウが緑の表示に変わります。メニューの「権限…」からいつでも開き直せます。
-3. Tsuzuri の起動中にモデルをダウンロードした場合は、いったん終了して開き直してください。
+3. Tsuzuri の起動中に音声認識モデルをダウンロードした場合は、そのままショートカットキーを押せば読み込まれます（終了して開き直しても構いません）。
 
 ## 🎙️ 使い方
 
@@ -105,13 +105,17 @@ uvx --from 'mlx-lm==0.32.*' mlx_lm.convert --hf-path spokenly/cleanup-1 -q --q-b
 
 ## 🛠️ ソースからビルド
 
-Xcode 26 以降（Swift 6.2）が必要です。
+Swift 6.3 以降を含む Xcode 26 以降（`swift --version` で確認）と、Xcode 26 では別途ダウンロードになった Metal Toolchain が必要です。
+
+```bash
+xcodebuild -downloadComponent MetalToolchain
+```
 
 ```bash
 git clone https://github.com/kanaworksai-hue/tsuzuri.git
 cd tsuzuri
 scripts/build-app.sh          # → build/Tsuzuri.app と .build/release/tsuzuri-cli
-ditto build/Tsuzuri.app /Applications/Tsuzuri.app
+rm -rf /Applications/Tsuzuri.app && ditto build/Tsuzuri.app /Applications/Tsuzuri.app   # 先に Tsuzuri を終了
 ```
 
 `xcode-select` が Command Line Tools を指している場合も、スクリプトが自動的に `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer` を使います。

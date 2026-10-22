@@ -27,10 +27,11 @@ enum Paster {
 
     /// Pastes into the focused text field, or leaves the text on the clipboard
     /// when nothing editable has focus so the dictation is not lost.
+    @MainActor
     static func insert(_ text: String, focus: FocusInfo) -> Outcome {
         switch focus.target {
         case .textInput:
-            paste(text)
+            paste(text, concealed: focus.secure)
             return .pasted
         case .unknown:
             paste(text, keepOnClipboard: true)
@@ -46,40 +47,74 @@ enum Paster {
         NSPasteboard.general.setString(text, forType: .string)
     }
 
-    static func paste(_ text: String, keepOnClipboard: Bool = false) {
+    /// The user's clipboard saved by a paste whose restore has not run yet. A second paste
+    /// within that window must restore this, not the first dictation's text.
+    @MainActor private static var pendingRestore: (saved: [NSPasteboardItem]?, change: Int, work: DispatchWorkItem)?
+
+    /// - Parameter concealed: a password field; mark the text so clipboard managers never record it.
+    @MainActor
+    static func paste(_ text: String, keepOnClipboard: Bool = false, concealed: Bool = false) {
         guard !text.isEmpty else { return }
+        // Still showing the previous dictation: its saved clipboard is the user's. If the user
+        // copied something in between, that is the clipboard to keep instead.
+        let pending = pendingRestore.flatMap { $0.change == NSPasteboard.general.changeCount ? $0 : nil }
+        pendingRestore?.work.cancel()
+        pendingRestore = nil
         if keepOnClipboard {
             copy(text)
             sendCommandV()
             return
         }
         let pasteboard = NSPasteboard.general
-        let saved = snapshot(pasteboard)
+        // nil: not worth restoring (passwords, very large data) — leave the dictation instead.
+        let saved = pending != nil ? pending!.saved : snapshot(pasteboard)
 
         pasteboard.clearContents()
         pasteboard.setString(text, forType: .string)
         // Mark as transient so clipboard managers skip it.
         pasteboard.setString("", forType: NSPasteboard.PasteboardType("org.nspasteboard.TransientType"))
+        if concealed { pasteboard.setString("", forType: NSPasteboard.PasteboardType("org.nspasteboard.ConcealedType")) }
         let ourChange = pasteboard.changeCount
 
         sendCommandV()
 
+        guard let saved else { return }
         // Give the target app time to read the pasteboard before restoring it.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
-            guard pasteboard.changeCount == ourChange else { return } // user copied something meanwhile
-            pasteboard.clearContents()
-            if !saved.isEmpty { pasteboard.writeObjects(saved) }
+        let work = DispatchWorkItem {
+            MainActor.assumeIsolated {
+                pendingRestore = nil
+                guard pasteboard.changeCount == ourChange else { return } // user copied something meanwhile
+                pasteboard.clearContents()
+                if !saved.isEmpty { pasteboard.writeObjects(saved) }
+            }
         }
+        pendingRestore = (saved, ourChange, work)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, execute: work)
     }
 
-    private static func snapshot(_ pasteboard: NSPasteboard) -> [NSPasteboardItem] {
-        (pasteboard.pasteboardItems ?? []).map { original in
+    private static let concealedTypes: Set<NSPasteboard.PasteboardType> = [
+        .init("org.nspasteboard.ConcealedType"), .init("org.nspasteboard.TransientType"),
+    ]
+    private static let snapshotLimit = 32 << 20
+
+    /// The current clipboard, or nil when it should not be put back: password-manager items
+    /// (restoring them would also stop the manager from clearing them) or more than 32 MB.
+    private static func snapshot(_ pasteboard: NSPasteboard) -> [NSPasteboardItem]? {
+        let items = pasteboard.pasteboardItems ?? []
+        if items.contains(where: { !concealedTypes.isDisjoint(with: $0.types) }) { return nil }
+        var size = 0
+        var copies: [NSPasteboardItem] = []
+        for original in items {
             let copy = NSPasteboardItem()
             for type in original.types {
-                if let data = original.data(forType: type) { copy.setData(data, forType: type) }
+                guard let data = original.data(forType: type) else { continue }
+                size += data.count
+                if size > snapshotLimit { return nil }
+                copy.setData(data, forType: type)
             }
-            return copy
+            copies.append(copy)
         }
+        return copies
     }
 
     private static func sendCommandV() {
@@ -111,6 +146,8 @@ struct FocusInfo: Sendable {
     var target: Target
     var role: String
     var app: String
+    /// A password field: don't show, keep or log what goes into it.
+    var secure = false
 
     private static let textRoles: Set<String> = [kAXTextFieldRole, kAXTextAreaRole, kAXComboBoxRole]
     private static let containerRoles: Set<String> = [
@@ -145,6 +182,7 @@ struct FocusInfo: Sendable {
             return FocusInfo(target: .unknown, role: "none", app: appName)
         }
         let role = attribute(element, kAXRoleAttribute) as? String ?? "-"
+        let secure = attribute(element, kAXSubroleAttribute) as? String == kAXSecureTextFieldSubrole
         let target: Target
         if textRoles.contains(role)
             || isSettable(element, kAXSelectedTextRangeAttribute)
@@ -155,7 +193,7 @@ struct FocusInfo: Sendable {
         } else {
             target = .other
         }
-        return FocusInfo(target: target, role: role, app: appName)
+        return FocusInfo(target: target, role: role, app: appName, secure: secure)
     }
 
     private static func attribute(_ element: AXUIElement, _ name: String) -> AnyObject? {

@@ -56,10 +56,12 @@ public actor Transcriber {
     /// Loads (or swaps to) `model`. Returns the load time in seconds.
     @discardableResult
     public func load(_ model: ASRModel, directory: URL? = nil) async throws -> Double {
-        if self.model == model, asr != nil { return 0 }
-        let dir = directory ?? model.localDirectory
+        // Bump first: switching back to the loaded model must also supersede a load in flight,
+        // otherwise that load would replace the model the user just went back to.
         loadGeneration += 1  // also cancels an older load when this one fails right away
         let generation = loadGeneration
+        if self.model == model, asr != nil { return 0 }
+        let dir = directory ?? model.localDirectory
         guard ModelStore.isInstalled(dir) else { throw TranscriberError.modelMissing(dir) }
         let start = Date()
         // Keep the current model until the new one is ready: transcribe() can run while
@@ -145,9 +147,13 @@ public actor Transcriber {
             speech = trimmed
         }
 
+        // Scale the token budget with the audio so long dictations (up to 3 min) are not cut
+        // off; fast Chinese / Japanese speech is around 6–8 tokens per second. Not much more:
+        // a repetition loop runs until the budget is used up, and the user waits for it.
+        let seconds = Double(speech.count) / Double(Self.sampleRate)
         let output = asr.generate(
             audio: MLXArray(speech),
-            maxTokens: 1024,
+            maxTokens: max(1024, Int(seconds * 10)),
             context: context,
             language: language,
             repetitionPenalty: 1.05

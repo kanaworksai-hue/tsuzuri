@@ -1,6 +1,6 @@
 /* Menu */
 "Starting…" = "Starten…";
-"Recent (Click to Copy)" = "Recent (klik om te kopiëren)";
+"Recent (Click to Copy)" = "Recent herkend (klik om te kopiëren)";
 "(None yet)" = "(Nog niets)";
 "Clear" = "Wis";
 "Model" = "Model";
@@ -15,7 +15,7 @@
 "Polish" = "Tekst opschonen";
 "Only for %@" = "Alleen voor %@";
 "After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for %@; other languages are inserted as recognized. Skipped in terminals." = "Na de herkenning voegt een klein lokaal model leestekens toe, verwijdert het stopwoorden, verwerkt het verbeteringen die je zelf uitspreekt en schrijft het getallen in cijfers. Alleen voor %@; andere talen worden ingevoegd zoals ze zijn herkend. Niet in terminals.";
-"Shortcut (Hold to Talk / Tap to Toggle)" = "Toetscombinatie (ingedrukt houden om te praten / tikken om aan of uit te zetten)";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "Sneltoets (ingedrukt houden om te praten / tikken om aan of uit te zetten)";
 "Right Option ⌥" = "Rechter Option-toets ⌥";
 "Right Command ⌘" = "Rechter Command-toets ⌘";
 "Quit Tsuzuri" = "Stop Tsuzuri";

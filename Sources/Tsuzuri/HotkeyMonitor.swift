@@ -50,11 +50,17 @@ final class HotkeyMonitor {
         pressedAt = nil
     }
 
+    /// Device-dependent bits (IOKit NX_DEVICER…KEYMASK): `.option` / `.command` stay set
+    /// while the left key of the same kind is held, which would hide the right key's release.
+    private static let rightOptionMask: UInt = 0x40
+    private static let rightCommandMask: UInt = 0x10
+
     private func isDown(_ event: NSEvent) -> Bool {
+        let raw = event.modifierFlags.rawValue
         switch trigger {
-        case .rightOption: event.modifierFlags.contains(.option)
-        case .rightCommand: event.modifierFlags.contains(.command)
-        case .fn: event.modifierFlags.contains(.function)
+        case .rightOption: return raw & Self.rightOptionMask != 0
+        case .rightCommand: return raw & Self.rightCommandMask != 0
+        case .fn: return event.modifierFlags.contains(.function)
         }
     }
 

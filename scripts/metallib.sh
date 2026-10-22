@@ -3,11 +3,18 @@
 # so every binary that runs MLX needs mlx.metallib next to it.
 set -euo pipefail
 cd "$(dirname "$0")/.."
-export DEVELOPER_DIR="${DEVELOPER_DIR:-/Applications/Xcode.app/Contents/Developer}"
+# Use the selected Xcode; only fall back to /Applications/Xcode.app when xcode-select points at the CLT.
+if [ -z "${DEVELOPER_DIR:-}" ] && [[ "$(xcode-select -p 2>/dev/null)" != *.app/* ]]; then
+  export DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer
+fi
 SRC=.build/checkouts/mlx-swift/Source/Cmlx/mlx-generated/metal
 OUT=.build/mlx.metallib
 if [ -f "$OUT" ] && [ -z "$(find "$SRC" -name '*.metal' -newer "$OUT" | head -1)" ]; then
   exit 0
+fi
+if ! xcrun -sdk macosx metal --version >/dev/null 2>&1; then
+  echo "The Metal compiler is missing. Install Xcode's Metal Toolchain: xcodebuild -downloadComponent MetalToolchain" >&2
+  exit 1
 fi
 echo "Compiling MLX Metal kernels..."
 AIR=.build/mlx_air

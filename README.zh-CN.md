@@ -5,7 +5,7 @@
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-4b5bff?style=flat-square"></a>
   <img alt="macOS 14+ on Apple Silicon" src="https://img.shields.io/badge/macOS_14+-Apple_Silicon-111?style=flat-square&logo=apple">
-  <img alt="Swift 6.2" src="https://img.shields.io/badge/swift-6.2-f05138?style=flat-square&logo=swift&logoColor=white">
+  <img alt="Swift 6.3+" src="https://img.shields.io/badge/swift-6.3%2B-f05138?style=flat-square&logo=swift&logoColor=white">
   <a href="https://github.com/kanaworksai-hue/tsuzuri/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/kanaworksai-hue/tsuzuri?style=flat-square&label=download"></a>
   <a href="https://github.com/kanaworksai-hue/tsuzuri/stargazers"><img alt="GitHub stars" src="https://img.shields.io/github/stars/kanaworksai-hue/tsuzuri?style=flat-square&logo=github&label=stars&color=f5c518"></a>
 </p>
@@ -62,7 +62,7 @@ done
 
 1. 从应用程序文件夹打开 **Tsuzuri**，菜单栏会出现一个小图标。
 2. 会弹出「设置 Tsuzuri」窗口，请求两项权限：**麦克风** 点「允许…」，**辅助功能** 点「打开系统设置…」后把 Tsuzuri 打开。快捷键和粘贴都需要辅助功能权限，打开之前按快捷键没有反应，菜单栏图标会带一个警告标记。两项都允许后窗口会变成绿色。之后也可以从菜单「权限…」再次打开。
-3. 如果是在 Tsuzuri 运行时下载的模型，请退出后重新打开。
+3. 如果是在 Tsuzuri 运行时下载的语音识别模型，直接按快捷键就会加载（也可以退出后重新打开）。
 
 ## 🎙️ 使用方法
 
@@ -105,13 +105,17 @@ uvx --from 'mlx-lm==0.32.*' mlx_lm.convert --hf-path spokenly/cleanup-1 -q --q-b
 
 ## 🛠️ 从源码构建
 
-需要 Xcode 26 或更新版本（Swift 6.2）。
+需要 Xcode 26 或更新版本，且 Swift 为 6.3 或更新（用 `swift --version` 查看），还要装 Metal Toolchain（Xcode 26 起需要单独下载）：
+
+```bash
+xcodebuild -downloadComponent MetalToolchain
+```
 
 ```bash
 git clone https://github.com/kanaworksai-hue/tsuzuri.git
 cd tsuzuri
 scripts/build-app.sh          # → build/Tsuzuri.app 和 .build/release/tsuzuri-cli
-ditto build/Tsuzuri.app /Applications/Tsuzuri.app
+rm -rf /Applications/Tsuzuri.app && ditto build/Tsuzuri.app /Applications/Tsuzuri.app   # 先退出 Tsuzuri
 ```
 
 即使 `xcode-select` 指向的是 Command Line Tools，脚本也会自动使用 `DEVELOPER_DIR=/Applications/Xcode.app/Contents/Developer`。
