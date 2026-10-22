@@ -154,6 +154,9 @@ struct FocusInfo: Sendable {
     /// A password field: don't show, keep or log what goes into it.
     var secure = false
 
+    /// ⌘V in Finder outside a text field (the desktop, a window) creates a text clipping file.
+    private static let finder = "com.apple.finder"
+
     private static let textRoles: Set<String> = [kAXTextFieldRole, kAXTextAreaRole, kAXComboBoxRole]
     private static let containerRoles: Set<String> = [
         "AXWebArea", kAXGroupRole, kAXScrollAreaRole, kAXWindowRole, kAXApplicationRole, kAXUnknownRole,
@@ -193,7 +196,7 @@ struct FocusInfo: Sendable {
         AXUIElementSetMessagingTimeout(AXUIElementCreateSystemWide(), 0.2)
         let app = AXUIElementCreateApplication(pid)
         guard let element = element(app, kAXFocusedUIElementAttribute) else {
-            return FocusInfo(target: .unknown, role: "none", app: appName)
+            return FocusInfo(target: appName == finder ? .other : .unknown, role: "none", app: appName)
         }
         let role = attribute(element, kAXRoleAttribute) as? String ?? "-"
         let secure = attribute(element, kAXSubroleAttribute) as? String == kAXSecureTextFieldSubrole
@@ -202,6 +205,8 @@ struct FocusInfo: Sendable {
             || isSettable(element, kAXSelectedTextRangeAttribute)
             || (isSettable(element, kAXValueAttribute) && attribute(element, kAXValueAttribute) is String) {
             target = .textInput
+        } else if appName == finder {
+            target = .other
         } else if containerRoles.contains(role) {
             target = .unknown
         } else {
