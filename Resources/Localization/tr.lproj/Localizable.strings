@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Kestirme (Konuşmak İçin Basılı Tutun / Açıp Kapatmak İçin Dokunun)";
 "Right Option ⌥" = "Sağ Option ⌥";
 "Right Command ⌘" = "Sağ Command ⌘";
-"Open Accessibility Settings…" = "Erişilebilirlik Ayarlarını Aç…";
-"Open Microphone Settings…" = "Mikrofon Ayarlarını Aç…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Yapıştırma Testi (3 sn Sonra Geçerli Pencereye Yapıştırır)";
-"Tsuzuri paste test" = "Tsuzuri yapıştırma testi";
 "Quit Tsuzuri" = "Tsuzuri'den Çık";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Erişilebilirlik izni gerekli (Sistem Ayarları → Gizlilik ve Güvenlik)";
 "Loading model…" = "Model yükleniyor…";
 "Ready · hold %@ to talk" = "Hazır · konuşmak için %@ tuşunu basılı tutun";
 "Model failed to load: %@" = "Model yüklenemedi: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Model hâlâ yükleniyor…";
 "Can't record" = "Kayıt yapılamıyor";
 "No microphone found" = "Mikrofon bulunamadı";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Mikrofon erişimi kapalı (menü → Mikrofon Ayarlarını Aç…)";
 "Canceled" = "İptal edildi";
 "No speech heard" = "Konuşma duyulmadı";
 "Recognition failed" = "Tanıma başarısız oldu";
 "Copied: %@" = "Kopyalandı: %@";
 "Copied · ⌘V to paste: %@" = "Kopyalandı · yapıştırmak için ⌘V: %@";
 "Copied (Accessibility not granted)" = "Kopyalandı (Erişilebilirlik izni verilmedi)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Tsuzuri’yi Ayarla";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri’nin iki izne ihtiyacı var. Her şey bu Mac’te kalır.";
+"Microphone" = "Mikrofon";
+"To hear you while you hold the shortcut key." = "Kısayol tuşunu basılı tuttuğunuz sürece sizi duyabilmek için.";
+"Accessibility" = "Erişilebilirlik";
+"To notice the shortcut key and paste the text where your cursor is." = "Kısayol tuşunu algılamak ve metni imlecin olduğu yere yapıştırmak için.";
+"Allow…" = "İzin Ver…";
+"Open System Settings…" = "Sistem Ayarları’nı Aç…";
+"Allowed" = "İzin Verildi";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Listede Tsuzuri’yi açın. Zaten açıksa ama yine de çalışmıyorsa, seçin, − ile kaldırın ve ardından + ile Tsuzuri’yi yeniden ekleyin.";
+"All set. Hold %@ to talk." = "Her şey hazır. Konuşmak için %@ tuşunu basılı tutun.";
+"Done" = "Bitti";
+"Later" = "Daha Sonra";
+"Permissions…" = "İzinler…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Kısayol için Erişilebilirlik izni gerekli · Ayarlamak için tıklayın";
+"Microphone access is off (menu → Permissions…)" = "Mikrofon erişimi kapalı (menü → İzinler…)";

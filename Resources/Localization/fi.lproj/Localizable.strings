@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Pikanäppäin (pidä painettuna puhuaksesi / napauta vaihtaaksesi)";
 "Right Option ⌥" = "Oikea Optio ⌥";
 "Right Command ⌘" = "Oikea Komento ⌘";
-"Open Accessibility Settings…" = "Avaa Käyttöapu-asetukset…";
-"Open Microphone Settings…" = "Avaa Mikrofoni-asetukset…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Sijoitustesti (sijoittaa nykyiseen ikkunaan 3 s kuluttua)";
-"Tsuzuri paste test" = "Tsuzurin sijoitustesti";
 "Quit Tsuzuri" = "Lopeta Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Käyttöapu-lupa tarvitaan (Järjestelmäasetukset → Tietosuoja ja turvallisuus)";
 "Loading model…" = "Ladataan mallia…";
 "Ready · hold %@ to talk" = "Valmis · pidä %@ painettuna ja puhu";
 "Model failed to load: %@" = "Mallin lataaminen epäonnistui: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Mallia ladataan vielä…";
 "Can't record" = "Tallentaminen ei onnistu";
 "No microphone found" = "Mikrofonia ei löytynyt";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Mikrofonin käyttö on pois päältä (valikko → Avaa Mikrofoni-asetukset…)";
 "Canceled" = "Peruttu";
 "No speech heard" = "Puhetta ei kuulunut";
 "Recognition failed" = "Tunnistus epäonnistui";
 "Copied: %@" = "Kopioitu: %@";
 "Copied · ⌘V to paste: %@" = "Kopioitu · sijoita painamalla ⌘V: %@";
 "Copied (Accessibility not granted)" = "Kopioitu (ei Käyttöapu-lupaa)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Ota Tsuzuri käyttöön";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri tarvitsee kaksi lupaa. Kaikki pysyy tällä Macilla.";
+"Microphone" = "Mikrofoni";
+"To hear you while you hold the shortcut key." = "Jotta Tsuzuri kuulee sinut, kun pidät pikanäppäintä painettuna.";
+"Accessibility" = "Käyttöapu";
+"To notice the shortcut key and paste the text where your cursor is." = "Jotta Tsuzuri tunnistaa pikanäppäimen ja sijoittaa tekstin kohdistimen kohtaan.";
+"Allow…" = "Salli…";
+"Open System Settings…" = "Avaa Järjestelmäasetukset…";
+"Allowed" = "Sallittu";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Laita Tsuzuri päälle luettelossa. Jos se on jo päällä mutta ei toimi, valitse se, poista se −-painikkeella ja lisää Tsuzuri sitten uudelleen +-painikkeella.";
+"All set. Hold %@ to talk." = "Kaikki valmista. Puhu pitämällä %@ painettuna.";
+"Done" = "Valmis";
+"Later" = "Myöhemmin";
+"Permissions…" = "Luvat…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Pikanäppäin tarvitsee Käyttöapu-luvan · Määritä klikkaamalla";
+"Microphone access is off (menu → Permissions…)" = "Mikrofonin käyttö on pois päältä (valikko → Luvat…)";

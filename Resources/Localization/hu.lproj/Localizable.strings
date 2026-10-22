@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Billentyű (nyomva tartva: beszéd / koppintás: be/ki)";
 "Right Option ⌥" = "Jobb oldali Option ⌥";
 "Right Command ⌘" = "Jobb oldali Command ⌘";
-"Open Accessibility Settings…" = "Kisegítő lehetőségek beállításainak megnyitása…";
-"Open Microphone Settings…" = "Mikrofonbeállítások megnyitása…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Beillesztési teszt (3 mp múlva beilleszt az aktuális ablakba)";
-"Tsuzuri paste test" = "Tsuzuri beillesztési teszt";
 "Quit Tsuzuri" = "Kilépés a Tsuzuri alkalmazásból";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Engedély szükséges a Kisegítő lehetőségekhez (Rendszerbeállítások → Adatvédelem és biztonság)";
 "Loading model…" = "Modell betöltése…";
 "Ready · hold %@ to talk" = "Kész · beszédhez tartsa lenyomva: %@";
 "Model failed to load: %@" = "Nem sikerült betölteni a modellt: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "A modell még töltődik…";
 "Can't record" = "Nem lehet hangot rögzíteni";
 "No microphone found" = "Nem található mikrofon";
-"Microphone access is off (menu → Open Microphone Settings…)" = "A mikrofonhoz való hozzáférés ki van kapcsolva (menü → Mikrofonbeállítások megnyitása…)";
 "Canceled" = "Megszakítva";
 "No speech heard" = "Nem hallható beszéd";
 "Recognition failed" = "A felismerés sikertelen";
 "Copied: %@" = "Másolva: %@";
 "Copied · ⌘V to paste: %@" = "Másolva · ⌘V a beillesztéshez: %@";
 "Copied (Accessibility not granted)" = "Másolva (nincs engedély a Kisegítő lehetőségekhez)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "A Tsuzuri beállítása";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "A Tsuzurinak két engedélyre van szüksége. Minden ezen a Macen marad.";
+"Microphone" = "Mikrofon";
+"To hear you while you hold the shortcut key." = "Hogy hallja Önt, amíg nyomva tartja a billentyűparancsot.";
+"Accessibility" = "Kisegítő lehetőségek";
+"To notice the shortcut key and paste the text where your cursor is." = "Hogy érzékelje a billentyűparancsot, és a kurzor helyére illessze be a szöveget.";
+"Allow…" = "Engedélyezés…";
+"Open System Settings…" = "Rendszerbeállítások megnyitása…";
+"Allowed" = "Engedélyezve";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Kapcsolja be a Tsuzurit a listában. Ha már be van kapcsolva, mégsem működik, jelölje ki, távolítsa el a − gombbal, majd adja hozzá újra a Tsuzurit a + gombbal.";
+"All set. Hold %@ to talk." = "Minden kész. Tartsa nyomva a(z) %@ billentyűt a beszédhez.";
+"Done" = "Kész";
+"Later" = "Később";
+"Permissions…" = "Engedélyek…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "A billentyűparancshoz kisegítő engedély kell · Kattintson a beállításhoz";
+"Microphone access is off (menu → Permissions…)" = "A mikrofonhoz való hozzáférés ki van kapcsolva (menü → Engedélyek…)";

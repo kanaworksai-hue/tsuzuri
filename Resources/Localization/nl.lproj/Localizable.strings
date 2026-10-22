@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Toetscombinatie (ingedrukt houden om te praten / tikken om aan of uit te zetten)";
 "Right Option ⌥" = "Rechter Option-toets ⌥";
 "Right Command ⌘" = "Rechter Command-toets ⌘";
-"Open Accessibility Settings…" = "Open toegankelijkheidsinstellingen…";
-"Open Microphone Settings…" = "Open microfooninstellingen…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Plaktest (plakt over 3 s in het huidige venster)";
-"Tsuzuri paste test" = "Tsuzuri-plaktest";
 "Quit Tsuzuri" = "Stop Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Toegang voor toegankelijkheid vereist (Systeeminstellingen → Privacy en beveiliging)";
 "Loading model…" = "Model laden…";
 "Ready · hold %@ to talk" = "Gereed · houd %@ ingedrukt om te praten";
 "Model failed to load: %@" = "Kan model niet laden: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Model wordt nog geladen…";
 "Can't record" = "Kan niet opnemen";
 "No microphone found" = "Geen microfoon gevonden";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Microfoontoegang staat uit (menu → Open microfooninstellingen…)";
 "Canceled" = "Geannuleerd";
 "No speech heard" = "Geen spraak gehoord";
 "Recognition failed" = "Herkenning mislukt";
 "Copied: %@" = "Gekopieerd: %@";
 "Copied · ⌘V to paste: %@" = "Gekopieerd · ⌘V om te plakken: %@";
 "Copied (Accessibility not granted)" = "Gekopieerd (geen toegang voor toegankelijkheid)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Stel Tsuzuri in";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri heeft twee toestemmingen nodig. Alles blijft op deze Mac.";
+"Microphone" = "Microfoon";
+"To hear you while you hold the shortcut key." = "Om je te horen terwijl je de sneltoets ingedrukt houdt.";
+"Accessibility" = "Toegankelijkheid";
+"To notice the shortcut key and paste the text where your cursor is." = "Om de sneltoets te herkennen en de tekst bij de cursor te plakken.";
+"Allow…" = "Sta toe…";
+"Open System Settings…" = "Open Systeeminstellingen…";
+"Allowed" = "Toegestaan";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Zet Tsuzuri aan in de lijst. Staat het al aan maar werkt het niet, selecteer het dan, verwijder het met − en voeg Tsuzuri opnieuw toe met +.";
+"All set. Hold %@ to talk." = "Alles is klaar. Houd %@ ingedrukt om te praten.";
+"Done" = "Gereed";
+"Later" = "Later";
+"Permissions…" = "Toestemmingen…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Sneltoets heeft toegankelijkheidstoestemming nodig · Klik om in te stellen";
+"Microphone access is off (menu → Permissions…)" = "Microfoontoegang staat uit (menu → Toestemmingen…)";

@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "단축키(길게 눌러 말하기 / 탭하여 켜기/끄기)";
 "Right Option ⌥" = "오른쪽 Option ⌥";
 "Right Command ⌘" = "오른쪽 Command ⌘";
-"Open Accessibility Settings…" = "손쉬운 사용 설정 열기…";
-"Open Microphone Settings…" = "마이크 설정 열기…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "붙여넣기 테스트(3초 후 현재 윈도우에 붙여넣기)";
-"Tsuzuri paste test" = "Tsuzuri 붙여넣기 테스트";
 "Quit Tsuzuri" = "Tsuzuri 종료";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "손쉬운 사용 권한 필요(시스템 설정 → 개인정보 보호 및 보안)";
 "Loading model…" = "모델 로드 중…";
 "Ready · hold %@ to talk" = "준비됨 · %@ 키를 길게 눌러 말하기";
 "Model failed to load: %@" = "모델을 로드하지 못함: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "모델을 아직 로드하는 중…";
 "Can't record" = "녹음할 수 없음";
 "No microphone found" = "마이크를 찾을 수 없음";
-"Microphone access is off (menu → Open Microphone Settings…)" = "마이크 접근이 꺼져 있음(메뉴 → 마이크 설정 열기…)";
 "Canceled" = "취소됨";
 "No speech heard" = "음성이 들리지 않음";
 "Recognition failed" = "인식 실패";
 "Copied: %@" = "복사됨: %@";
 "Copied · ⌘V to paste: %@" = "복사됨 · ⌘V로 붙여넣기: %@";
 "Copied (Accessibility not granted)" = "복사됨(손쉬운 사용 권한 없음)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Tsuzuri 설정";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri에는 두 가지 권한이 필요합니다. 모든 데이터는 이 Mac에만 남습니다.";
+"Microphone" = "마이크";
+"To hear you while you hold the shortcut key." = "단축키를 누르고 있는 동안 목소리를 듣기 위해 필요합니다.";
+"Accessibility" = "손쉬운 사용";
+"To notice the shortcut key and paste the text where your cursor is." = "단축키를 감지하고 커서 위치에 텍스트를 붙여넣기 위해 필요합니다.";
+"Allow…" = "허용…";
+"Open System Settings…" = "시스템 설정 열기…";
+"Allowed" = "허용됨";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "목록에서 Tsuzuri를 켜십시오. 이미 켜져 있는데도 작동하지 않으면 Tsuzuri를 선택하고 −로 제거한 다음 +로 다시 추가하십시오.";
+"All set. Hold %@ to talk." = "준비 완료. %@ 키를 누른 채 말하십시오.";
+"Done" = "완료";
+"Later" = "나중에";
+"Permissions…" = "권한…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "단축키에 손쉬운 사용 권한이 필요함 · 클릭하여 설정";
+"Microphone access is off (menu → Permissions…)" = "마이크 접근이 꺼져 있음(메뉴 → 권한…)";

@@ -61,9 +61,8 @@ This downloads about 1.6 GB. For the faster, smaller model, add `Qwen3-ASR-0.6B-
 ### 3. First run
 
 1. Open **Tsuzuri** from Applications. A small icon appears in the menu bar.
-2. Allow **Microphone** access when macOS asks.
-3. Allow **Accessibility** in System Settings → Privacy & Security → Accessibility. Tsuzuri needs it for the global hotkey and for pasting. The menu has a shortcut to this page.
-4. If you downloaded the models while Tsuzuri was running, quit and reopen it.
+2. A **Set Up Tsuzuri** window asks for two permissions: click **Allow…** for the **Microphone**, then **Open System Settings…** and turn on Tsuzuri under **Accessibility**. Tsuzuri needs Accessibility to notice the shortcut key and to paste; until it is on, the shortcut does nothing and the menu bar icon shows a warning badge. The window turns green when both are allowed, and you can open it again from the menu (**Permissions…**).
+3. If you downloaded the models while Tsuzuri was running, quit and reopen it.
 
 ## 🎙️ Use it
 

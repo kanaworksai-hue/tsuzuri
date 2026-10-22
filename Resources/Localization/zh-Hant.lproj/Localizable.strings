@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "快速鍵（按住說話／輕按切換）";
 "Right Option ⌥" = "右 Option ⌥";
 "Right Command ⌘" = "右 Command ⌘";
-"Open Accessibility Settings…" = "打開輔助使用設定…";
-"Open Microphone Settings…" = "打開麥克風設定…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "貼上測試（3 秒後貼到目前的視窗）";
-"Tsuzuri paste test" = "Tsuzuri 貼上測試";
 "Quit Tsuzuri" = "結束 Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "需要輔助使用權限（系統設定 → 隱私權與安全性）";
 "Loading model…" = "正在載入模型…";
 "Ready · hold %@ to talk" = "就緒 · 按住 %@ 說話";
 "Model failed to load: %@" = "無法載入模型：%@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "模型仍在載入…";
 "Can't record" = "無法錄音";
 "No microphone found" = "找不到麥克風";
-"Microphone access is off (menu → Open Microphone Settings…)" = "麥克風權限未開啟（選單 → 打開麥克風設定…）";
 "Canceled" = "已取消";
 "No speech heard" = "沒有聽到聲音";
 "Recognition failed" = "辨識失敗";
 "Copied: %@" = "已拷貝：%@";
 "Copied · ⌘V to paste: %@" = "已拷貝 · 按 ⌘V 貼上：%@";
 "Copied (Accessibility not granted)" = "已拷貝（未取得輔助使用權限）";
+
+/* Permissions */
+"Set Up Tsuzuri" = "設定 Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri 需要兩項權限。所有資料都只會留在這台 Mac 上。";
+"Microphone" = "麥克風";
+"To hear you while you hold the shortcut key." = "在你按住快速鍵時聽到你說話。";
+"Accessibility" = "輔助使用";
+"To notice the shortcut key and paste the text where your cursor is." = "偵測快速鍵，並把文字貼到游標所在的位置。";
+"Allow…" = "允許…";
+"Open System Settings…" = "打開系統設定…";
+"Allowed" = "已允許";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "在列表中開啟 Tsuzuri。如果已經開啟但仍然無效，請選取它，按 − 移除，再按 + 重新加入 Tsuzuri。";
+"All set. Hold %@ to talk." = "準備好了。按住 %@ 說話。";
+"Done" = "完成";
+"Later" = "稍後";
+"Permissions…" = "權限…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "快速鍵需要輔助使用權限 · 按一下來設定";
+"Microphone access is off (menu → Permissions…)" = "麥克風權限未開啟（選單 → 權限…）";

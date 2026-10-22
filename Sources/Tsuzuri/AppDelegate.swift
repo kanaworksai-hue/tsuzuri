@@ -7,6 +7,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let transcriber = Transcriber()
     private let recorder = AudioRecorder()
     private let overlay = Overlay()
+    private let permissions = PermissionsWindow()
     private lazy var hotkey = HotkeyMonitor(trigger: Settings.trigger)
 
     private var statusItem: NSStatusItem!
@@ -22,6 +23,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var recordingStarted = Date()
     private var maxDurationWork: DispatchWorkItem?
     private var trustTimer: Timer?
+    private var permissionsTimer: Timer?
     /// Recent results, newest first. Kept in memory only so nothing said is lost
     /// when the paste goes nowhere.
     private var history: [String] = []
@@ -51,9 +53,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self, selector: #selector(debugOverlay(_:)), name: .init("tsuzuri.debug.overlay"), object: nil)
             DistributedNotificationCenter.default().addObserver(
                 self, selector: #selector(debugMenu(_:)), name: .init("tsuzuri.debug.menu"), object: nil)
+            DistributedNotificationCenter.default().addObserver(
+                self, selector: #selector(debugPermissions(_:)), name: .init("tsuzuri.debug.permissions"), object: nil)
         }
 
-        Task { _ = await AudioRecorder.requestPermission() }
+        // The permissions window asks for the microphone and explains Accessibility; without
+        // Accessibility the shortcut key is never seen, so pressing it can't tell the user anything.
+        if PermissionsWindow.needed { showPermissions() }
         waitForAccessibility()
         loadModel(Settings.model)
         if Settings.polish { loadPolisher() }
@@ -68,8 +74,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func setIcon(recording: Bool) {
-        let name = recording ? "waveform.circle.fill" : "waveform"
+        // A warning badge while the shortcut can't work (no Accessibility permission yet).
+        let name = recording ? "waveform.circle.fill" : Paster.isTrusted ? "waveform" : "waveform.badge.exclamationmark"
         let image = NSImage(systemSymbolName: name, accessibilityDescription: "Tsuzuri")
+            ?? NSImage(systemSymbolName: "waveform", accessibilityDescription: "Tsuzuri")
         image?.isTemplate = true
         statusItem.button?.image = image
     }
@@ -79,7 +87,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // statusLine is reused across rebuilds; AppKit throws if it is still in the old menu.
         statusLine.menu?.removeItem(statusLine)
         statusLine.title = status
-        statusLine.isEnabled = false
+        // While a permission is missing, the status line opens the permissions window.
+        let needsPermission = !Paster.isTrusted
+        statusLine.isEnabled = needsPermission
+        statusLine.action = needsPermission ? #selector(showPermissions) : nil
+        statusLine.target = self
         menu.addItem(statusLine)
         menu.addItem(.separator())
 
@@ -146,9 +158,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         addSubmenu(triggers, title: String(localized: "Shortcut (Hold to Talk / Tap to Toggle)"), to: menu)
 
         menu.addItem(.separator())
-        menu.addItem(item(String(localized: "Open Accessibility Settings…"), #selector(openAccessibilitySettings)))
-        menu.addItem(item(String(localized: "Open Microphone Settings…"), #selector(openMicrophoneSettings)))
-        menu.addItem(item(String(localized: "Paste Test (Pastes into the Current Window in 3 s)"), #selector(pasteSelfTest)))
+        menu.addItem(item(String(localized: "Permissions…"), #selector(showPermissions)))
         menu.addItem(.separator())
         menu.addItem(item(String(localized: "Quit Tsuzuri"), #selector(quit), key: "q"))
         statusItem.menu = menu
@@ -194,21 +204,36 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             refreshStatus()
             return
         }
-        Paster.promptForAccessibility()
-        status = String(localized: "Accessibility permission needed (System Settings → Privacy & Security)")
-        trustTimer = Timer.scheduledTimer(withTimeInterval: 1.5, repeats: true) { [weak self] timer in
+        refreshStatus()
+        trustTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
             Task { @MainActor in
-                guard let self, Paster.isTrusted else { return }
+                guard let self else { return }
+                self.permissions.refresh()
+                guard Paster.isTrusted else { return }
                 timer.invalidate()
                 self.hotkey.start()
                 self.refreshStatus()
+                self.setIcon(recording: false)
+                self.rebuildMenu()
+                // Keep the window's microphone row live until it is closed.
+                self.pollPermissionsWindow()
+            }
+        }
+    }
+
+    private func pollPermissionsWindow() {
+        guard permissions.isVisible, !(permissionsTimer?.isValid ?? false) else { return }
+        permissionsTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            Task { @MainActor in
+                guard let self, self.permissions.isVisible else { timer.invalidate(); return }
+                self.permissions.refresh()
             }
         }
     }
 
     private func refreshStatus() {
         if !Paster.isTrusted {
-            status = String(localized: "Accessibility permission needed (System Settings → Privacy & Security)")
+            status = String(localized: "Shortcut needs Accessibility permission · Click to Set Up")
         } else if let modelError {
             status = modelError
         } else if !modelReady || modelSwitching {
@@ -290,6 +315,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             overlay.show(.message(String(localized: "Model is still loading…")))
             overlay.hide(after: 1.2)
             hotkey.reset()
+            return
+        }
+        // Microphone not allowed (or not asked yet): recording would fail or capture
+        // silence, so send the user to the permissions window instead.
+        if AVCaptureDevice.authorizationStatus(for: .audio) != .authorized {
+            hotkey.reset()
+            showPermissions()
             return
         }
         do {
@@ -456,19 +488,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         refreshStatus()
     }
 
-    @objc private func openAccessibilitySettings() {
-        Paster.promptForAccessibility()
-        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
-    }
-
-    @objc private func openMicrophoneSettings() {
-        NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Microphone")!)
-    }
-
-    @objc private func pasteSelfTest() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-            Paster.paste("綴 " + String(localized: "Tsuzuri paste test") + ": 中文、English、日本語 ✓")
-        }
+    @objc fileprivate func showPermissions() {
+        permissions.show()
+        pollPermissionsWindow()
     }
 
     @objc private func quit() {
@@ -503,6 +525,11 @@ extension AppDelegate {
         case "hide", nil: overlay.hide()
         case let text?: overlay.show(.message(text))
         }
+    }
+
+    /// Debug hook for screenshots: `scripts/debug.sh permissions` opens the permissions window.
+    @objc fileprivate func debugPermissions(_ note: Notification) {
+        showPermissions()
     }
 
     /// Debug hook for screenshots: `scripts/debug.sh menu main|languages` opens the menu

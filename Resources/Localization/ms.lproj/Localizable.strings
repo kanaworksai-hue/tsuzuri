@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Pintasan (Tahan untuk Bercakap / Ketik untuk Togol)";
 "Right Option ⌥" = "Option Kanan ⌥";
 "Right Command ⌘" = "Command Kanan ⌘";
-"Open Accessibility Settings…" = "Buka Seting Kebolehcapaian…";
-"Open Microphone Settings…" = "Buka Seting Mikrofon…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Ujian Tampal (Menampal ke Tetingkap Semasa dalam 3 saat)";
-"Tsuzuri paste test" = "Ujian tampal Tsuzuri";
 "Quit Tsuzuri" = "Keluar Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Keizinan kebolehcapaian diperlukan (Seting Sistem → Privasi & Keselamatan)";
 "Loading model…" = "Memuatkan model…";
 "Ready · hold %@ to talk" = "Sedia · tahan %@ untuk bercakap";
 "Model failed to load: %@" = "Model gagal dimuatkan: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Model masih dimuatkan…";
 "Can't record" = "Tidak dapat merakam";
 "No microphone found" = "Tiada mikrofon ditemui";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Akses mikrofon dimatikan (menu → Buka Seting Mikrofon…)";
 "Canceled" = "Dibatalkan";
 "No speech heard" = "Tiada pertuturan didengar";
 "Recognition failed" = "Pengecaman gagal";
 "Copied: %@" = "Disalin: %@";
 "Copied · ⌘V to paste: %@" = "Disalin · ⌘V untuk tampal: %@";
 "Copied (Accessibility not granted)" = "Disalin (Kebolehcapaian tidak dibenarkan)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Sediakan Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri memerlukan dua kebenaran. Semuanya kekal pada Mac ini.";
+"Microphone" = "Mikrofon";
+"To hear you while you hold the shortcut key." = "Untuk mendengar anda semasa anda menahan kekunci pintasan.";
+"Accessibility" = "Kebolehcapaian";
+"To notice the shortcut key and paste the text where your cursor is." = "Untuk mengesan kekunci pintasan dan menampal teks di kedudukan kursor.";
+"Allow…" = "Benarkan…";
+"Open System Settings…" = "Buka Seting Sistem…";
+"Allowed" = "Dibenarkan";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Hidupkan Tsuzuri dalam senarai. Jika ia sudah dihidupkan tetapi masih tidak berfungsi, pilih ia, keluarkan dengan −, kemudian tambah Tsuzuri semula dengan +.";
+"All set. Hold %@ to talk." = "Semua sedia. Tahan %@ untuk bercakap.";
+"Done" = "Selesai";
+"Later" = "Kemudian";
+"Permissions…" = "Kebenaran…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Pintasan memerlukan kebenaran Kebolehcapaian · Klik untuk sediakan";
+"Microphone access is off (menu → Permissions…)" = "Akses mikrofon dimatikan (menu → Kebenaran…)";

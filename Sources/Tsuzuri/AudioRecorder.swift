@@ -10,7 +10,7 @@ enum RecorderError: Error {
     var message: String {
         switch self {
         case .noInputDevice: String(localized: "No microphone found")
-        case .permissionDenied: String(localized: "Microphone access is off (menu → Open Microphone Settings…)")
+        case .permissionDenied: String(localized: "Microphone access is off (menu → Permissions…)")
         }
     }
 }

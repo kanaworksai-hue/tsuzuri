@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "الاختصار (اضغط مطولًا للتحدث / اضغط ضغطة قصيرة للتبديل)";
 "Right Option ⌥" = "Option الأيمن ⌥";
 "Right Command ⌘" = "Command الأيمن ⌘";
-"Open Accessibility Settings…" = "فتح إعدادات تسهيلات الاستخدام…";
-"Open Microphone Settings…" = "فتح إعدادات الميكروفون…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "اختبار اللصق (يلصق في النافذة الحالية بعد 3 ث)";
-"Tsuzuri paste test" = "اختبار اللصق في Tsuzuri";
 "Quit Tsuzuri" = "إنهاء Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "يلزم إذن تسهيلات الاستخدام (إعدادات النظام ← الخصوصية والأمن)";
 "Loading model…" = "جارٍ تحميل النموذج…";
 "Ready · hold %@ to talk" = "جاهز · اضغط مطولًا على %@ للتحدث";
 "Model failed to load: %@" = "تعذّر تحميل النموذج: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "لا يزال النموذج قيد التحميل…";
 "Can't record" = "تعذّر التسجيل";
 "No microphone found" = "لم يتم العثور على ميكروفون";
-"Microphone access is off (menu → Open Microphone Settings…)" = "الوصول إلى الميكروفون متوقف (القائمة ← فتح إعدادات الميكروفون…)";
 "Canceled" = "تم الإلغاء";
 "No speech heard" = "لم يُسمع أي كلام";
 "Recognition failed" = "فشل التعرّف على الكلام";
 "Copied: %@" = "تم النسخ: %@";
 "Copied · ⌘V to paste: %@" = "تم النسخ · ⌘V للصق: %@";
 "Copied (Accessibility not granted)" = "تم النسخ (لم يُمنح إذن تسهيلات الاستخدام)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "إعداد Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "يحتاج Tsuzuri إلى إذنين. تبقى جميع البيانات على هذا الـ Mac.";
+"Microphone" = "الميكروفون";
+"To hear you while you hold the shortcut key." = "لسماعك أثناء الضغط مع الاستمرار على مفتاح الاختصار.";
+"Accessibility" = "تسهيلات الاستخدام";
+"To notice the shortcut key and paste the text where your cursor is." = "لاكتشاف مفتاح الاختصار ولصق النص في موضع المؤشر.";
+"Allow…" = "سماح…";
+"Open System Settings…" = "فتح إعدادات النظام…";
+"Allowed" = "مسموح";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "شغّل Tsuzuri في القائمة. إذا كان مشغّلًا بالفعل، فحدده وأزِله بالزر −، ثم أضف Tsuzuri مرة أخرى بالزر +.";
+"All set. Hold %@ to talk." = "كل شيء جاهز. اضغط مع الاستمرار على %@ للتحدث.";
+"Done" = "تم";
+"Later" = "لاحقًا";
+"Permissions…" = "الأذونات…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "الاختصار يحتاج إلى إذن تسهيلات الاستخدام · انقر للإعداد";
+"Microphone access is off (menu → Permissions…)" = "الوصول إلى الميكروفون متوقف (القائمة ← الأذونات…)";

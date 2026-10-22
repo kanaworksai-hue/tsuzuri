@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Клавиша (удерживать — диктовка, нажать — вкл./выкл.)";
 "Right Option ⌥" = "Правый Option ⌥";
 "Right Command ⌘" = "Правый Command ⌘";
-"Open Accessibility Settings…" = "Открыть настройки универсального доступа…";
-"Open Microphone Settings…" = "Открыть настройки микрофона…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Проверка вставки (вставка в текущее окно через 3 с)";
-"Tsuzuri paste test" = "Проверка вставки Tsuzuri";
 "Quit Tsuzuri" = "Завершить Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Нужно разрешение для универсального доступа (Системные настройки → Конфиденциальность и безопасность)";
 "Loading model…" = "Загрузка модели…";
 "Ready · hold %@ to talk" = "Готово · удерживайте %@, чтобы говорить";
 "Model failed to load: %@" = "Не удалось загрузить модель: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Модель ещё загружается…";
 "Can't record" = "Не удаётся записать звук";
 "No microphone found" = "Микрофон не найден";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Доступ к микрофону выключен (меню → Открыть настройки микрофона…)";
 "Canceled" = "Отменено";
 "No speech heard" = "Речь не услышана";
 "Recognition failed" = "Не удалось распознать";
 "Copied: %@" = "Скопировано: %@";
 "Copied · ⌘V to paste: %@" = "Скопировано · ⌘V, чтобы вставить: %@";
 "Copied (Accessibility not granted)" = "Скопировано (универсальный доступ не разрешён)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Настройка Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri нужны два разрешения. Все данные остаются на этом Mac.";
+"Microphone" = "Микрофон";
+"To hear you while you hold the shortcut key." = "Чтобы слышать вас, пока вы удерживаете сочетание клавиш.";
+"Accessibility" = "Универсальный доступ";
+"To notice the shortcut key and paste the text where your cursor is." = "Чтобы распознавать сочетание клавиш и вставлять текст в позицию курсора.";
+"Allow…" = "Разрешить…";
+"Open System Settings…" = "Открыть Системные настройки…";
+"Allowed" = "Разрешено";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Включите Tsuzuri в списке. Если он уже включен, но не работает, выберите его, удалите кнопкой −, а затем снова добавьте Tsuzuri кнопкой +.";
+"All set. Hold %@ to talk." = "Всё готово. Удерживайте %@, чтобы говорить.";
+"Done" = "Готово";
+"Later" = "Позже";
+"Permissions…" = "Разрешения…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Для сочетания клавиш нужен универсальный доступ · Нажмите, чтобы настроить";
+"Microphone access is off (menu → Permissions…)" = "Доступ к микрофону выключен (меню → Разрешения…)";

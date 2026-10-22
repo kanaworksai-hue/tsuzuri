@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Συντόμευση (κρατήστε πατημένο για ομιλία / πατήστε για εναλλαγή)";
 "Right Option ⌥" = "Δεξί Option ⌥";
 "Right Command ⌘" = "Δεξί Command ⌘";
-"Open Accessibility Settings…" = "Άνοιγμα ρυθμίσεων Προσβασιμότητας…";
-"Open Microphone Settings…" = "Άνοιγμα ρυθμίσεων μικροφώνου…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Δοκιμή επικόλλησης (επικόλληση στο τρέχον παράθυρο σε 3 δευτ.)";
-"Tsuzuri paste test" = "Δοκιμή επικόλλησης Tsuzuri";
 "Quit Tsuzuri" = "Τερματισμός Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Απαιτείται άδεια Προσβασιμότητας (Ρυθμίσεις συστήματος → Απόρρητο και ασφάλεια)";
 "Loading model…" = "Φόρτωση μοντέλου…";
 "Ready · hold %@ to talk" = "Έτοιμο · κρατήστε πατημένο το %@ για ομιλία";
 "Model failed to load: %@" = "Αποτυχία φόρτωσης μοντέλου: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Το μοντέλο φορτώνεται ακόμη…";
 "Can't record" = "Δεν είναι δυνατή η εγγραφή";
 "No microphone found" = "Δεν βρέθηκε μικρόφωνο";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Η πρόσβαση στο μικρόφωνο είναι απενεργοποιημένη (μενού → Άνοιγμα ρυθμίσεων μικροφώνου…)";
 "Canceled" = "Ακυρώθηκε";
 "No speech heard" = "Δεν ακούστηκε ομιλία";
 "Recognition failed" = "Η αναγνώριση απέτυχε";
 "Copied: %@" = "Αντιγράφηκε: %@";
 "Copied · ⌘V to paste: %@" = "Αντιγράφηκε · ⌘V για επικόλληση: %@";
 "Copied (Accessibility not granted)" = "Αντιγράφηκε (δεν έχει δοθεί άδεια Προσβασιμότητας)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Ρύθμιση του Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Το Tsuzuri χρειάζεται δύο άδειες. Όλα μένουν σε αυτό το Mac.";
+"Microphone" = "Μικρόφωνο";
+"To hear you while you hold the shortcut key." = "Για να σας ακούει όσο κρατάτε πατημένο το πλήκτρο συντόμευσης.";
+"Accessibility" = "Προσβασιμότητα";
+"To notice the shortcut key and paste the text where your cursor is." = "Για να εντοπίζει το πλήκτρο συντόμευσης και να επικολλά το κείμενο στη θέση του δρομέα.";
+"Allow…" = "Να επιτρέπεται…";
+"Open System Settings…" = "Άνοιγμα Ρυθμίσεων συστήματος…";
+"Allowed" = "Επιτρέπεται";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Ενεργοποιήστε το Tsuzuri στη λίστα. Αν είναι ήδη ενεργό αλλά δεν λειτουργεί, επιλέξτε το, αφαιρέστε το με το − και προσθέστε ξανά το Tsuzuri με το +.";
+"All set. Hold %@ to talk." = "Όλα έτοιμα. Κρατήστε πατημένο το %@ για να μιλήσετε.";
+"Done" = "Τέλος";
+"Later" = "Αργότερα";
+"Permissions…" = "Άδειες…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Η συντόμευση χρειάζεται άδεια Προσβασιμότητας · Κάντε κλικ για ρύθμιση";
+"Microphone access is off (menu → Permissions…)" = "Η πρόσβαση στο μικρόφωνο είναι απενεργοποιημένη (μενού → Άδειες…)";

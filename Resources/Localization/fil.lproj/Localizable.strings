@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Shortcut (Pindutin nang Matagal para Magsalita / I-tap para I-toggle)";
 "Right Option ⌥" = "Kanang Option ⌥";
 "Right Command ⌘" = "Kanang Command ⌘";
-"Open Accessibility Settings…" = "Buksan ang Accessibility Settings…";
-"Open Microphone Settings…" = "Buksan ang Microphone Settings…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Paste Test (Ipe-paste sa Kasalukuyang Window pagkalipas ng 3 s)";
-"Tsuzuri paste test" = "Paste test ng Tsuzuri";
 "Quit Tsuzuri" = "Umalis sa Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Kailangan ng pahintulot sa Accessibility (System Settings → Privacy & Security)";
 "Loading model…" = "Nilo-load ang model…";
 "Ready · hold %@ to talk" = "Handa na · pindutin nang matagal ang %@ para magsalita";
 "Model failed to load: %@" = "Hindi na-load ang model: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Nilo-load pa ang model…";
 "Can't record" = "Hindi makapag-record";
 "No microphone found" = "Walang nakitang mikropono";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Naka-off ang access sa mikropono (menu → Buksan ang Microphone Settings…)";
 "Canceled" = "Kinansela";
 "No speech heard" = "Walang narinig na pananalita";
 "Recognition failed" = "Hindi nakilala ang pananalita";
 "Copied: %@" = "Nakopya: %@";
 "Copied · ⌘V to paste: %@" = "Nakopya · ⌘V para i-paste: %@";
 "Copied (Accessibility not granted)" = "Nakopya (walang pahintulot sa Accessibility)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "I-set Up ang Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Kailangan ng Tsuzuri ng dalawang pahintulot. Nananatili ang lahat sa Mac na ito.";
+"Microphone" = "Microphone";
+"To hear you while you hold the shortcut key." = "Para marinig ka habang pinipindot mo ang shortcut key.";
+"Accessibility" = "Accessibility";
+"To notice the shortcut key and paste the text where your cursor is." = "Para makita ang shortcut key at i-paste ang text kung nasaan ang cursor mo.";
+"Allow…" = "Payagan…";
+"Open System Settings…" = "Buksan ang System Settings…";
+"Allowed" = "Pinayagan";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "I-on ang Tsuzuri sa listahan. Kung naka-on na pero hindi pa rin gumagana, piliin ito, alisin gamit ang −, at idagdag muli ang Tsuzuri gamit ang +.";
+"All set. Hold %@ to talk." = "Handa na. Pindutin nang matagal ang %@ para magsalita.";
+"Done" = "Tapos na";
+"Later" = "Mamaya";
+"Permissions…" = "Mga Pahintulot…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Kailangan ng shortcut ang Accessibility permission · I-click para i-set up";
+"Microphone access is off (menu → Permissions…)" = "Naka-off ang access sa mikropono (menu → Mga Pahintulot…)";

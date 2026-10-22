@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Кратенка (држете за да зборувате / притиснете за вклучување и исклучување)";
 "Right Option ⌥" = "Десен Option ⌥";
 "Right Command ⌘" = "Десен Command ⌘";
-"Open Accessibility Settings…" = "Отвори ги поставките за пристапност…";
-"Open Microphone Settings…" = "Отвори ги поставките за микрофон…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Тест за залепување (залепува во тековниот прозорец за 3 с)";
-"Tsuzuri paste test" = "Tsuzuri тест за залепување";
 "Quit Tsuzuri" = "Излези од Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Потребна е дозвола за пристапност (Системски поставки → Приватност и безбедност)";
 "Loading model…" = "Се вчитува моделот…";
 "Ready · hold %@ to talk" = "Подготвено · држете %@ за да зборувате";
 "Model failed to load: %@" = "Моделот не можеше да се вчита: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Моделот сѐ уште се вчитува…";
 "Can't record" = "Не може да се снима";
 "No microphone found" = "Не е пронајден микрофон";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Пристапот до микрофонот е исклучен (мени → Отвори ги поставките за микрофон…)";
 "Canceled" = "Откажано";
 "No speech heard" = "Не се слушна говор";
 "Recognition failed" = "Препознавањето не успеа";
 "Copied: %@" = "Копирано: %@";
 "Copied · ⌘V to paste: %@" = "Копирано · ⌘V за залепување: %@";
 "Copied (Accessibility not granted)" = "Копирано (нема дозвола за пристапност)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Поставување на Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "На Tsuzuri му требаат две дозволи. Сè останува на овој Mac.";
+"Microphone" = "Микрофон";
+"To hear you while you hold the shortcut key." = "За да ве слушне додека го држите копчето за кратенка.";
+"Accessibility" = "Пристапност";
+"To notice the shortcut key and paste the text where your cursor is." = "За да го препознае копчето за кратенка и да го залепи текстот каде што е курсорот.";
+"Allow…" = "Дозволи пристап…";
+"Open System Settings…" = "Отвори ги системските поставки…";
+"Allowed" = "Дозволено";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Вклучете го Tsuzuri во листата. Ако веќе е вклучен, а сепак не работи, изберете го, отстранете го со −, па повторно додајте го Tsuzuri со +.";
+"All set. Hold %@ to talk." = "Сè е подготвено. Држете %@ за да зборувате.";
+"Done" = "Готово";
+"Later" = "Подоцна";
+"Permissions…" = "Дозволи…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Кратенката бара дозвола за пристапност · Кликнете за поставување";
+"Microphone access is off (menu → Permissions…)" = "Пристапот до микрофонот е исклучен (мени → Дозволи…)";

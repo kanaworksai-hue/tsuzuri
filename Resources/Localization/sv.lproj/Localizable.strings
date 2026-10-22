@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Kortkommando (håll ned för att tala / tryck för att slå på eller av)";
 "Right Option ⌥" = "Höger alternativtangent ⌥";
 "Right Command ⌘" = "Höger kommandotangent ⌘";
-"Open Accessibility Settings…" = "Öppna inställningar för hjälpmedel…";
-"Open Microphone Settings…" = "Öppna inställningar för mikrofon…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Testa inklistring (klistrar in i aktuellt fönster om 3 s)";
-"Tsuzuri paste test" = "Tsuzuri inklistringstest";
 "Quit Tsuzuri" = "Avsluta Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Behörighet för hjälpmedel krävs (Systeminställningar → Integritet och säkerhet)";
 "Loading model…" = "Läser in modell…";
 "Ready · hold %@ to talk" = "Redo · håll ned %@ för att tala";
 "Model failed to load: %@" = "Det gick inte att läsa in modellen: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Modellen läses fortfarande in…";
 "Can't record" = "Kan inte spela in";
 "No microphone found" = "Ingen mikrofon hittades";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Mikrofonåtkomst är avstängd (menyn → Öppna inställningar för mikrofon…)";
 "Canceled" = "Avbrutet";
 "No speech heard" = "Inget tal hördes";
 "Recognition failed" = "Igenkänningen misslyckades";
 "Copied: %@" = "Kopierat: %@";
 "Copied · ⌘V to paste: %@" = "Kopierat · ⌘V för att klistra in: %@";
 "Copied (Accessibility not granted)" = "Kopierat (behörighet för hjälpmedel saknas)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Ställ in Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri behöver två behörigheter. Allt stannar på den här datorn.";
+"Microphone" = "Mikrofon";
+"To hear you while you hold the shortcut key." = "För att höra dig medan du håller ned kortkommandot.";
+"Accessibility" = "Hjälpmedel";
+"To notice the shortcut key and paste the text where your cursor is." = "För att känna av kortkommandot och klistra in texten där markören är.";
+"Allow…" = "Tillåt…";
+"Open System Settings…" = "Öppna Systeminställningar…";
+"Allowed" = "Tillåtet";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Slå på Tsuzuri i listan. Om det redan är på men ändå inte fungerar markerar du det, tar bort det med − och lägger sedan till Tsuzuri igen med +.";
+"All set. Hold %@ to talk." = "Allt är klart. Håll ned %@ för att tala.";
+"Done" = "Klar";
+"Later" = "Senare";
+"Permissions…" = "Behörigheter…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Kortkommandot behöver behörighet för hjälpmedel · Klicka för att ställa in";
+"Microphone access is off (menu → Permissions…)" = "Mikrofonåtkomst är avstängd (menyn → Behörigheter…)";

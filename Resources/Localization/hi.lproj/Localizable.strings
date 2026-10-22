@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "शॉर्टकट (बोलने के लिए दबाकर रखें / टॉगल करने के लिए टैप करें)";
 "Right Option ⌥" = "दायाँ Option ⌥";
 "Right Command ⌘" = "दायाँ Command ⌘";
-"Open Accessibility Settings…" = "ऐक्सेसिबिलिटी सेटिंग्ज़ खोलें…";
-"Open Microphone Settings…" = "माइक्रोफ़ोन सेटिंग्ज़ खोलें…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "पेस्ट टेस्ट (3 सेकंड में मौजूदा विंडो में पेस्ट करता है)";
-"Tsuzuri paste test" = "Tsuzuri पेस्ट टेस्ट";
 "Quit Tsuzuri" = "Tsuzuri बंद करें";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "ऐक्सेसिबिलिटी अनुमति आवश्यक है (सिस्टम सेटिंग्ज़ → गोपनीयता और सुरक्षा)";
 "Loading model…" = "मॉडल लोड हो रहा है…";
 "Ready · hold %@ to talk" = "तैयार · बोलने के लिए %@ दबाकर रखें";
 "Model failed to load: %@" = "मॉडल लोड नहीं हो सका: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "मॉडल अभी भी लोड हो रहा है…";
 "Can't record" = "रिकॉर्ड नहीं हो सकता";
 "No microphone found" = "कोई माइक्रोफ़ोन नहीं मिला";
-"Microphone access is off (menu → Open Microphone Settings…)" = "माइक्रोफ़ोन ऐक्सेस बंद है (मेनू → माइक्रोफ़ोन सेटिंग्ज़ खोलें…)";
 "Canceled" = "रद्द किया गया";
 "No speech heard" = "कोई आवाज़ सुनाई नहीं दी";
 "Recognition failed" = "पहचान विफल रही";
 "Copied: %@" = "कॉपी किया गया: %@";
 "Copied · ⌘V to paste: %@" = "कॉपी किया गया · पेस्ट करने के लिए ⌘V: %@";
 "Copied (Accessibility not granted)" = "कॉपी किया गया (ऐक्सेसिबिलिटी अनुमति नहीं दी गई)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Tsuzuri सेट अप करें";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri को दो अनुमतियाँ चाहिए। सब कुछ इसी Mac पर रहता है।";
+"Microphone" = "माइक्रोफ़ोन";
+"To hear you while you hold the shortcut key." = "शॉर्टकट की दबाए रखने पर आपकी आवाज़ सुनने के लिए।";
+"Accessibility" = "ऐक्सेसिबिलिटी";
+"To notice the shortcut key and paste the text where your cursor is." = "शॉर्टकट की पहचानने और कर्सर की जगह पर टेक्स्ट पेस्ट करने के लिए।";
+"Allow…" = "अनुमति दें…";
+"Open System Settings…" = "सिस्टम सेटिंग्ज़ खोलें…";
+"Allowed" = "अनुमति है";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "सूची में Tsuzuri चालू करें। अगर यह पहले से चालू है, तो इसे चुनें, − से हटाएँ, फिर + से Tsuzuri को दोबारा जोड़ें।";
+"All set. Hold %@ to talk." = "सब तैयार है। बोलने के लिए %@ दबाए रखें।";
+"Done" = "हो गया";
+"Later" = "बाद में";
+"Permissions…" = "अनुमतियाँ…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "शॉर्टकट के लिए ऐक्सेसिबिलिटी अनुमति चाहिए · सेट अप करने के लिए क्लिक करें";
+"Microphone access is off (menu → Permissions…)" = "माइक्रोफ़ोन ऐक्सेस बंद है (मेनू → अनुमतियाँ…)";

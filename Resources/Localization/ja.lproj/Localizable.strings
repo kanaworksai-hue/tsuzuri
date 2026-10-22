@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "ショートカット（長押しで話す / 短押しで切り替え）";
 "Right Option ⌥" = "右 Option ⌥";
 "Right Command ⌘" = "右 Command ⌘";
-"Open Accessibility Settings…" = "アクセシビリティ設定を開く…";
-"Open Microphone Settings…" = "マイク設定を開く…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "貼り付けテスト（3 秒後に現在のウインドウへ貼り付け）";
-"Tsuzuri paste test" = "Tsuzuri 貼り付けテスト";
 "Quit Tsuzuri" = "Tsuzuri を終了";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "アクセシビリティの許可が必要です（システム設定 → プライバシーとセキュリティ）";
 "Loading model…" = "モデルを読み込み中…";
 "Ready · hold %@ to talk" = "準備完了 · %@ を押しながら話す";
 "Model failed to load: %@" = "モデルを読み込めませんでした：%@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "モデルを読み込み中です…";
 "Can't record" = "録音できません";
 "No microphone found" = "マイクが見つかりません";
-"Microphone access is off (menu → Open Microphone Settings…)" = "マイクへのアクセスがオフです（メニュー → マイク設定を開く…）";
 "Canceled" = "キャンセルしました";
 "No speech heard" = "音声が聞き取れませんでした";
 "Recognition failed" = "認識できませんでした";
 "Copied: %@" = "コピーしました：%@";
 "Copied · ⌘V to paste: %@" = "コピーしました · ⌘V で貼り付け：%@";
 "Copied (Accessibility not granted)" = "コピーしました（アクセシビリティ未許可）";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Tsuzuri の設定";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri には 2 つの許可が必要です。データはすべてこの Mac の中だけで処理されます。";
+"Microphone" = "マイク";
+"To hear you while you hold the shortcut key." = "ショートカットキーを押している間、あなたの声を聞き取るため。";
+"Accessibility" = "アクセシビリティ";
+"To notice the shortcut key and paste the text where your cursor is." = "ショートカットキーを検知し、カーソルの位置にテキストを貼り付けるため。";
+"Allow…" = "許可…";
+"Open System Settings…" = "システム設定を開く…";
+"Allowed" = "許可済み";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "リストで Tsuzuri をオンにしてください。すでにオンなのに使えない場合は、Tsuzuri を選択して − で削除し、+ でもう一度追加してください。";
+"All set. Hold %@ to talk." = "準備完了。%@ を押したまま話してください。";
+"Done" = "完了";
+"Later" = "あとで";
+"Permissions…" = "権限…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "ショートカットにはアクセシビリティの許可が必要です · クリックして設定";
+"Microphone access is off (menu → Permissions…)" = "マイクへのアクセスがオフです（メニュー → 権限…）";

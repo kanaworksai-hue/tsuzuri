@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Scurtătură (țineți apăsat pentru a vorbi / apăsați scurt pentru a comuta)";
 "Right Option ⌥" = "Opțiune dreapta ⌥";
 "Right Command ⌘" = "Comandă dreapta ⌘";
-"Open Accessibility Settings…" = "Deschide configurările de accesibilitate…";
-"Open Microphone Settings…" = "Deschide configurările pentru microfon…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Test de lipire (lipește în fereastra curentă după 3 s)";
-"Tsuzuri paste test" = "Test de lipire Tsuzuri";
 "Quit Tsuzuri" = "Închide Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Este necesară permisiunea de accesibilitate (Configurări sistem → Confidențialitate și securitate)";
 "Loading model…" = "Se încarcă modelul…";
 "Ready · hold %@ to talk" = "Gata · țineți apăsat %@ pentru a vorbi";
 "Model failed to load: %@" = "Modelul nu a putut fi încărcat: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Modelul încă se încarcă…";
 "Can't record" = "Nu se poate înregistra";
 "No microphone found" = "Nu s-a găsit niciun microfon";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Accesul la microfon este dezactivat (meniu → Deschide configurările pentru microfon…)";
 "Canceled" = "Anulat";
 "No speech heard" = "Nu s-a auzit nicio vorbire";
 "Recognition failed" = "Recunoașterea a eșuat";
 "Copied: %@" = "Copiat: %@";
 "Copied · ⌘V to paste: %@" = "Copiat · ⌘V pentru lipire: %@";
 "Copied (Accessibility not granted)" = "Copiat (accesibilitatea nu este permisă)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Configurează Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri are nevoie de două permisiuni. Totul rămâne pe acest Mac.";
+"Microphone" = "Microfon";
+"To hear you while you hold the shortcut key." = "Pentru a vă auzi cât timp țineți apăsată scurtătura.";
+"Accessibility" = "Accesibilitate";
+"To notice the shortcut key and paste the text where your cursor is." = "Pentru a detecta scurtătura și a lipi textul în poziția cursorului.";
+"Allow…" = "Permite…";
+"Open System Settings…" = "Deschide Configurări sistem…";
+"Allowed" = "Permis";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Activați Tsuzuri în listă. Dacă este deja activat, dar tot nu funcționează, selectați-l, eliminați-l cu − și apoi adăugați din nou Tsuzuri cu +.";
+"All set. Hold %@ to talk." = "Totul este gata. Țineți apăsat %@ pentru a vorbi.";
+"Done" = "Gata";
+"Later" = "Mai târziu";
+"Permissions…" = "Permisiuni…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Scurtătura necesită permisiunea de accesibilitate · Faceți clic pentru configurare";
+"Microphone access is off (menu → Permissions…)" = "Accesul la microfon este dezactivat (meniu → Permisiuni…)";

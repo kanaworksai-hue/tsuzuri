@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Zkratka (podržením mluvit / klepnutím zapnout či vypnout)";
 "Right Option ⌥" = "Pravý Option ⌥";
 "Right Command ⌘" = "Pravý Command ⌘";
-"Open Accessibility Settings…" = "Otevřít nastavení zpřístupnění…";
-"Open Microphone Settings…" = "Otevřít nastavení mikrofonu…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Test vkládání (za 3 s vloží do aktuálního okna)";
-"Tsuzuri paste test" = "Test vkládání Tsuzuri";
 "Quit Tsuzuri" = "Ukončit Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Je potřeba oprávnění pro zpřístupnění (Nastavení systému → Soukromí a zabezpečení)";
 "Loading model…" = "Načítání modelu…";
 "Ready · hold %@ to talk" = "Připraveno · podržte %@ a mluvte";
 "Model failed to load: %@" = "Model se nepodařilo načíst: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Model se ještě načítá…";
 "Can't record" = "Nelze nahrávat";
 "No microphone found" = "Mikrofon nebyl nalezen";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Přístup k mikrofonu je vypnutý (nabídka → Otevřít nastavení mikrofonu…)";
 "Canceled" = "Zrušeno";
 "No speech heard" = "Nebyla zachycena žádná řeč";
 "Recognition failed" = "Rozpoznání se nezdařilo";
 "Copied: %@" = "Zkopírováno: %@";
 "Copied · ⌘V to paste: %@" = "Zkopírováno · vložte pomocí ⌘V: %@";
 "Copied (Accessibility not granted)" = "Zkopírováno (zpřístupnění není povoleno)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Nastavit Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri potřebuje dvě oprávnění. Vše zůstává v tomto Macu.";
+"Microphone" = "Mikrofon";
+"To hear you while you hold the shortcut key." = "Aby vás slyšel, když držíte klávesovou zkratku.";
+"Accessibility" = "Zpřístupnění";
+"To notice the shortcut key and paste the text where your cursor is." = "Aby rozpoznal klávesovou zkratku a vložil text na místo kurzoru.";
+"Allow…" = "Povolit…";
+"Open System Settings…" = "Otevřít Nastavení systému…";
+"Allowed" = "Povoleno";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Zapněte Tsuzuri v seznamu. Pokud už je zapnutý, a přesto nefunguje, vyberte ho, odstraňte tlačítkem − a pak Tsuzuri znovu přidejte tlačítkem +.";
+"All set. Hold %@ to talk." = "Vše je připraveno. Podržte %@ a mluvte.";
+"Done" = "Hotovo";
+"Later" = "Později";
+"Permissions…" = "Oprávnění…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Zkratka potřebuje oprávnění pro zpřístupnění · Klikněte pro nastavení";
+"Microphone access is off (menu → Permissions…)" = "Přístup k mikrofonu je vypnutý (nabídka → Oprávnění…)";

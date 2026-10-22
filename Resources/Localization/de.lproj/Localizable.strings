@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "Kurzbefehl (halten zum Sprechen / tippen zum Umschalten)";
 "Right Option ⌥" = "Rechte Wahltaste ⌥";
 "Right Command ⌘" = "Rechte Befehlstaste ⌘";
-"Open Accessibility Settings…" = "Einstellungen für Bedienungshilfen öffnen …";
-"Open Microphone Settings…" = "Einstellungen für Mikrofon öffnen …";
-"Paste Test (Pastes into the Current Window in 3 s)" = "Einsetzen testen (setzt nach 3 s ins aktuelle Fenster ein)";
-"Tsuzuri paste test" = "Tsuzuri-Einsetztest";
 "Quit Tsuzuri" = "Tsuzuri beenden";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "Zugriff auf Bedienungshilfen erforderlich (Systemeinstellungen → Datenschutz & Sicherheit)";
 "Loading model…" = "Modell wird geladen …";
 "Ready · hold %@ to talk" = "Bereit · %@ zum Sprechen gedrückt halten";
 "Model failed to load: %@" = "Modell konnte nicht geladen werden: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "Modell wird noch geladen …";
 "Can't record" = "Aufnahme nicht möglich";
 "No microphone found" = "Kein Mikrofon gefunden";
-"Microphone access is off (menu → Open Microphone Settings…)" = "Mikrofonzugriff ist deaktiviert (Menü → Einstellungen für Mikrofon öffnen …)";
 "Canceled" = "Abgebrochen";
 "No speech heard" = "Keine Spracheingabe erkannt";
 "Recognition failed" = "Erkennung fehlgeschlagen";
 "Copied: %@" = "Kopiert: %@";
 "Copied · ⌘V to paste: %@" = "Kopiert · Mit ⌘V einsetzen: %@";
 "Copied (Accessibility not granted)" = "Kopiert (kein Zugriff auf Bedienungshilfen)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "Tsuzuri einrichten";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri benötigt zwei Berechtigungen. Alles bleibt auf diesem Mac.";
+"Microphone" = "Mikrofon";
+"To hear you while you hold the shortcut key." = "Damit Tsuzuri dich hört, während du den Kurzbefehl gedrückt hältst.";
+"Accessibility" = "Bedienungshilfen";
+"To notice the shortcut key and paste the text where your cursor is." = "Damit Tsuzuri den Kurzbefehl erkennt und den Text an der Cursorposition einsetzt.";
+"Allow…" = "Erlauben …";
+"Open System Settings…" = "Systemeinstellungen öffnen …";
+"Allowed" = "Erlaubt";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Aktiviere Tsuzuri in der Liste. Ist es schon aktiviert und funktioniert trotzdem nicht, wähle es aus, entferne es mit − und füge Tsuzuri dann mit + wieder hinzu.";
+"All set. Hold %@ to talk." = "Fertig eingerichtet. Halte %@ gedrückt, um zu sprechen.";
+"Done" = "Fertig";
+"Later" = "Später";
+"Permissions…" = "Berechtigungen …";
+"Shortcut needs Accessibility permission · Click to Set Up" = "Kurzbefehl braucht Bedienungshilfen-Zugriff · Zum Einrichten klicken";
+"Microphone access is off (menu → Permissions…)" = "Mikrofonzugriff ist deaktiviert (Menü → Berechtigungen …)";

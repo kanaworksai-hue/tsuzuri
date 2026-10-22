@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "میان‌بر (برای صحبت نگه دارید / برای روشن و خاموش کردن ضربه بزنید)";
 "Right Option ⌥" = "Option راست ⌥";
 "Right Command ⌘" = "Command راست ⌘";
-"Open Accessibility Settings…" = "باز کردن تنظیمات دسترس‌پذیری…";
-"Open Microphone Settings…" = "باز کردن تنظیمات میکروفون…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "آزمایش چسباندن (پس از ۳ ثانیه در پنجره فعلی می‌چسباند)";
-"Tsuzuri paste test" = "آزمایش چسباندن Tsuzuri";
 "Quit Tsuzuri" = "خروج از Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "اجازه دسترس‌پذیری لازم است (تنظیمات سیستم ← حریم خصوصی و امنیت)";
 "Loading model…" = "در حال بارگذاری مدل…";
 "Ready · hold %@ to talk" = "آماده · برای صحبت، %@ را نگه دارید";
 "Model failed to load: %@" = "بارگذاری مدل ناموفق بود: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "مدل هنوز در حال بارگذاری است…";
 "Can't record" = "ضبط ممکن نیست";
 "No microphone found" = "میکروفونی پیدا نشد";
-"Microphone access is off (menu → Open Microphone Settings…)" = "دسترسی به میکروفون خاموش است (منو ← باز کردن تنظیمات میکروفون…)";
 "Canceled" = "لغو شد";
 "No speech heard" = "صدایی شنیده نشد";
 "Recognition failed" = "تشخیص ناموفق بود";
 "Copied: %@" = "کپی شد: %@";
 "Copied · ⌘V to paste: %@" = "کپی شد · برای چسباندن ⌘V: %@";
 "Copied (Accessibility not granted)" = "کپی شد (اجازه دسترس‌پذیری داده نشده)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "راه‌اندازی Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri به دو اجازه نیاز دارد. همه‌چیز روی همین Mac می‌ماند.";
+"Microphone" = "میکروفون";
+"To hear you while you hold the shortcut key." = "برای شنیدن صدای شما هنگامی که کلید میان‌بر را نگه داشته‌اید.";
+"Accessibility" = "دسترس‌پذیری";
+"To notice the shortcut key and paste the text where your cursor is." = "برای تشخیص کلید میان‌بر و چسباندن متن در جای مکان‌نما.";
+"Allow…" = "اجازه دادن…";
+"Open System Settings…" = "باز کردن تنظیمات سیستم…";
+"Allowed" = "مجاز";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "Tsuzuri را در فهرست روشن کنید. اگر از قبل روشن است، آن را انتخاب کنید، با − حذف کنید و سپس با + دوباره Tsuzuri را اضافه کنید.";
+"All set. Hold %@ to talk." = "همه‌چیز آماده است. برای صحبت %@ را نگه دارید.";
+"Done" = "تمام";
+"Later" = "بعداً";
+"Permissions…" = "اجازه‌ها…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "میان‌بر به اجازهٔ دسترس‌پذیری نیاز دارد · برای تنظیم کلیک کنید";
+"Microphone access is off (menu → Permissions…)" = "دسترسی به میکروفون خاموش است (منو ← اجازه‌ها…)";

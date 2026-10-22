@@ -18,14 +18,9 @@
 "Shortcut (Hold to Talk / Tap to Toggle)" = "ปุ่มลัด (กดค้างเพื่อพูด / แตะเพื่อเปิดปิด)";
 "Right Option ⌥" = "Option ขวา ⌥";
 "Right Command ⌘" = "Command ขวา ⌘";
-"Open Accessibility Settings…" = "เปิดการตั้งค่าการช่วยการเข้าถึง…";
-"Open Microphone Settings…" = "เปิดการตั้งค่าไมโครโฟน…";
-"Paste Test (Pastes into the Current Window in 3 s)" = "ทดสอบการวาง (วางลงในหน้าต่างปัจจุบันใน 3 วินาที)";
-"Tsuzuri paste test" = "ทดสอบการวางของ Tsuzuri";
 "Quit Tsuzuri" = "ออกจาก Tsuzuri";
 
 /* Status line */
-"Accessibility permission needed (System Settings → Privacy & Security)" = "ต้องได้รับอนุญาตการช่วยการเข้าถึง (การตั้งค่าระบบ → ความเป็นส่วนตัวและความปลอดภัย)";
 "Loading model…" = "กำลังโหลดโมเดล…";
 "Ready · hold %@ to talk" = "พร้อม · กด %@ ค้างไว้เพื่อพูด";
 "Model failed to load: %@" = "โหลดโมเดลไม่สำเร็จ: %@";
@@ -36,10 +31,27 @@
 "Model is still loading…" = "โมเดลยังโหลดอยู่…";
 "Can't record" = "บันทึกเสียงไม่ได้";
 "No microphone found" = "ไม่พบไมโครโฟน";
-"Microphone access is off (menu → Open Microphone Settings…)" = "การเข้าถึงไมโครโฟนปิดอยู่ (เมนู → เปิดการตั้งค่าไมโครโฟน…)";
 "Canceled" = "ยกเลิกแล้ว";
 "No speech heard" = "ไม่ได้ยินเสียงพูด";
 "Recognition failed" = "รู้จำเสียงไม่สำเร็จ";
 "Copied: %@" = "คัดลอกแล้ว: %@";
 "Copied · ⌘V to paste: %@" = "คัดลอกแล้ว · กด ⌘V เพื่อวาง: %@";
 "Copied (Accessibility not granted)" = "คัดลอกแล้ว (ไม่ได้อนุญาตการช่วยการเข้าถึง)";
+
+/* Permissions */
+"Set Up Tsuzuri" = "ตั้งค่า Tsuzuri";
+"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri ต้องการสิทธิ์ 2 อย่าง ข้อมูลทั้งหมดจะอยู่ใน Mac เครื่องนี้เท่านั้น";
+"Microphone" = "ไมโครโฟน";
+"To hear you while you hold the shortcut key." = "เพื่อฟังเสียงของคุณขณะที่กดปุ่มลัดค้างไว้";
+"Accessibility" = "การช่วยการเข้าถึง";
+"To notice the shortcut key and paste the text where your cursor is." = "เพื่อตรวจจับปุ่มลัดและวางข้อความที่ตำแหน่งเคอร์เซอร์";
+"Allow…" = "อนุญาต…";
+"Open System Settings…" = "เปิดการตั้งค่าระบบ…";
+"Allowed" = "อนุญาตแล้ว";
+"Turn on Tsuzuri in the list. If it is already on, select it, remove it with −, then add Tsuzuri again with +." = "เปิด Tsuzuri ในรายการ ถ้าเปิดอยู่แล้วแต่ยังใช้ไม่ได้ ให้เลือก Tsuzuri แล้วลบออกด้วยปุ่ม − จากนั้นเพิ่มกลับเข้าไปด้วยปุ่ม +";
+"All set. Hold %@ to talk." = "พร้อมแล้ว กด %@ ค้างไว้เพื่อพูด";
+"Done" = "เสร็จสิ้น";
+"Later" = "ภายหลัง";
+"Permissions…" = "สิทธิ์…";
+"Shortcut needs Accessibility permission · Click to Set Up" = "ปุ่มลัดต้องใช้สิทธิ์การช่วยการเข้าถึง · คลิกเพื่อตั้งค่า";
+"Microphone access is off (menu → Permissions…)" = "การเข้าถึงไมโครโฟนปิดอยู่ (เมนู → สิทธิ์…)";
