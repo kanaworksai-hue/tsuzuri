@@ -24,16 +24,17 @@ cp Resources/Info.plist "$APP/Contents/"
 cp Resources/AppIcon.icns "$APP/Contents/Resources/"
 # UI strings: English keys in the source, one table per language here (scripts/check-l10n.py).
 cp -R Resources/Localization/*.lproj "$APP/Contents/Resources/"
-# License notices: ours, THIRD_PARTY.md and the license of every resolved Swift package
-# (MIT / Apache-2.0 require shipping them with the binary).
+# License notices: ours, THIRD_PARTY.md and every license / NOTICE file of the resolved Swift
+# packages, including C/C++ code vendored inside them (mlx-swift bundles MLX, mlx-c, fmt,
+# nlohmann/json and metal-cpp). MIT and Apache-2.0 require shipping these with the binary.
 cp THIRD_PARTY.md "$APP/Contents/Resources/"
 {
   cat LICENSE
-  for dir in .build/checkouts/*; do
-    file=$(ls "$dir" | grep -i -E '^(license|copying)' | head -1 || true)
-    [ -n "$file" ] || continue
-    printf '\n\n===== %s =====\n\n' "$(basename "$dir")"
-    cat "$dir/$file"
+  (cd .build/checkouts && find . -maxdepth 5 -type f \( -iname 'license*' -o -iname 'notice*' -o -iname 'copying*' \) \
+     -not -ipath '*test*' -not -ipath '*example*' -not -path '*/.build/*' | sed 's|^\./||' | LC_ALL=C sort) |
+  while read -r file; do
+    printf '\n\n===== %s =====\n\n' "$file"
+    cat ".build/checkouts/$file"
   done
 } > "$APP/Contents/Resources/Licenses.txt"
 

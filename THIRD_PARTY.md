@@ -1,7 +1,7 @@
 # Third-party software and models
 
 Tsuzuri's own code is under the [MIT license](LICENSE). It is built on the projects below.
-The app bundle includes the full license texts of all Swift packages in
+The app bundle includes the full license and NOTICE texts of all Swift packages (and the code bundled in them) in
 `Tsuzuri.app/Contents/Resources/Licenses.txt`.
 
 ## Swift packages
@@ -9,6 +9,10 @@ The app bundle includes the full license texts of all Swift packages in
 | Package | License | Used for |
 | --- | --- | --- |
 | [mlx-swift](https://github.com/ml-explore/mlx-swift) (includes [MLX](https://github.com/ml-explore/mlx)) | MIT | GPU array runtime on Apple Silicon, `mlx.metallib` |
+| [mlx-c](https://github.com/ml-explore/mlx-c), bundled in mlx-swift | MIT | C API for MLX |
+| [fmt](https://github.com/fmtlib/fmt), bundled in mlx-swift | MIT | String formatting in MLX |
+| [nlohmann/json](https://github.com/nlohmann/json), bundled in mlx-swift | MIT | JSON parsing in MLX |
+| [metal-cpp](https://developer.apple.com/metal/cpp/), bundled in mlx-swift | Apache-2.0 | Metal C++ bindings in MLX |
 | [mlx-audio-swift](https://github.com/Blaizzy/mlx-audio-swift) | MIT | Qwen3-ASR and Silero VAD model code, audio loading |
 | [mlx-swift-lm](https://github.com/ml-explore/mlx-swift-lm) | MIT | LLM runtime for Polish |
 | [swift-transformers](https://github.com/huggingface/swift-transformers) | Apache-2.0 | Tokenizers |
@@ -40,4 +44,4 @@ Some ideas come from [Parrot](https://github.com/banyudu/parrot) and [Koe](https
 ## Brand
 
 The KanaWorks_AI name, logo and the Kana character (in `docs/brand/`, `docs/assets/` and the app icon)
-are © KanaWorks_AI and are not covered by the MIT license. See [docs/brand](docs/brand/README.md).
+are © 東京AI映像合同会社 (KanaWorks_AI) and are not covered by the MIT license. See [docs/brand](docs/brand/README.md).

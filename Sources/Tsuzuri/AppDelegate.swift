@@ -13,6 +13,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private var languagesMenu: NSMenu?
     private let statusLine = NSMenuItem(title: "", action: nil, keyEquivalent: "")
     private var modelReady = false
+    /// Shown instead of "Loading model…" when the speech model is missing or failed to load.
+    private var modelError: String?
+    private var modelGeneration = 0
+    /// A model is loaded and serving dictations while another one loads.
+    private var modelSwitching = false
     private var recording = false
     private var recordingStarted = Date()
     private var maxDurationWork: DispatchWorkItem?
@@ -204,26 +209,48 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private func refreshStatus() {
         if !Paster.isTrusted {
             status = String(localized: "Accessibility permission needed (System Settings → Privacy & Security)")
-        } else if !modelReady {
+        } else if let modelError {
+            status = modelError
+        } else if !modelReady || modelSwitching {
             status = String(localized: "Loading model…")
         } else {
             status = String(localized: "Ready · hold \(Settings.trigger.title) to talk")
         }
     }
 
+    /// Loads (or switches to) `model`. While switching, the previous model keeps serving
+    /// dictations; only the newest request wins when the user switches quickly.
     private func loadModel(_ model: ASRModel) {
-        modelReady = false
+        modelGeneration += 1
+        let generation = modelGeneration
+        modelError = nil
+        modelSwitching = modelReady
         refreshStatus()
         Task {
             do {
                 let seconds = try await transcriber.load(model)
+                guard generation == modelGeneration else { return }
                 Log.write(String(format: "loaded %@ in %.2fs", model.rawValue, seconds))
                 modelReady = true
-            } catch {
-                Log.write("load failed: \(error)")
-                status = String(localized: "Model failed to load: \(model.rawValue)")
+            } catch TranscriberError.superseded {
                 return
+            } catch {
+                guard generation == modelGeneration else { return }
+                Log.write("load failed: \(error)")
+                let message = model.isInstalled
+                    ? String(localized: "Model failed to load: \(model.rawValue)")
+                    : String(localized: "\(model.menuTitle) (not downloaded)")
+                if modelReady, let current = await transcriber.model {
+                    // A switch failed: keep using the model that is still loaded.
+                    Settings.model = current
+                    rebuildMenu()
+                    overlay.show(.message(message))
+                    overlay.hide(after: 2.5)
+                } else {
+                    modelError = message
+                }
             }
+            modelSwitching = false
             refreshStatus()
         }
     }
@@ -234,6 +261,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
             do {
                 let seconds = try await transcriber.loadPolisher()
                 Log.write(String(format: "loaded %@ in %.2fs", PolishModel.directoryName, seconds))
+                // Turned off while it was loading: don't keep it in memory.
+                if !Settings.polish { await transcriber.unloadPolisher() }
             } catch {
                 Log.write("polish model load failed: \(error)")
             }
@@ -244,6 +273,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func startRecording() {
         guard !recording else { return }
+        if let modelError, !modelReady {
+            // The user may have downloaded the model since: pick it up without a restart.
+            if Settings.model.isInstalled {
+                rebuildMenu()
+                loadModel(Settings.model)
+                overlay.show(.message(String(localized: "Model is still loading…")))
+            } else {
+                overlay.show(.message(modelError))
+            }
+            overlay.hide(after: 2)
+            hotkey.reset()
+            return
+        }
         guard modelReady else {
             overlay.show(.message(String(localized: "Model is still loading…")))
             overlay.hide(after: 1.2)
@@ -294,6 +336,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         overlay.hide(after: 0.8)
     }
 
+    /// Shows the outcome of a dictation, unless a new recording has started meanwhile
+    /// (its "Listening" capsule must stay up).
+    private func showResult(_ state: Overlay.Phase, hideAfter seconds: Double) {
+        guard !recording else { return }
+        overlay.show(state)
+        overlay.hide(after: seconds)
+    }
+
     private func transcribeAndPaste(_ samples: [Float]) {
         overlay.show(.transcribing)
         let language = Settings.language.modelValue
@@ -308,8 +358,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                                  result.inputSeconds, result.audioSeconds, result.elapsed, result.rtf,
                                  result.language ?? "-", Log.redact(result.text)))
                 if result.text.isEmpty {
-                    overlay.show(.message(String(localized: "No speech heard")))
-                    overlay.hide(after: 1)
+                    showResult(.message(String(localized: "No speech heard")), hideAfter: 1)
                     return
                 }
                 var text = result.text
@@ -333,25 +382,20 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                     Log.write("focus \(focus.app) \(focus.role) → \(outcome)")
                     switch outcome {
                     case .pasted:
-                        overlay.show(.message(text))
-                        overlay.hide(after: 1.2)
+                        showResult(.message(text), hideAfter: 1.2)
                     case .pastedAndCopied:
-                        overlay.show(.copied(text))
-                        overlay.hide(after: 1.5)
+                        showResult(.copied(text), hideAfter: 1.5)
                     case .copied:
-                        overlay.show(.copied(String(localized: "Copied · ⌘V to paste: \(text)")))
-                        overlay.hide(after: 2.5)
+                        showResult(.copied(String(localized: "Copied · ⌘V to paste: \(text)")), hideAfter: 2.5)
                     }
                 } else {
                     // Without Accessibility we cannot send ⌘V; leave the text on the clipboard.
                     Paster.copy(text)
-                    overlay.show(.copied(String(localized: "Copied (Accessibility not granted)")))
-                    overlay.hide(after: 1.5)
+                    showResult(.copied(String(localized: "Copied (Accessibility not granted)")), hideAfter: 1.5)
                 }
             } catch {
                 Log.write("transcribe failed: \(error)")
-                overlay.show(.message(String(localized: "Recognition failed")))
-                overlay.hide(after: 1.5)
+                showResult(.message(String(localized: "Recognition failed")), hideAfter: 1.5)
             }
         }
     }
@@ -404,6 +448,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     @objc private func selectTrigger(_ sender: NSMenuItem) {
         guard let raw = sender.representedObject as? String, let trigger = TriggerKey(rawValue: raw) else { return }
         Settings.trigger = trigger
+        // Esc only works while the old key is held; don't leave a recording running without it.
+        cancelRecording()
         hotkey.trigger = trigger
         hotkey.reset()
         rebuildMenu()

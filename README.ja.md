@@ -54,7 +54,7 @@ for repo in Qwen3-ASR-1.7B-4bit silero-vad; do
 done
 ```
 
-ダウンロード量は約 1.5 GB です。より速く軽いモデルも使いたい場合は、リストに `Qwen3-ASR-0.6B-8bit` を追加してください（約 1 GB）。インストール済みのモデルはメニューから切り替えられます。
+ダウンロード量は約 1.6 GB です。より速く軽いモデルも使いたい場合は、リストに `Qwen3-ASR-0.6B-8bit` を追加してください（約 1 GB）。インストール済みのモデルはメニューから切り替えられます。
 
 > Hugging Face CLI（`hf`）をお持ちなら、`hf download mlx-community/<repo> --local-dir "$M/<repo>"` でも構いません。
 
@@ -163,7 +163,7 @@ ditto build/Tsuzuri.app /Applications/Tsuzuri.app
 
 - **本プロジェクト：** [MIT](LICENSE)
 - **モデル：** Hugging Face からダウンロードするもので、ここでは配布していません。[THIRD_PARTY.md](THIRD_PARTY.md) を参照してください。
-- **ブランド：** KanaWorks_AI の名称、ロゴ、キャラクター Kana（アプリアイコンとバナーを含む）の権利は KanaWorks_AI に帰属し、MIT ライセンスの対象**外**です。[docs/brand](docs/brand/README.md) を参照してください。
+- **ブランド：** KanaWorks_AI の名称、ロゴ、キャラクター Kana（アプリアイコンとバナーを含む）の権利は 東京AI映像合同会社（KanaWorks_AI）に帰属し、MIT ライセンスの対象**外**です。[docs/brand](docs/brand/README.md) を参照してください。
 
 本プロジェクトは独立したプロジェクトで、Alibaba Cloud、Qwen チーム、Apple とは関係がなく、承認を受けたものでもありません。
 

@@ -25,24 +25,33 @@ struct Options {
     var files: [URL] = []
 }
 
-func usage() -> Never {
+func usage(exitCode: Int32 = 2) -> Never {
     let models = ASRModel.allCases.map(\.rawValue).joined(separator: ", ")
-    FileHandle.standardError.write(Data("""
+    let text = """
     usage: tsuzuri-cli [--model NAME | --model-dir DIR] [--language NAME] [--context TEXT]
                        [--no-vad] [--polish] [--app NAME] [--jsonl] [--repeat N] AUDIO...
            tsuzuri-cli --polish-text [--app NAME] [--jsonl] TEXTFILE...
            tsuzuri-cli --guard-only RESULTS.jsonl...
+      --model NAME    speech model (default \(ASRModel.default.rawValue))
+      --model-dir DIR load the speech model from DIR instead of the models dir
+      --language NAME spoken language, e.g. English, Japanese, German (default: auto-detect)
+      --context TEXT  context / hot words passed to the model
+      --no-vad        do not trim silence with Silero VAD
+      --jsonl         one JSON line per file, with timings and memory use
+      --repeat N      transcribe each file N times (benchmarking)
       --polish        clean up the transcript with \(PolishModel.directoryName) (falls back to raw on guard failure;
                       skipped unless the detected language is one of \(PolishLanguages.supported.joined(separator: ", ")))
+      --app NAME      app name passed to the polish model
       --polish-text   polish each line of TEXTFILE; JSONL lines use "in" (and pass id/cat/ref through)
       --guard-only    apply the polish guard to existing {"in","out"} records, no model
       --polish-dir    polish model directory (default: models dir/\(PolishModel.directoryName))
       --timeout S     polish timeout in seconds (default 1.0)
       models: \(models)
-      models dir: \(ModelStore.root.path)
+      models dir: \(ModelStore.root.path) (set TSUZURI_MODELS_DIR to change)
 
-    """.utf8))
-    exit(2)
+    """
+    (exitCode == 0 ? FileHandle.standardOutput : FileHandle.standardError).write(Data(text.utf8))
+    exit(exitCode)
 }
 
 func parse() -> Options {
@@ -79,7 +88,7 @@ func parse() -> Options {
         case "--repeat":
             guard let v = it.next(), let n = Int(v), n > 0 else { usage() }
             o.repeatCount = n
-        case "-h", "--help": usage()
+        case "-h", "--help": usage(exitCode: 0)
         default:
             if arg.hasPrefix("-") { usage() }
             o.files.append(URL(fileURLWithPath: arg))
@@ -97,6 +106,20 @@ func emit(_ object: [String: Any]) {
 
 func stderr(_ message: String) {
     FileHandle.standardError.write(Data((message + "\n").utf8))
+}
+
+/// Runs `body` with stdout pointed at stderr, so libraries that print while loading
+/// (e.g. "Generated tokenizer.json") do not end up in the transcript or JSONL output.
+func quietStdout<T>(_ body: () async throws -> T) async rethrows -> T {
+    fflush(stdout)
+    let saved = dup(STDOUT_FILENO)
+    dup2(STDERR_FILENO, STDOUT_FILENO)
+    defer {
+        fflush(stdout)
+        dup2(saved, STDOUT_FILENO)
+        close(saved)
+    }
+    return try await body()
 }
 
 /// Input lines for --polish-text / --guard-only: JSON objects, or plain text as {"in": line}.
@@ -119,11 +142,26 @@ func polishFields(_ p: Polish) -> [String: Any] {
 
 let options = parse()
 let transcriber = Transcriber()
+var failed = 0
+
+/// Reports a file that can't be used and carries on with the others; the exit code is 1 at the end.
+func fileError(_ file: URL, _ reason: String) {
+    failed += 1
+    stderr("error: \(file.path): \(reason)")
+    if options.jsonl { emit(["event": "error", "file": file.lastPathComponent, "error": reason]) }
+}
+
+// Missing files are reported up front, before spending seconds on loading a model.
+let missing = options.files.filter { !FileManager.default.fileExists(atPath: $0.path) }
+missing.forEach { fileError($0, "file not found") }
+let inputFiles = options.files.filter { FileManager.default.fileExists(atPath: $0.path) }
+if inputFiles.isEmpty { exit(1) }
 
 if options.guardOnly {
     // No model: re-check saved outputs, e.g. to tune PolishGuard against other models' results.
-    for file in options.files {
-        for r in try records(file) where r["event"] as? String ?? "result" == "result" {
+    for file in inputFiles {
+        guard let lines = try? records(file) else { fileError(file, "not a UTF-8 text file"); continue }
+        for r in lines where r["event"] as? String ?? "result" == "result" {
             guard let raw = r["in"] as? String, let out = r["out"] as? String else { continue }
             let reason = PolishGuard.rejection(raw: raw, output: out)
             if options.jsonl {
@@ -134,12 +172,12 @@ if options.guardOnly {
             }
         }
     }
-    exit(0)
+    exit(failed == 0 ? 0 : 1)
 }
 
 func loadPolisher() async throws {
     await transcriber.resetPeakMemory()
-    let seconds = try await transcriber.loadPolisher(directory: options.polishDir)
+    let seconds = try await quietStdout { try await transcriber.loadPolisher(directory: options.polishDir) }
     let mem = await transcriber.memoryStats()
     if options.jsonl {
         emit(["event": "load", "model": options.polishDir?.lastPathComponent ?? PolishModel.directoryName,
@@ -153,8 +191,9 @@ func loadPolisher() async throws {
 if options.polishText {
     do {
         try await loadPolisher()
-        for file in options.files {
-            for r in try records(file) {
+        for file in inputFiles {
+            guard let lines = try? records(file) else { fileError(file, "not a UTF-8 text file"); continue }
+            for r in lines {
                 guard let text = r["in"] as? String else { continue }
                 for run in 0..<options.repeatCount {
                     let p = await transcriber.polish(text, app: options.app, timeout: options.timeout)
@@ -180,11 +219,11 @@ if options.polishText {
         stderr("error: \(error)")
         exit(1)
     }
-    exit(0)
+    exit(failed == 0 ? 0 : 1)
 }
 
 do {
-    let loadSeconds = try await transcriber.load(options.model, directory: options.modelDir)
+    let loadSeconds = try await quietStdout { try await transcriber.load(options.model, directory: options.modelDir) }
     let afterLoad = await transcriber.memoryStats()
     if options.jsonl {
         emit(["event": "load", "model": options.model.rawValue, "load_s": loadSeconds,
@@ -195,11 +234,23 @@ do {
     }
     if options.polish { try await loadPolisher() }
 
-    for file in options.files {
-        let samples = try AudioFile.load16k(file)
+    for file in inputFiles {
+        let samples: [Float]
+        do {
+            samples = try AudioFile.load16k(file)
+        } catch {
+            fileError(file, "not a readable audio file")
+            continue
+        }
         for run in 0..<options.repeatCount {
-            let t = try await transcriber.transcribe(samples, language: options.language,
+            let t: Transcription
+            do {
+                t = try await transcriber.transcribe(samples, language: options.language,
                                                      context: options.context, trimSilence: options.vad)
+            } catch {
+                fileError(file, "recognition failed: \(error)")
+                break
+            }
             // Same rule as the app: only polish languages cleanup-1 was trained on.
             var p: Polish?
             if options.polish {
@@ -232,3 +283,4 @@ do {
     stderr("error: \(error)")
     exit(1)
 }
+exit(failed == 0 ? 0 : 1)

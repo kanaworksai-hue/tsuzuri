@@ -18,10 +18,13 @@ public struct Transcription: Sendable {
 
 public enum TranscriberError: Error, CustomStringConvertible {
     case modelMissing(URL)
+    /// A newer `load` call started before this one finished; its model was discarded.
+    case superseded
 
     public var description: String {
         switch self {
         case .modelMissing(let url): "Model not found at \(url.path). See README for how to download it."
+        case .superseded: "Model load superseded by a newer one"
         }
     }
 }
@@ -35,6 +38,7 @@ public actor Transcriber {
     private var asr: Qwen3ASRModel?
     private var vad: SileroVAD?
     private var polisher: Polisher?
+    private var loadGeneration = 0
 
     public init() {
         _ = Self.locateMetalLibrary
@@ -54,17 +58,26 @@ public actor Transcriber {
     public func load(_ model: ASRModel, directory: URL? = nil) async throws -> Double {
         if self.model == model, asr != nil { return 0 }
         let dir = directory ?? model.localDirectory
+        loadGeneration += 1  // also cancels an older load when this one fails right away
+        let generation = loadGeneration
         guard ModelStore.isInstalled(dir) else { throw TranscriberError.modelMissing(dir) }
         let start = Date()
-        asr = nil
-        Memory.clearCache()
-        asr = try await Qwen3ASRModel.fromModelDirectory(dir)
+        // Keep the current model until the new one is ready: transcribe() can run while
+        // this call is suspended (actor reentrancy), and a dictation must not fail because
+        // the user switched models. Only the newest of overlapping loads is kept.
+        let loaded = try await Qwen3ASRModel.fromModelDirectory(dir)
+        guard generation == loadGeneration else {
+            Memory.clearCache()  // free the discarded model's buffers now
+            throw TranscriberError.superseded
+        }
+        // Warm up kernels so the first real dictation is not slower than the rest.
+        _ = loaded.generate(audio: MLXArray.zeros([Self.sampleRate]), maxTokens: 4)
+        asr = loaded
         self.model = model
+        Memory.clearCache()
         if vad == nil, ModelStore.isInstalled(ModelStore.vadDirectory) {
             vad = try? SileroVAD.fromModelDirectory(ModelStore.vadDirectory)
         }
-        // Warm up kernels so the first real dictation is not slower than the rest.
-        _ = asr?.generate(audio: MLXArray.zeros([Self.sampleRate]), maxTokens: 4)
         return Date().timeIntervalSince(start)
     }
 
@@ -85,7 +98,8 @@ public actor Transcriber {
         let dir = directory ?? PolishModel.localDirectory
         guard ModelStore.isInstalled(dir) else { throw TranscriberError.modelMissing(dir) }
         let start = Date()
-        polisher = try await Polisher.load(dir)
+        let loaded = try await Polisher.load(dir)
+        if polisher == nil { polisher = loaded }  // another call may have finished first
         return Date().timeIntervalSince(start)
     }
 
@@ -141,11 +155,20 @@ public actor Transcriber {
         Memory.clearCache()
         return Transcription(
             text: output.text.trimmingCharacters(in: .whitespacesAndNewlines),
-            language: output.language,
+            language: Self.cleanLanguage(output.language),
             audioSeconds: Double(speech.count) / Double(Self.sampleRate),
             inputSeconds: inputSeconds,
             elapsed: Date().timeIntervalSince(start)
         )
+    }
+
+    /// Qwen3-ASR reports "None" for segments without a language (e.g. a click or breath),
+    /// also inside multi-segment results such as "Chinese,None".
+    static func cleanLanguage(_ language: String?) -> String? {
+        let parts = (language ?? "").split(separator: ",")
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .filter { !$0.isEmpty && $0 != "None" }
+        return parts.isEmpty ? nil : parts.joined(separator: ",")
     }
 
     /// Cuts leading and trailing non-speech. Returns nil when no speech is found.

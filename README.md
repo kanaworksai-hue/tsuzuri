@@ -14,7 +14,7 @@
 
 **English** | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
 
-[Install](#-install) · [Use it](#%EF%B8%8F-use-it) · [Languages](#-languages) · [Polish](#-polish-optional) · [Build from source](#-build-from-source) · [Command line](#-command-line) · [FAQ](#-faq)
+[Install](#-install) · [Use it](#%EF%B8%8F-use-it) · [Languages](#-languages) · [Polish](#-polish-optional) · [Build from source](#%EF%B8%8F-build-from-source) · [Command line](#%EF%B8%8F-command-line) · [FAQ](#-faq)
 
 </div>
 
@@ -54,7 +54,7 @@ for repo in Qwen3-ASR-1.7B-4bit silero-vad; do
 done
 ```
 
-This downloads about 1.5 GB. For the faster, smaller model, add `Qwen3-ASR-0.6B-8bit` to the list (about 1 GB). You can switch between installed models from the menu.
+This downloads about 1.6 GB. For the faster, smaller model, add `Qwen3-ASR-0.6B-8bit` to the list (about 1 GB). You can switch between installed models from the menu.
 
 > If you already have the Hugging Face CLI (`hf`), you can use `hf download mlx-community/<repo> --local-dir "$M/<repo>"` instead.
 
@@ -119,7 +119,7 @@ If `xcode-select` points at the Command Line Tools, the scripts use `DEVELOPER_D
 
 `build-app.sh` signs the app with your first "Apple Development" certificate, or ad-hoc if there is none. macOS ties the Microphone and Accessibility permissions to the signature, so with an ad-hoc signature you have to grant them again after every rebuild.
 
-`scripts/release.sh <version>` builds a DMG signed with a "Developer ID Application" certificate and notarizes it (see the comments in the script; `SKIP_NOTARIZE=1` only signs). Please use your own icon if you publish your own build (see [Brand](#-license)).
+`scripts/release.sh <version>` builds a DMG signed with a "Developer ID Application" certificate and notarizes it (see the comments in the script; `SKIP_NOTARIZE=1` only signs). Please use your own icon if you publish your own build (see [License](#-license)).
 
 **Translations:** UI strings are written in English in the source (`String(localized:)` and SwiftUI `Text`). The translations, one folder per language, are in `Resources/Localization/`. After adding or changing a string, run `python3 scripts/check-l10n.py` to find missing translations.
 
@@ -163,7 +163,7 @@ Full list with licenses: [THIRD_PARTY.md](THIRD_PARTY.md).
 
 - **This project:** [MIT](LICENSE).
 - **Models:** downloaded from Hugging Face, not distributed here. See [THIRD_PARTY.md](THIRD_PARTY.md).
-- **Brand:** the KanaWorks_AI name, logo and the Kana character (including the app icon and the banner) are © KanaWorks_AI and are **not** covered by the MIT license. See [docs/brand](docs/brand/README.md).
+- **Brand:** the KanaWorks_AI name, logo and the Kana character (including the app icon and the banner) are © 東京AI映像合同会社 (KanaWorks_AI) and are **not** covered by the MIT license. See [docs/brand](docs/brand/README.md).
 
 This is an independent project. It is not affiliated with or endorsed by Alibaba Cloud, the Qwen team or Apple.
 
