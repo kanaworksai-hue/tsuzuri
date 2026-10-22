@@ -100,14 +100,19 @@ Qwen3-ASR が対応するすべての言語を認識します。既定の **自�
 
 結果がおかしいとき（極端に長い、文字の種類が変わった、話していない単語や数字が出てきた、1 秒以上かかった）は、整形前の認識結果をそのまま貼り付けます。コマンドを話すことが多いターミナルアプリでは整形しません。メモリは約 0.35 GB 増えます。
 
-このモデルには MLX 版が用意されていないため、まだアプリからはダウンロードできません。一度だけ Mac 上で変換してください（元のモデル 1.2 GB をダウンロードします）：
+使うには、メニューの **テキスト整形 · ダウンロード（1.19 GB）…** をクリックします。Hugging Face から元のモデルを一度だけダウンロードして検証し、Mac 上で 4bit の MLX モデルに変換（1〜2 秒）してから、テキスト整形をオンにします。以降はこのメニュー項目でオン / オフを切り替えます。既定はオフです。
+
+<details>
+<summary>ターミナルで変換する場合</summary>
 
 ```bash
 uvx --from 'mlx-lm==0.32.*' mlx_lm.convert --hf-path spokenly/cleanup-1 -q --q-bits 4 \
   --mlx-path "$HOME/Library/Application Support/Tsuzuri/Models/cleanup-1-4bit"
 ```
 
-変換が終わったら Tsuzuri を開き直し、メニューの **テキスト整形** をオンにします。既定はオフです。
+変換が終わったら Tsuzuri を開き直し、メニューの **テキスト整形** をオンにします。アプリでダウンロードした場合と同じモデルになります。
+
+</details>
 
 ## 🛠️ ソースからビルド
 
@@ -143,6 +148,7 @@ rm -rf /Applications/Tsuzuri.app && ditto build/Tsuzuri.app /Applications/Tsuzur
 .build/release/tsuzuri-cli --polish recording.wav             # 認識してからテキスト整形
 .build/release/tsuzuri-cli --polish-text lines.txt            # テキスト整形のみ
 .build/release/tsuzuri-cli --download --model Qwen3-ASR-0.6B-8bit   # モデルをダウンロード（アプリと同じ処理）
+.build/release/tsuzuri-cli --download --polish                 # テキスト整形のモデルをダウンロード
 ```
 
 すべてのオプションは `tsuzuri-cli --help` で確認できます。モデルを別のフォルダに置く場合は `TSUZURI_MODELS_DIR` を設定してください。

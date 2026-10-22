@@ -4,7 +4,6 @@
 "(None yet)" = "（まだありません）";
 "Clear" = "消去";
 "Model" = "モデル";
-"%@ (not downloaded)" = "%@（未ダウンロード）";
 "Accurate" = "高精度";
 "Fast" = "高速";
 "Spoken Language: %@" = "認識する言語：%@";

@@ -100,14 +100,19 @@ The model was trained on **English, German, Spanish, French, Chinese, Russian an
 
 If the result looks wrong (much longer, a different script, words or numbers you didn't say, or slower than 1 second), Tsuzuri pastes the raw transcript instead. Polish is skipped in terminal apps, where you usually dictate commands. It adds about 0.35 GB of memory.
 
-There is no ready-made MLX version of this model, so it can't be downloaded from the app yet. Convert it once on your Mac (downloads the 1.2 GB original):
+To turn it on, click **Polish · Download (1.19 GB)…** in the menu. Tsuzuri downloads the original model from Hugging Face once, checks it, converts it to a 4-bit MLX model on your Mac (a second or two), and turns Polish on. After that, the menu item switches Polish on and off. It is off by default.
+
+<details>
+<summary>Convert the model in Terminal instead</summary>
 
 ```bash
 uvx --from 'mlx-lm==0.32.*' mlx_lm.convert --hf-path spokenly/cleanup-1 -q --q-bits 4 \
   --mlx-path "$HOME/Library/Application Support/Tsuzuri/Models/cleanup-1-4bit"
 ```
 
-Then reopen Tsuzuri and turn on **Polish** in the menu. It is off by default.
+Then reopen Tsuzuri and turn on **Polish** in the menu. The result is the same as the in-app download.
+
+</details>
 
 ## 🛠️ Build from source
 
@@ -143,6 +148,7 @@ If `xcode-select` points at the Command Line Tools, the scripts use `DEVELOPER_D
 .build/release/tsuzuri-cli --polish recording.wav             # recognition, then Polish
 .build/release/tsuzuri-cli --polish-text lines.txt            # Polish text only
 .build/release/tsuzuri-cli --download --model Qwen3-ASR-0.6B-8bit   # download a model, like the app does
+.build/release/tsuzuri-cli --download --polish                 # download the polish model
 ```
 
 Run `tsuzuri-cli --help` for all options. Set `TSUZURI_MODELS_DIR` to use a different models folder.

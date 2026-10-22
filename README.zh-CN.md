@@ -100,14 +100,19 @@ Tsuzuri 能识别 Qwen3-ASR 支持的全部语言。默认的 **自动** 模式�
 
 如果润色结果看起来不对（变长很多、文字种类变了、出现你没说过的词或数字、超过 1 秒），Tsuzuri 会改为粘贴润色前的原始结果。在终端类应用里不润色，因为在那里说的通常是命令。润色会多占用约 0.35 GB 内存。
 
-这个模型没有现成的 MLX 版本，所以暂时不能在 App 里下载，需要在你的 Mac 上转换一次（会下载 1.2 GB 的原始模型）：
+要使用的话，点菜单里的 **润色 · 下载（1.19 GB）…**。Tsuzuri 会从 Hugging Face 下载一次原始模型并校验，在你的 Mac 上转换成 4bit 的 MLX 模型（一两秒），然后打开润色。之后用这一项开关润色。默认是关闭的。
+
+<details>
+<summary>改用终端转换</summary>
 
 ```bash
 uvx --from 'mlx-lm==0.32.*' mlx_lm.convert --hf-path spokenly/cleanup-1 -q --q-bits 4 \
   --mlx-path "$HOME/Library/Application Support/Tsuzuri/Models/cleanup-1-4bit"
 ```
 
-转换完成后重新打开 Tsuzuri，在菜单里打开 **润色**。默认是关闭的。
+转换完成后重新打开 Tsuzuri，在菜单里打开 **润色**。结果和在 App 里下载的一样。
+
+</details>
 
 ## 🛠️ 从源码构建
 
@@ -143,6 +148,7 @@ rm -rf /Applications/Tsuzuri.app && ditto build/Tsuzuri.app /Applications/Tsuzur
 .build/release/tsuzuri-cli --polish recording.wav             # 识别后再润色
 .build/release/tsuzuri-cli --polish-text lines.txt            # 只润色文字
 .build/release/tsuzuri-cli --download --model Qwen3-ASR-0.6B-8bit   # 下载模型（和 App 里一样）
+.build/release/tsuzuri-cli --download --polish                 # 下载润色模型
 ```
 
 运行 `tsuzuri-cli --help` 查看全部选项。想把模型放在别的文件夹，设置 `TSUZURI_MODELS_DIR` 即可。

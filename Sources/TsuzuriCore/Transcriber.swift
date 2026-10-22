@@ -112,6 +112,12 @@ public actor Transcriber {
         return Date().timeIntervalSince(start)
     }
 
+    /// Quantizes a downloaded spokenly/cleanup-1 into the 4-bit model (on this actor, like all MLX work).
+    public func convertPolishModel(from source: URL, to destination: URL) throws {
+        try PolishModelConverter.convert(from: source, to: destination)
+        Memory.clearCache()
+    }
+
     public func unloadPolisher() {
         polisher = nil
         Memory.clearCache()

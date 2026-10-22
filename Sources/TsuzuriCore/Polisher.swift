@@ -5,7 +5,8 @@ import MLXLMCommon
 import Tokenizers
 
 /// The dictation clean-up model: spokenly/cleanup-1 (Apache-2.0, a Qwen3-0.6B-Base
-/// fine-tune), converted locally to MLX 4-bit. See README for the conversion command.
+/// fine-tune), converted locally to MLX 4-bit: by the app after downloading the original
+/// (`ModelPackage.polish`, `PolishModelConverter`), or with mlx_lm as in the README.
 public enum PolishModel {
     public static let directoryName = "cleanup-1-4bit"
     public static let sourceRepo = "spokenly/cleanup-1"
@@ -142,6 +143,68 @@ private struct TokenizerBridge: MLXLMCommon.Tokenizer {
             return try upstream.applyChatTemplate(messages: messages, tools: tools, additionalContext: additionalContext)
         } catch Tokenizers.TokenizerError.missingChatTemplate {
             throw MLXLMCommon.TokenizerError.missingChatTemplate
+        }
+    }
+}
+
+/// Turns the original spokenly/cleanup-1 weights (bfloat16) into the 4-bit MLX model Tsuzuri
+/// loads, the same way `mlx_lm.convert -q --q-bits 4` does: every matrix whose rows divide
+/// into groups of 64 (the linear layers and the tied embedding) is quantized, everything else
+/// is kept. Done on the Mac after download, so no converted copy has to be hosted anywhere.
+public enum PolishModelConverter {
+    public static let groupSize = 64
+    public static let bits = 4
+    /// Copied as they are; config.json is rewritten with the quantization settings.
+    static let passthroughFiles = ["chat_template.jinja", "generation_config.json", "tokenizer.json",
+                                   "tokenizer_config.json", "LICENSE", "NOTICE", "README.md"]
+
+    public static func convert(from source: URL, to destination: URL) throws {
+        let fm = FileManager.default
+        try fm.createDirectory(at: destination, withIntermediateDirectories: true)
+
+        let configData = try Data(contentsOf: source.appendingPathComponent("config.json"))
+        guard var config = try JSONSerialization.jsonObject(with: configData) as? [String: Any] else {
+            throw CocoaError(.fileReadCorruptFile)
+        }
+        let tied = config["tie_word_embeddings"] as? Bool ?? false
+
+        var output: [String: MLXArray] = [:]
+        let files = try fm.contentsOfDirectory(at: source, includingPropertiesForKeys: nil)
+            .filter { $0.pathExtension == "safetensors" }
+        for file in files {
+            // One tensor at a time (loading is lazy), so memory peaks at one bf16 tensor plus the
+            // 4-bit result rather than the whole original model.
+            var weights = try loadArrays(url: file)
+            for key in weights.keys.sorted() {
+                try Task.checkCancellation()
+                guard let weight = weights.removeValue(forKey: key) else { continue }
+                if tied, key == "lm_head.weight" { continue }  // the embedding doubles as the output layer
+                if key.hasSuffix(".weight"), weight.ndim == 2, weight.dim(-1) % groupSize == 0 {
+                    let (wq, scales, biases) = quantized(weight, groupSize: groupSize, bits: bits)
+                    let base = String(key.dropLast(".weight".count))
+                    output[key] = wq
+                    output[base + ".scales"] = scales
+                    output[base + ".biases"] = biases
+                    eval(wq, scales, biases ?? wq)
+                } else {
+                    output[key] = weight
+                    eval(weight)
+                }
+            }
+            Memory.clearCache()
+        }
+        try save(arrays: output, metadata: ["format": "mlx"],
+                 url: destination.appendingPathComponent("model.safetensors"))
+
+        let quantization: [String: Any] = ["group_size": groupSize, "bits": bits, "mode": "affine"]
+        config["quantization"] = quantization
+        config["quantization_config"] = quantization
+        try JSONSerialization.data(withJSONObject: config, options: [.prettyPrinted, .sortedKeys])
+            .write(to: destination.appendingPathComponent("config.json"))
+        for name in passthroughFiles where fm.fileExists(atPath: source.appendingPathComponent(name).path) {
+            let target = destination.appendingPathComponent(name)
+            try? fm.removeItem(at: target)
+            try fm.copyItem(at: source.appendingPathComponent(name), to: target)
         }
     }
 }

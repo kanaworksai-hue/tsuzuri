@@ -11,6 +11,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private lazy var permissions = PermissionsWindow(downloads: downloads)
     /// Model submenu items, retitled in place with the download progress while the menu is open.
     private var modelItems: [ASRModel: NSMenuItem] = [:]
+    private var polishItem: NSMenuItem?
     private lazy var hotkey = HotkeyMonitor(trigger: Settings.trigger)
 
     private var statusItem: NSStatusItem!
@@ -68,7 +69,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         #endif
 
         downloads.onChange = { [weak self] in self?.downloadChanged() }
-        downloads.onFinished = { [weak self] model, sameChoice in self?.downloadFinished(model, sameChoice: sameChoice) }
+        downloads.onFinished = { [weak self] item, sameChoice in self?.downloadFinished(item, sameChoice: sameChoice) }
+        downloads.convert = { [transcriber] in try await transcriber.convertPolishModel(from: $0, to: $1) }
         // The chosen model is missing but another one was downloaded (by hand or in an older
         // version): use that one instead of asking for a download.
         if !Settings.model.isInstalled, let installed = ASRModel.allCases.first(where: \.isInstalled) {
@@ -103,6 +105,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func rebuildMenu() {
         let menu = NSMenu()
+        menu.autoenablesItems = false  // items set isEnabled themselves (downloads, notes)
         // statusLine is reused across rebuilds; AppKit throws if it is still in the old menu.
         statusLine.menu?.removeItem(statusLine)
         statusLine.title = status
@@ -157,14 +160,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         let current = Settings.language.language?.nativeName ?? String(localized: "Auto")
         addSubmenu(languages, title: String(localized: "Spoken Language: \(current)"), to: menu)
 
-        let polishTitle = String(localized: "Polish")
-        let polish = item(PolishModel.isInstalled ? polishTitle : String(localized: "\(polishTitle) (not downloaded)"),
-                          #selector(togglePolish))
+        // Not downloaded yet: clicking downloads it (and then turns it on).
+        let polish = item("", #selector(togglePolish))
         polish.state = Settings.polish && PolishModel.isInstalled ? .on : .off
-        polish.isEnabled = PolishModel.isInstalled
+        polishItem = polish
+        updatePolishItem()
         polish.toolTip = String(localized: "After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Only for \(polishLanguages); other languages are inserted as recognized. Skipped in terminals.")
         menu.addItem(polish)
         menu.addItem(note(String(localized: "Only for \(polishLanguages)")))
+        if downloads.isDownloadingPolish {
+            let cancel = item(String(localized: "Cancel"), #selector(cancelDownload))
+            cancel.indentationLevel = 1
+            menu.addItem(cancel)
+        }
 
         let triggers = NSMenu()
         for trigger in TriggerKey.allCases {
@@ -203,15 +211,41 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     /// While a permission or the model is missing, the status line opens the setup window.
     private func updateStatusLineAction() {
-        let needsSetup = !Paster.isTrusted || !Settings.model.isInstalled || downloads.isDownloading
+        let needsSetup = !Paster.isTrusted || !Settings.model.isInstalled || downloads.model != nil
         statusLine.isEnabled = needsSetup
         statusLine.action = needsSetup ? #selector(showPermissions) : nil
     }
 
+    private func updatePolishItem() {
+        guard let polishItem else { return }
+        let title = String(localized: "Polish")
+        if PolishModel.isInstalled {
+            polishItem.title = title
+            polishItem.isEnabled = true
+        } else if downloads.isDownloadingPolish {
+            polishItem.title = downloads.state == .verifying
+                ? String(localized: "\(title) · Checking…")
+                : String(localized: "\(title) · Downloading \(downloads.percentText)")
+            polishItem.isEnabled = false
+        } else {
+            polishItem.title = String(localized: "\(title) · Download (\(ModelDownloads.size(DownloadItem.polish.size)))…")
+            // The speech model comes first: the setup window can't show a Polish download.
+            polishItem.isEnabled = !downloads.isDownloading && Settings.model.isInstalled
+        }
+    }
+
+    @objc private func cancelDownload() {
+        downloads.cancel()
+    }
+
     private func downloadChanged() {
         // The silence detector may have arrived with a model download that was then cancelled.
-        if !downloads.isDownloading { Task { await transcriber.loadVADIfNeeded() } }
+        if !downloads.isDownloading {
+            Task { await transcriber.loadVADIfNeeded() }
+            rebuildMenu()  // drops the Cancel item, re-enables the other downloads
+        }
         updateModelItems()
+        updatePolishItem()
         refreshStatus()
         updateStatusLineAction()
         if case .failed(let message) = downloads.state, !permissions.isVisible {
@@ -220,7 +254,14 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
-    private func downloadFinished(_ model: ASRModel, sameChoice: Bool) {
+    private func downloadFinished(_ item: DownloadItem, sameChoice: Bool) {
+        guard case .speech(let model) = item else {
+            // The polish model: the user clicked to get Polish, so turn it on.
+            Settings.polish = true
+            rebuildMenu()
+            loadPolisher()
+            return
+        }
         // Downloaded from the menu or the setup window: that's the model the user wants, unless
         // they picked another installed model while it was downloading.
         if sameChoice || !Settings.model.isInstalled {
@@ -322,10 +363,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func refreshStatus() {
-        if downloads.isDownloading, let model = downloads.model {
+        if downloads.isDownloading, let item = downloads.item {
             status = downloads.state == .verifying
                 ? String(localized: "Checking the downloaded model…")
-                : String(localized: "Downloading \(model.displayName)… \(downloads.percentText)")
+                : String(localized: "Downloading \(item.displayName)… \(downloads.percentText)")
         } else if !Settings.model.isInstalled {
             status = String(localized: "Speech model not downloaded · Click to Download")
         } else if !Paster.isTrusted {
@@ -598,6 +639,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     @objc private func togglePolish() {
+        guard PolishModel.isInstalled else {
+            guard Settings.model.isInstalled, !downloads.isDownloading else { return }
+            downloads.start(.polish)
+            rebuildMenu()  // adds Cancel under the item
+            return
+        }
         Settings.polish.toggle()
         rebuildMenu()
         if Settings.polish {

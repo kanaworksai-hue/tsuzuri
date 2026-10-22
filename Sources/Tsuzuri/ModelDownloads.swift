@@ -4,6 +4,36 @@ import TsuzuriCore
 /// The one model download the app runs at a time, shared by the menu, the status line and
 /// the setup window. Only starts when the user clicks a download button: it is the only
 /// time Tsuzuri goes online.
+/// What can be downloaded: a speech model (with the silence detector if missing) or the polish model.
+enum DownloadItem: Equatable {
+    case speech(ASRModel)
+    case polish
+
+    var packages: [ModelPackage] {
+        switch self {
+        case .speech(let model): model.downloadPackages
+        case .polish: [.polish]
+        }
+    }
+
+    var size: Int64 { packages.reduce(0) { $0 + $1.size } }
+    var isInstalled: Bool { packages.allSatisfy(\.isInstalled) }
+
+    var logName: String {
+        switch self {
+        case .speech(let model): model.rawValue
+        case .polish: PolishModel.directoryName
+        }
+    }
+
+    var displayName: String {
+        switch self {
+        case .speech(let model): model.displayName
+        case .polish: String(localized: "Polish")
+        }
+    }
+}
+
 @MainActor
 final class ModelDownloads: ObservableObject {
     enum State: Equatable {
@@ -14,12 +44,19 @@ final class ModelDownloads: ObservableObject {
         case failed(String)
     }
 
-    /// The model being downloaded, or the one whose download failed.
-    @Published private(set) var model: ASRModel?
+    /// What is being downloaded, or what failed to download.
+    @Published private(set) var item: DownloadItem?
     @Published private(set) var state: State = .idle
-    /// A model finished downloading and is installed. The flag says whether the user kept the
-    /// same chosen model during the download (so switching to the new one is what they want).
-    var onFinished: ((ASRModel, Bool) -> Void)?
+    /// The speech model being downloaded (or that failed); nil for the polish model.
+    var model: ASRModel? {
+        if case .speech(let model) = item { return model }
+        return nil
+    }
+    /// Something finished downloading and is installed. The flag says whether the user kept the
+    /// same chosen speech model during the download (so switching to the new one is what they want).
+    var onFinished: ((DownloadItem, Bool) -> Void)?
+    /// Converts a downloaded model that needs it (the polish model); runs on the Transcriber actor.
+    var convert: (@Sendable (URL, URL) async throws -> Void)?
     private var chosenAtStart: ASRModel?
     /// Called on every state change (throttled for progress), for the menu and status line.
     var onChange: (() -> Void)?
@@ -35,6 +72,7 @@ final class ModelDownloads: ObservableObject {
     }
 
     func isDownloading(_ model: ASRModel) -> Bool { isDownloading && self.model == model }
+    var isDownloadingPolish: Bool { isDownloading && item == .polish }
 
     /// "45%", for the menu and the status line.
     var percentText: String {
@@ -47,32 +85,34 @@ final class ModelDownloads: ObservableObject {
         return message
     }
 
-    func start(_ model: ASRModel) {
+    func start(_ model: ASRModel) { start(.speech(model)) }
+
+    func start(_ item: DownloadItem) {
         guard !isDownloading else { return }
-        self.model = model
+        self.item = item
         chosenAtStart = Settings.model
-        let total = model.downloadSize
-        state = .downloading(done: model.downloadPackages.reduce(0) { $0 + downloader.stagedBytes($1) }, total: total)
+        let packages = item.packages
+        state = .downloading(done: packages.reduce(0) { $0 + downloader.stagedBytes($1) }, total: item.size)
         onChange?()
-        Log.write("download \(model.rawValue) started")
-        let packages = model.downloadPackages
+        Log.write("download \(item.logName) started")
+        let convert = convert ?? { try PolishModelConverter.convert(from: $0, to: $1) }
         task = Task {
             do {
-                try await downloader.download(packages) { done, total in
+                try await downloader.download(packages, convert: convert) { done, total in
                     Task { @MainActor [weak self] in self?.progress(done, total) }
                 }
-                Log.write("download \(model.rawValue) finished")
+                Log.write("download \(item.logName) finished")
                 state = .idle
-                self.model = nil
+                self.item = nil
                 onChange?()
-                onFinished?(model, Settings.model == chosenAtStart)
+                onFinished?(item, Settings.model == chosenAtStart)
             } catch {
                 if error is CancellationError || error as? DownloadError == .cancelled {
-                    Log.write("download \(model.rawValue) cancelled")
+                    Log.write("download \(item.logName) cancelled")
                     state = .idle
-                    self.model = nil
+                    self.item = nil
                 } else {
-                    Log.write("download \(model.rawValue) failed: \(error)")
+                    Log.write("download \(item.logName) failed: \(error)")
                     state = .failed(Self.message(for: error))
                 }
                 onChange?()

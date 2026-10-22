@@ -7,7 +7,7 @@ import TsuzuriCore
 //               [--context "hot words"] [--no-vad] [--polish] [--app NAME] [--jsonl] [--repeat N] FILE...
 //   tsuzuri-cli --polish-text [--app NAME] [--jsonl] TEXTFILE...   # polish only, no ASR
 //   tsuzuri-cli --guard-only RESULTS.jsonl...                      # re-run PolishGuard on {"in","out"} lines
-//   tsuzuri-cli --download [--model NAME]                          # download a speech model (and Silero VAD)
+//   tsuzuri-cli --download [--model NAME | --polish]               # download a speech model (and Silero VAD) or the polish model
 
 struct Options {
     var model: ASRModel = .default
@@ -34,7 +34,7 @@ func usage(exitCode: Int32 = 2) -> Never {
                        [--no-vad] [--polish] [--app NAME] [--jsonl] [--repeat N] AUDIO...
            tsuzuri-cli --polish-text [--app NAME] [--jsonl] TEXTFILE...
            tsuzuri-cli --guard-only RESULTS.jsonl...
-           tsuzuri-cli --download [--model NAME]
+           tsuzuri-cli --download [--model NAME | --polish]
       --model NAME    speech model (default \(ASRModel.default.rawValue))
       --model-dir DIR load the speech model from DIR instead of the models dir
       --language NAME spoken language, e.g. English, Japanese, German (default: auto-detect)
@@ -48,7 +48,8 @@ func usage(exitCode: Int32 = 2) -> Never {
       --polish-text   polish each line of TEXTFILE; JSONL lines use "in" (and pass id/cat/ref through)
       --guard-only    apply the polish guard to existing {"in","out"} records, no model
       --download      download the speech model (and Silero VAD) from Hugging Face into the models dir;
-                      resumes an interrupted download. HF_ENDPOINT selects a mirror
+                      resumes an interrupted download. HF_ENDPOINT selects a mirror. With --polish:
+                      the polish model (spokenly/cleanup-1, quantized to 4-bit after download)
       --polish-dir    polish model directory (default: models dir/\(PolishModel.directoryName))
       --timeout S     polish timeout in seconds (default 1.0)
       models: \(models)
@@ -150,15 +151,19 @@ let options = parse()
 
 if options.download {
     let model = options.model
-    if model.isInstalled, ModelPackage.vad.isInstalled {
-        stderr("\(model.rawValue) is already installed in \(ModelStore.root.path)")
+    // --download --polish: the polish model (downloaded, then quantized to 4-bit here).
+    let packages = options.polish ? [ModelPackage.polish] : model.downloadPackages
+    let name = options.polish ? PolishModel.directoryName : model.rawValue
+    let target = options.polish ? PolishModel.localDirectory : model.localDirectory
+    if packages.allSatisfy(\.isInstalled) {
+        stderr("\(name) is already installed in \(ModelStore.root.path)")
         exit(0)
     }
     let start = Date()
     final class LastPercent: @unchecked Sendable { var value = -1; let lock = NSLock() }
     let last = LastPercent()
     do {
-        try await ModelDownloader().download(model.downloadPackages) { done, total in
+        try await ModelDownloader().download(packages) { done, total in
             let percent = total > 0 ? Int(done * 100 / total) : 100
             let changed = last.lock.withLock {
                 defer { last.value = percent }
@@ -175,8 +180,8 @@ if options.download {
         exit(1)
     }
     let seconds = Date().timeIntervalSince(start)
-    stderr(String(format: "downloaded %@ to %@ in %.1fs", model.rawValue, model.localDirectory.path, seconds))
-    if options.jsonl { emit(["event": "done", "model": model.rawValue, "seconds": seconds]) }
+    stderr(String(format: "downloaded %@ to %@ in %.1fs", name, target.path, seconds))
+    if options.jsonl { emit(["event": "done", "model": name, "seconds": seconds]) }
     exit(0)
 }
 let transcriber = Transcriber()

@@ -4,7 +4,6 @@
 "(None yet)" = "(아직 없음)";
 "Clear" = "지우기";
 "Model" = "모델";
-"%@ (not downloaded)" = "%@(다운로드되지 않음)";
 "Accurate" = "정확";
 "Fast" = "빠름";
 "Spoken Language: %@" = "인식 언어: %@";

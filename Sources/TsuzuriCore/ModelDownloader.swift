@@ -16,14 +16,18 @@ public struct ModelPackage: Sendable {
     public var revision: String
     public var directoryName: String
     public var files: [ModelFile]
+    /// Set when the download is converted after verification (the polish model is quantized
+    /// on the Mac): the model directory the conversion produces.
+    public var convertedName: String? = nil
 
     public var size: Int64 { files.reduce(0) { $0 + $1.size } }
-    public var localDirectory: URL { ModelStore.root.appendingPathComponent(directoryName) }
+    public var localDirectory: URL { ModelStore.root.appendingPathComponent(convertedName ?? directoryName) }
 
     /// Every file is there (README aside), so a copy missing its tokenizer files counts as not
     /// downloaded and the app offers the download. Sizes aren't compared: a copy downloaded by
     /// hand may come from a newer revision of the repo.
     public var isInstalled: Bool {
+        if convertedName != nil { return ModelStore.isInstalled(localDirectory) }
         let fm = FileManager.default
         return ModelStore.isInstalled(localDirectory) && files.allSatisfy {
             $0.path == "README.md" || fm.fileExists(atPath: localDirectory.appendingPathComponent($0.path).path)
@@ -59,6 +63,23 @@ extension ModelPackage {
             ModelFile(path: "model.safetensors", size: 2_179_454,
                       sha256: "185e0bc3ee2c48ce425a37209fe917a1aca22ab6b85799430dd1b4894087a8b8"),
         ])
+
+    /// spokenly/cleanup-1 as published (bfloat16, Apache-2.0); converted to 4-bit MLX after download.
+    public static let polish = ModelPackage(
+        repo: PolishModel.sourceRepo, revision: "a83ba762e3c4ab6a3a20814ec68050f381d92cf8",
+        directoryName: "cleanup-1", files: [
+            ModelFile(path: "LICENSE", size: 11358, gitSHA1: "d645695673349e3947e8e5ae42332d0ac3164cd7"),
+            ModelFile(path: "NOTICE", size: 504, gitSHA1: "255f586d5f5adf9cab3a516971dc53f9e5473cc7"),
+            ModelFile(path: "README.md", size: 7574, gitSHA1: "932844f5b2275688fd932c01e605b745c41e1f08"),
+            ModelFile(path: "chat_template.jinja", size: 186, gitSHA1: "02c9544137743178f8120e078ea0e1e18f9fa2eb"),
+            ModelFile(path: "config.json", size: 784, gitSHA1: "fb30c6ce97414c181e345e9da55a99199876edb6"),
+            ModelFile(path: "generation_config.json", size: 138, gitSHA1: "cbbb3133034e192527e5321b4c679154e4819ab8"),
+            ModelFile(path: "tokenizer_config.json", size: 696, gitSHA1: "1127e125def6d7caf411d32f791f9d3d20ccd991"),
+            ModelFile(path: "tokenizer.json", size: 11_422_650,
+                      sha256: "be75606093db2094d7cd20f3c2f385c212750648bd6ea4fb2bf507a6a4c55506"),
+            ModelFile(path: "model.safetensors", size: 1_192_134_935,
+                      sha256: "dcf73ee83277b6dc4a40e8d9630f4e725f2499ed009be4ae0dd8b35d3ae38400"),
+        ], convertedName: PolishModel.directoryName)
 
     public static func asr(_ model: ASRModel) -> ModelPackage {
         switch model {
@@ -141,7 +162,11 @@ public final class ModelDownloader: @unchecked Sendable {
 
     /// Downloads `packages` in order. `progress` gets (bytes done, bytes total) across all of them,
     /// counting bytes already on disk from an earlier attempt.
+    /// - Parameter convert: turns a verified download that needs it (`convertedName`) into the
+    ///   model directory. The app passes one that runs on the `Transcriber` actor, so MLX is
+    ///   never driven from two threads.
     public func download(_ packages: [ModelPackage],
+                         convert: @Sendable (URL, URL) async throws -> Void = { try PolishModelConverter.convert(from: $0, to: $1) },
                          progress: @escaping @Sendable (Int64, Int64) -> Void) async throws {
         let todo = packages.filter { !$0.isInstalled }
         let total = todo.reduce(0) { $0 + $1.size }
@@ -151,7 +176,8 @@ public final class ModelDownloader: @unchecked Sendable {
 
         // Check the space up front: running out halfway wastes the user's time and bandwidth.
         let onDisk = todo.reduce(0) { $0 + stagedBytes($1) }
-        let needed = total - onDisk
+        // A converted model also needs room for the result (the 4-bit polish model is ~0.3× the original).
+        let needed = total - onDisk + todo.filter { $0.convertedName != nil }.reduce(0) { $0 + $1.size / 3 }
         if let available = Self.availableSpace(Self.stagingRoot), available < needed + 200_000_000 {
             throw DownloadError.diskFull(needed: needed, available: available)
         }
@@ -168,7 +194,7 @@ public final class ModelDownloader: @unchecked Sendable {
                     - min(fileSize(staging.appendingPathComponent(file.path)) ?? 0, file.size)
                 try await fetch(file, of: package, into: staging) { progress(others + $0, total) }
             }
-            try install(staging, as: package)
+            try await install(staging, as: package, convert: convert)
         }
         progress(total, total)
     }
@@ -188,7 +214,7 @@ public final class ModelDownloader: @unchecked Sendable {
 
     /// Partial downloads of models that are installed by now (e.g. by hand) only take up space.
     public static func removeStaleStaging() {
-        let known = ASRModel.allCases.map(\.package) + [ModelPackage.vad]
+        let known = ASRModel.allCases.map(\.package) + [ModelPackage.vad, ModelPackage.polish]
         for package in known where package.isInstalled {
             try? FileManager.default.removeItem(at: stagingRoot.appendingPathComponent(package.directoryName))
         }
@@ -202,14 +228,30 @@ public final class ModelDownloader: @unchecked Sendable {
         }
     }
 
-    private func install(_ staging: URL, as package: ModelPackage) throws {
+    private func install(_ staging: URL, as package: ModelPackage,
+                         convert: @Sendable (URL, URL) async throws -> Void) async throws {
         let fm = FileManager.default
         let target = package.localDirectory
+        var source = staging
+        if let convertedName = package.convertedName {
+            // Convert next to the staging folder, so a failed or interrupted conversion never
+            // leaves a half-written model in the models folder.
+            source = Self.stagingRoot.appendingPathComponent(convertedName + ".converting")
+            try? fm.removeItem(at: source)
+            do {
+                try await convert(staging, source)
+                try Task.checkCancellation()  // cancelled while converting: don't install
+            } catch {
+                try? fm.removeItem(at: source)
+                throw error
+            }
+        }
         // An incomplete copy from a manual download is in the way: replace it.
         if fm.fileExists(atPath: target.path) {
             try fm.removeItem(at: target)
         }
-        try fm.moveItem(at: staging, to: target)
+        try fm.moveItem(at: source, to: target)
+        if source != staging { try? fm.removeItem(at: staging) }
     }
 
     private func fetch(_ file: ModelFile, of package: ModelPackage, into staging: URL,
