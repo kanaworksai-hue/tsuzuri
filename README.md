@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/banner.jpg" alt="Tsuzuri 綴: offline voice dictation for Mac. Hold a key, speak, let go. Chinese, English, Japanese, or any mix" width="820">
+<img src="docs/assets/banner-en.jpg" alt="Tsuzuri 綴: offline voice dictation for Mac. Hold a key, speak, let go. Chinese, English, Japanese, or any mix" width="820">
 
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-4b5bff?style=flat-square"></a>
@@ -11,6 +11,8 @@
 </p>
 
 <p><a href="https://github.com/kanaworksai-hue"><img src="docs/brand/kanaworks-mark.png" height="22" alt="" align="absmiddle"></a>&nbsp;<a href="https://github.com/kanaworksai-hue"><b>A KanaWorks_AI project</b></a></p>
+
+**English** | [日本語](README.ja.md) | [简体中文](README.zh-CN.md)
 
 [Install](#-install) · [Use it](#%EF%B8%8F-use-it) · [Polish](#-polish-optional) · [Build from source](#-build-from-source) · [Command line](#-command-line) · [FAQ](#-faq)
 
@@ -24,7 +26,7 @@ Recognition runs entirely on your Mac with [Qwen3-ASR](https://github.com/QwenLM
 
 - **Menu bar app**, no Dock icon
 - **Push-to-talk**: hold the trigger key (right ⌥ Option by default; right ⌘ Command or Fn also work) while you speak, or tap it to start and tap again to stop. Esc cancels.
-- **Mixed-language speech**: "明天的 meeting 改到三時からにしよう" just works
+- **Mixed-language speech**: "明日の stand-up は skip して、PR の review を先にやろう" just works
 - **Works in any app**, also with Chinese or Japanese input methods turned on: the text is pasted through the clipboard, and your clipboard is restored afterwards
 - **Nothing you said gets lost**: if no text field has focus, the text stays on the clipboard, and the menu keeps your last 10 results (in memory only)
 - **Two model sizes**: Qwen3-ASR 1.7B (more accurate) and 0.6B (faster)
@@ -74,7 +76,7 @@ From the menu bar icon you can choose the model, the spoken language (Auto for m
 
 ## 🪡 Polish (optional)
 
-Polish runs a second small model, [spokenly/cleanup-1](https://huggingface.co/spokenly/cleanup-1), after recognition. It adds punctuation, removes filler words ("um", "那个", "えーと"), keeps only the corrected version when you correct yourself, and writes numbers as digits. It never translates or answers what you said.
+Polish runs a second small model, [spokenly/cleanup-1](https://huggingface.co/spokenly/cleanup-1), after recognition. It adds punctuation, removes filler words ("um", "uh", "えーと"), keeps only the corrected version when you correct yourself, and writes numbers as digits. It never translates or answers what you said.
 
 If the result looks wrong (much longer, a different script, words or numbers you didn't say, or slower than 1 second), Tsuzuri pastes the raw transcript instead. Polish is skipped in terminal apps, where you usually dictate commands. It adds about 0.35 GB of memory.
 
