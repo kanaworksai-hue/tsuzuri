@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/assets/banner-ja.jpg" alt="Tsuzuri 綴：Mac 用オフライン音声入力。キーを押して話し、離すだけ。30 言語＋中国語の方言 22 種、混ぜて話しても OK" width="820">
+<img src="docs/assets/banner-ja.jpg" alt="Tsuzuri 綴：Mac 用オフライン音声入力。キーを押して話し、離すだけ。30 言語に対応、混ぜて話しても OK" width="820">
 
 <p>
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-4b5bff?style=flat-square"></a>
