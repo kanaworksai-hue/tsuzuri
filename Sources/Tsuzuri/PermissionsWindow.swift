@@ -2,29 +2,44 @@ import AppKit
 import AVFoundation
 import SwiftUI
 
-/// First-run guide for the two permissions Tsuzuri needs. Without Accessibility the app
-/// never sees the shortcut key, so pressing it can't give feedback: this window (opened at
-/// launch and from the menu) is where the user finds out.
+/// First-run guide: the speech model and the two permissions Tsuzuri needs. Without
+/// Accessibility the app never sees the shortcut key, so pressing it can't give feedback:
+/// this window (opened at launch and from the menu) is where the user finds out.
 @MainActor
 final class PermissionsWindow {
     private var window: NSWindow?
-    private let model = Model()
+    private let model: Model
+
+    init(downloads: ModelDownloads) {
+        model = Model(downloads: downloads)
+    }
 
     final class Model: ObservableObject {
         @Published var microphone = AVCaptureDevice.authorizationStatus(for: .audio)
         @Published var accessibility = Paster.isTrusted
-        var allGranted: Bool { microphone == .authorized && accessibility }
+        @Published var speechModel = Settings.model
+        @Published var speechModelInstalled = Settings.model.isInstalled
+        let downloads: ModelDownloads
+        var allGranted: Bool { microphone == .authorized && accessibility && speechModelInstalled }
+
+        init(downloads: ModelDownloads) {
+            self.downloads = downloads
+        }
 
         func refresh() {
             let mic = AVCaptureDevice.authorizationStatus(for: .audio)
             if mic != microphone { microphone = mic }
             let trusted = Paster.isTrusted
             if trusted != accessibility { accessibility = trusted }
+            if Settings.model != speechModel { speechModel = Settings.model }
+            let installed = Settings.model.isInstalled
+            if installed != speechModelInstalled { speechModelInstalled = installed }
         }
     }
 
     static var needed: Bool {
         !Paster.isTrusted || AVCaptureDevice.authorizationStatus(for: .audio) != .authorized
+            || !Settings.model.isInstalled
     }
 
     var isVisible: Bool { window?.isVisible ?? false }
@@ -54,7 +69,7 @@ final class PermissionsWindow {
         window.setFrameOrigin(NSPoint(x: frame.maxX - size.width - 16, y: frame.maxY - size.height - 8))
     }
 
-    /// Called by the app's permission poll so the rows turn green while the window is open.
+    /// Called by the app's permission poll (and after a download) so the rows turn green while the window is open.
     func refresh() {
         guard isVisible else { return }
         model.refresh()
@@ -63,13 +78,22 @@ final class PermissionsWindow {
 
 private struct PermissionsView: View {
     @ObservedObject var model: PermissionsWindow.Model
+    @ObservedObject var downloads: ModelDownloads
     let close: () -> Void
+
+    init(model: PermissionsWindow.Model, close: @escaping () -> Void) {
+        self.model = model
+        self.downloads = model.downloads
+        self.close = close
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
-            Text("Tsuzuri needs two permissions. Everything stays on this Mac.")
+            Text("Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac.")
                 .font(.headline)
                 .fixedSize(horizontal: false, vertical: true)
+
+            speechModelRow
 
             row(granted: model.microphone == .authorized,
                 symbol: "mic",
@@ -107,6 +131,70 @@ private struct PermissionsView: View {
         }
         .padding(20)
         .frame(width: 460)
+    }
+
+    /// Download button, progress with Cancel, or the error with Try Again.
+    private var speechModelRow: some View {
+        // The model being downloaded (e.g. a second one, started from the menu), else the chosen one.
+        let speech = downloads.model ?? model.speechModel
+        let installed = speech == model.speechModel ? model.speechModelInstalled : speech.isInstalled
+        let failure = downloads.failure(for: speech)
+        return HStack(alignment: .top, spacing: 12) {
+            Image(systemName: "waveform")
+                .font(.title2)
+                .frame(width: 28)
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Speech Model").font(.body.weight(.semibold))
+                Text("\(speech.displayName) turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet.")
+                    .font(.callout)
+                    .foregroundStyle(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                if downloads.isDownloading(speech) {
+                    downloadProgress
+                } else if let failure {
+                    Text(failure)
+                        .font(.callout)
+                        .foregroundStyle(.red)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+            }
+            Spacer(minLength: 8)
+            if installed {
+                Label(String(localized: "Downloaded"), systemImage: "checkmark.circle.fill")
+                    .foregroundStyle(.green)
+                    .fixedSize()
+            } else if downloads.isDownloading(speech) {
+                Button(String(localized: "Cancel")) { downloads.cancel() }
+                    .fixedSize()
+            } else {
+                Button(failure == nil
+                       ? String(localized: "Download (\(ModelDownloads.size(speech.downloadSize)))")
+                       : String(localized: "Try Again")) {
+                    downloads.start(speech)
+                }
+                .disabled(downloads.isDownloading)  // another model is downloading
+                .fixedSize()
+            }
+        }
+    }
+
+    @ViewBuilder private var downloadProgress: some View {
+        switch downloads.state {
+        case .downloading(let done, let total):
+            ProgressView(value: Double(done), total: Double(max(total, 1)))
+                .padding(.top, 4)
+            Text("\(ModelDownloads.size(done)) of \(ModelDownloads.size(total)) (\(downloads.percentText))")
+                .font(.callout.monospacedDigit())
+                .foregroundStyle(.secondary)
+        case .verifying:
+            ProgressView(value: 1)
+                .padding(.top, 4)
+            Text("Checking the download…")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+        case .idle, .failed:
+            EmptyView()
+        }
     }
 
     private var microphoneButton: Button<Text> {

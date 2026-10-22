@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Tsuzuri の設定";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri には 2 つの許可が必要です。データはすべてこの Mac の中だけで処理されます。";
 "Microphone" = "マイク";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "音声入力中に声を聞き取るため：ショートカットキーを押している間、または短押しから次の短押しまで。";
 "Accessibility" = "アクセシビリティ";
@@ -55,3 +54,27 @@
 "Permissions…" = "権限…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "ショートカットにはアクセシビリティの許可が必要です · クリックして設定";
 "Microphone access is off (menu → Permissions…)" = "マイクへのアクセスがオフです（メニュー → 権限…）";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri には音声モデルと 2 つの許可が必要です。あなたの声がこの Mac の外に出ることはありません。";
+"Speech Model" = "音声モデル";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ はこの Mac 上で声を文字に変換します。Hugging Face（huggingface.co）から一度だけダウンロードします。認識そのものはインターネットを使いません。";
+"Download (%@)" = "ダウンロード（%@）";
+"Downloaded" = "ダウンロード済み";
+"Cancel" = "キャンセル";
+"Try Again" = "再試行";
+"%@ of %@ (%@)" = "%@ / %@（%@）";
+"Checking the download…" = "ダウンロードしたファイルを確認中…";
+"Checking the downloaded model…" = "ダウンロードしたモデルを確認中…";
+"%@ · Download (%@)…" = "%@ · ダウンロード（%@）…";
+"%@ · Downloading %@" = "%@ · ダウンロード中 %@";
+"%@ · Checking…" = "%@ · 確認中…";
+"Downloading %@… %@" = "%@ をダウンロード中… %@";
+"Speech model not downloaded · Click to Download" = "音声モデルが未ダウンロードです · クリックしてダウンロード";
+"Downloading the speech model… %@" = "音声モデルをダウンロード中… %@";
+"Download the speech model first" = "先に音声モデルをダウンロードしてください";
+"No internet connection. Connect and try again." = "インターネットに接続されていません。接続してから再試行してください。";
+"Not enough disk space. Free up %@ and try again." = "ディスクの空き容量が足りません。%@ 空けてから再試行してください。";
+"The disk is full. Free up some space and try again." = "ディスクがいっぱいです。空き容量を作ってから再試行してください。";
+"The download was damaged. Try again." = "ダウンロードしたファイルが壊れています。再試行してください。";
+"Download failed (%@). Try again later." = "ダウンロードに失敗しました（%@）。しばらくしてから再試行してください。";

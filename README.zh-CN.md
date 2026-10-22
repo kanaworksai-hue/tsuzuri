@@ -43,9 +43,21 @@
 
 从[最新发布](https://github.com/kanaworksai-hue/tsuzuri/releases/latest)下载 `Tsuzuri-<版本>.dmg`，打开后把 **Tsuzuri** 拖进 **应用程序** 文件夹。App 已经过 Apple 签名和公证。
 
-### 2. 下载语音识别模型
+### 2. 第一次运行
 
-App 里不包含模型。Tsuzuri 从 `~/Library/Application Support/Tsuzuri/Models/` 读取模型。最简单的下载方法是用 [uv](https://docs.astral.sh/uv/)（`brew install uv` 安装）。把下面这段粘贴到终端里运行：
+1. 从应用程序文件夹打开 **Tsuzuri**，菜单栏会出现一个小图标，并弹出「设置 Tsuzuri」窗口。
+2. **语音模型：** 点「下载（1.6 GB）」。窗口里会显示进度，可以取消，之后再从断点继续。下载完成后这一行变成绿色，模型自动加载。
+3. **麦克风：** 点「允许…」。
+4. **辅助功能：** 点「打开系统设置…」后把 Tsuzuri 打开。快捷键和粘贴都需要辅助功能权限，打开之前按快捷键没有反应，菜单栏图标会带一个警告标记。
+
+全部变绿就可以用了。之后也可以从菜单「权限…」再次打开这个窗口。其他模型（更快的 0.6B、8bit 版）可以在菜单「模型」里下载。
+
+Tsuzuri 只在下载模型时联网：只有你点「下载」时，才会从 [Hugging Face](https://huggingface.co/mlx-community) 下载一次模型文件，并用固定的校验值检查。录音和识别从不联网。如果访问 Hugging Face 很慢或连不上，可以改用镜像：`defaults write com.kanaworks.tsuzuri hfEndpoint https://hf-mirror.com`
+
+<details>
+<summary>改用终端下载模型</summary>
+
+Tsuzuri 从 `~/Library/Application Support/Tsuzuri/Models/` 读取模型。用 [uv](https://docs.astral.sh/uv/)（`brew install uv` 安装）：
 
 ```bash
 M="$HOME/Library/Application Support/Tsuzuri/Models"
@@ -54,15 +66,9 @@ for repo in Qwen3-ASR-1.7B-4bit silero-vad; do
 done
 ```
 
-大约要下载 1.6 GB。如果还想要更快、更小的模型，把 `Qwen3-ASR-0.6B-8bit` 加到列表里（约 1 GB）。已下载的模型可以在菜单里切换。
+想要更快、更小的模型，在列表里加上 `Qwen3-ASR-0.6B-8bit`（约 1 GB）。如果 Tsuzuri 正在运行，直接按快捷键就会加载。
 
-> 如果你已经装了 Hugging Face CLI（`hf`），也可以用 `hf download mlx-community/<repo> --local-dir "$M/<repo>"`。
-
-### 3. 第一次运行
-
-1. 从应用程序文件夹打开 **Tsuzuri**，菜单栏会出现一个小图标。
-2. 会弹出「设置 Tsuzuri」窗口，请求两项权限：**麦克风** 点「允许…」，**辅助功能** 点「打开系统设置…」后把 Tsuzuri 打开。快捷键和粘贴都需要辅助功能权限，打开之前按快捷键没有反应，菜单栏图标会带一个警告标记。两项都允许后窗口会变成绿色。之后也可以从菜单「权限…」再次打开。
-3. 如果是在 Tsuzuri 运行时下载的语音识别模型，直接按快捷键就会加载（也可以退出后重新打开）。
+</details>
 
 ## 🎙️ 使用方法
 
@@ -94,7 +100,7 @@ Tsuzuri 能识别 Qwen3-ASR 支持的全部语言。默认的 **自动** 模式�
 
 如果润色结果看起来不对（变长很多、文字种类变了、出现你没说过的词或数字、超过 1 秒），Tsuzuri 会改为粘贴润色前的原始结果。在终端类应用里不润色，因为在那里说的通常是命令。润色会多占用约 0.35 GB 内存。
 
-这个模型没有现成的 MLX 版本，需要在你的 Mac 上转换一次（会下载 1.2 GB 的原始模型）：
+这个模型没有现成的 MLX 版本，所以暂时不能在 App 里下载，需要在你的 Mac 上转换一次（会下载 1.2 GB 的原始模型）：
 
 ```bash
 uvx --from 'mlx-lm==0.32.*' mlx_lm.convert --hf-path spokenly/cleanup-1 -q --q-bits 4 \
@@ -136,13 +142,14 @@ rm -rf /Applications/Tsuzuri.app && ditto build/Tsuzuri.app /Applications/Tsuzur
 .build/release/tsuzuri-cli --jsonl *.wav                      # 每个文件输出一行 JSON（含耗时）
 .build/release/tsuzuri-cli --polish recording.wav             # 识别后再润色
 .build/release/tsuzuri-cli --polish-text lines.txt            # 只润色文字
+.build/release/tsuzuri-cli --download --model Qwen3-ASR-0.6B-8bit   # 下载模型（和 App 里一样）
 ```
 
 运行 `tsuzuri-cli --help` 查看全部选项。想把模型放在别的文件夹，设置 `TSUZURI_MODELS_DIR` 即可。
 
 ## ❓ 常见问题
 
-**会有数据离开我的 Mac 吗？** 不会。录音、识别和润色都在本地运行。只有在*你自己*运行上面的下载命令时才会用到网络。
+**会有数据离开我的 Mac 吗？** 不会。录音、识别和润色都在本地运行。只有*你自己*点「下载」（或运行上面的命令）下载模型时才会用到网络。
 
 **我说的话会被保存吗？** 声音不会写入磁盘。最近的识别结果只为菜单保存在内存里，退出就没了。`~/Library/Logs/Tsuzuri.log` 只记录耗时和错误，不记录你说的内容（调试时可以用 `defaults write com.kanaworks.tsuzuri logText -bool true` 让它记录文字）。
 

@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "A Tsuzuri beállítása";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "A Tsuzurinak két engedélyre van szüksége. Minden ezen a Macen marad.";
 "Microphone" = "Mikrofon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Hogy hallja Önt diktálás közben: amíg nyomva tartja a billentyűparancsot, vagy az egyik koppintástól a következőig.";
 "Accessibility" = "Kisegítő lehetőségek";
@@ -55,3 +54,27 @@
 "Permissions…" = "Engedélyek…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "A billentyűparancshoz engedély kell a Kisegítő lehetőségekben · Kattintson a beállításhoz";
 "Microphone access is off (menu → Permissions…)" = "A mikrofonhoz való hozzáférés ki van kapcsolva (menü → Engedélyek…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "A Tsuzurinak szüksége van egy beszédmodellre és két engedélyre. A hangja soha nem hagyja el ezt a Macet.";
+"Speech Model" = "Beszédmodell";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "A(z) %@ ezen a Macen alakítja szöveggé a hangját. Csak egyszer kell letölteni a Hugging Face-ről (huggingface.co); maga a felismerés soha nem használja az internetet.";
+"Download (%@)" = "Letöltés (%@)";
+"Downloaded" = "Letöltve";
+"Cancel" = "Mégse";
+"Try Again" = "Újrapróbálkozás";
+"%@ of %@ (%@)" = "%@ / %@ (%@)";
+"Checking the download…" = "A letöltés ellenőrzése…";
+"Checking the downloaded model…" = "A letöltött modell ellenőrzése…";
+"%@ · Download (%@)…" = "%@ · Letöltés (%@)…";
+"%@ · Downloading %@" = "%@ · Letöltés: %@";
+"%@ · Checking…" = "%@ · Ellenőrzés…";
+"Downloading %@… %@" = "Letöltés: %@… %@";
+"Speech model not downloaded · Click to Download" = "A beszédmodell nincs letöltve · Kattintson a letöltéshez";
+"Downloading the speech model… %@" = "A beszédmodell letöltése… %@";
+"Download the speech model first" = "Előbb töltse le a beszédmodellt";
+"No internet connection. Connect and try again." = "Nincs internetkapcsolat. Csatlakozzon, majd próbálja újra.";
+"Not enough disk space. Free up %@ and try again." = "Nincs elég szabad hely a lemezen. Szabadítson fel %@ helyet, majd próbálja újra.";
+"The disk is full. Free up some space and try again." = "A lemez megtelt. Szabadítson fel némi helyet, majd próbálja újra.";
+"The download was damaged. Try again." = "A letöltött fájl sérült. Próbálja újra.";
+"Download failed (%@). Try again later." = "A letöltés sikertelen (%@). Próbálja újra később.";

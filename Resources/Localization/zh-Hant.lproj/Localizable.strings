@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "設定 Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri 需要兩項權限。所有資料都只會留在這台 Mac 上。";
 "Microphone" = "麥克風";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "聽寫時用來聽你說話：按住快速鍵期間，或從輕按一次到再輕按一次。";
 "Accessibility" = "輔助使用";
@@ -55,3 +54,27 @@
 "Permissions…" = "權限…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "快速鍵需要輔助使用權限 · 按一下來設定";
 "Microphone access is off (menu → Permissions…)" = "麥克風權限未開啟（選單 → 權限…）";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri 需要一個語音模型和兩項權限。你的聲音不會離開這台 Mac。";
+"Speech Model" = "語音模型";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ 在這台 Mac 上把語音轉成文字。只需從 Hugging Face（huggingface.co）下載一次，辨識本身從不連網。";
+"Download (%@)" = "下載（%@）";
+"Downloaded" = "已下載";
+"Cancel" = "取消";
+"Try Again" = "再試一次";
+"%@ of %@ (%@)" = "%@ / %@（%@）";
+"Checking the download…" = "正在檢查下載的檔案…";
+"Checking the downloaded model…" = "正在檢查下載的模型…";
+"%@ · Download (%@)…" = "%@ · 下載（%@）…";
+"%@ · Downloading %@" = "%@ · 正在下載 %@";
+"%@ · Checking…" = "%@ · 正在檢查…";
+"Downloading %@… %@" = "正在下載 %@… %@";
+"Speech model not downloaded · Click to Download" = "尚未下載語音模型 · 按一下以下載";
+"Downloading the speech model… %@" = "正在下載語音模型… %@";
+"Download the speech model first" = "請先下載語音模型";
+"No internet connection. Connect and try again." = "沒有網路連線。請連接網路後再試一次。";
+"Not enough disk space. Free up %@ and try again." = "磁碟空間不足。請騰出 %@ 後再試一次。";
+"The disk is full. Free up some space and try again." = "磁碟已滿。請騰出一些空間後再試一次。";
+"The download was damaged. Try again." = "下載的檔案已損毀。請再試一次。";
+"Download failed (%@). Try again later." = "下載失敗（%@）。請稍後再試一次。";

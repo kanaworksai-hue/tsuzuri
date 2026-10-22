@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Stel Tsuzuri in";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri heeft twee toestemmingen nodig. Alles blijft op deze Mac.";
 "Microphone" = "Microfoon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Om je te horen terwijl je dicteert: zolang je de sneltoets ingedrukt houdt, of van de ene tik tot de volgende.";
 "Accessibility" = "Toegankelijkheid";
@@ -55,3 +54,27 @@
 "Permissions…" = "Toestemmingen…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Sneltoets heeft toegankelijkheidstoestemming nodig · Klik om in te stellen";
 "Microphone access is off (menu → Permissions…)" = "Microfoontoegang staat uit (menu → Toestemmingen…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri heeft een spraakmodel en twee toestemmingen nodig. Je stem verlaat deze Mac nooit.";
+"Speech Model" = "Spraakmodel";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ zet je stem om in tekst op deze Mac. Het model wordt één keer gedownload van Hugging Face (huggingface.co); de herkenning zelf gebruikt nooit internet.";
+"Download (%@)" = "Download (%@)";
+"Downloaded" = "Gedownload";
+"Cancel" = "Annuleer";
+"Try Again" = "Probeer opnieuw";
+"%@ of %@ (%@)" = "%@ van %@ (%@)";
+"Checking the download…" = "Download controleren…";
+"Checking the downloaded model…" = "Gedownload model controleren…";
+"%@ · Download (%@)…" = "%@ · Download (%@)…";
+"%@ · Downloading %@" = "%@ · Downloaden %@";
+"%@ · Checking…" = "%@ · Controleren…";
+"Downloading %@… %@" = "%@ downloaden… %@";
+"Speech model not downloaded · Click to Download" = "Spraakmodel niet gedownload · Klik om te downloaden";
+"Downloading the speech model… %@" = "Spraakmodel downloaden… %@";
+"Download the speech model first" = "Download eerst het spraakmodel";
+"No internet connection. Connect and try again." = "Geen internetverbinding. Maak verbinding en probeer het opnieuw.";
+"Not enough disk space. Free up %@ and try again." = "Niet genoeg schijfruimte. Maak %@ vrij en probeer het opnieuw.";
+"The disk is full. Free up some space and try again." = "De schijf is vol. Maak wat ruimte vrij en probeer het opnieuw.";
+"The download was damaged. Try again." = "De download is beschadigd. Probeer het opnieuw.";
+"Download failed (%@). Try again later." = "Downloaden mislukt (%@). Probeer het later opnieuw.";

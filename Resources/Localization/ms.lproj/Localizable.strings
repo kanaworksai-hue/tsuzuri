@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Sediakan Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri memerlukan dua kebenaran. Semuanya kekal pada Mac ini.";
 "Microphone" = "Mikrofon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Untuk mendengar anda semasa mengimlak: selagi anda menahan kekunci pintasan, atau dari satu ketikan hingga ketikan seterusnya.";
 "Accessibility" = "Kebolehcapaian";
@@ -55,3 +54,27 @@
 "Permissions…" = "Kebenaran…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Pintasan memerlukan kebenaran Kebolehcapaian · Klik untuk sediakan";
 "Microphone access is off (menu → Permissions…)" = "Akses mikrofon dimatikan (menu → Kebenaran…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri memerlukan model pertuturan dan dua kebenaran. Suara anda tidak pernah meninggalkan Mac ini.";
+"Speech Model" = "Model Pertuturan";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ menukar suara anda kepada teks pada Mac ini. Ia dimuat turun sekali sahaja daripada Hugging Face (huggingface.co); pengecaman itu sendiri tidak pernah menggunakan internet.";
+"Download (%@)" = "Muat Turun (%@)";
+"Downloaded" = "Telah Dimuat Turun";
+"Cancel" = "Batal";
+"Try Again" = "Cuba Lagi";
+"%@ of %@ (%@)" = "%@ daripada %@ (%@)";
+"Checking the download…" = "Menyemak muat turun…";
+"Checking the downloaded model…" = "Menyemak model yang dimuat turun…";
+"%@ · Download (%@)…" = "%@ · Muat Turun (%@)…";
+"%@ · Downloading %@" = "%@ · Memuat turun %@";
+"%@ · Checking…" = "%@ · Menyemak…";
+"Downloading %@… %@" = "Memuat turun %@… %@";
+"Speech model not downloaded · Click to Download" = "Model pertuturan belum dimuat turun · Klik untuk Muat Turun";
+"Downloading the speech model… %@" = "Memuat turun model pertuturan… %@";
+"Download the speech model first" = "Muat turun model pertuturan dahulu";
+"No internet connection. Connect and try again." = "Tiada sambungan internet. Sambung dan cuba lagi.";
+"Not enough disk space. Free up %@ and try again." = "Ruang cakera tidak mencukupi. Kosongkan %@ dan cuba lagi.";
+"The disk is full. Free up some space and try again." = "Cakera penuh. Kosongkan sedikit ruang dan cuba lagi.";
+"The download was damaged. Try again." = "Fail yang dimuat turun telah rosak. Cuba lagi.";
+"Download failed (%@). Try again later." = "Muat turun gagal (%@). Cuba lagi kemudian.";

@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Atur Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri memerlukan dua izin. Semuanya tetap di Mac ini.";
 "Microphone" = "Mikrofon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Untuk mendengar Anda saat mendikte: selama Anda menahan tombol pintasan, atau dari satu ketukan ke ketukan berikutnya.";
 "Accessibility" = "Aksesibilitas";
@@ -55,3 +54,27 @@
 "Permissions…" = "Izin…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Pintasan memerlukan izin Aksesibilitas · Klik untuk mengatur";
 "Microphone access is off (menu → Permissions…)" = "Akses mikrofon nonaktif (menu → Izin…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri memerlukan model ucapan dan dua izin. Suara Anda tidak pernah meninggalkan Mac ini.";
+"Speech Model" = "Model Ucapan";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ mengubah suara Anda menjadi teks di Mac ini. Model ini diunduh sekali saja dari Hugging Face (huggingface.co); pengenalan ucapan itu sendiri tidak pernah menggunakan internet.";
+"Download (%@)" = "Unduh (%@)";
+"Downloaded" = "Telah Diunduh";
+"Cancel" = "Batalkan";
+"Try Again" = "Coba Lagi";
+"%@ of %@ (%@)" = "%@ dari %@ (%@)";
+"Checking the download…" = "Memeriksa unduhan…";
+"Checking the downloaded model…" = "Memeriksa model yang diunduh…";
+"%@ · Download (%@)…" = "%@ · Unduh (%@)…";
+"%@ · Downloading %@" = "%@ · Mengunduh %@";
+"%@ · Checking…" = "%@ · Memeriksa…";
+"Downloading %@… %@" = "Mengunduh %@… %@";
+"Speech model not downloaded · Click to Download" = "Model ucapan belum diunduh · Klik untuk Mengunduh";
+"Downloading the speech model… %@" = "Mengunduh model ucapan… %@";
+"Download the speech model first" = "Unduh model ucapan terlebih dahulu";
+"No internet connection. Connect and try again." = "Tidak ada koneksi internet. Sambungkan, lalu coba lagi.";
+"Not enough disk space. Free up %@ and try again." = "Ruang disk tidak cukup. Kosongkan %@, lalu coba lagi.";
+"The disk is full. Free up some space and try again." = "Disk penuh. Kosongkan sebagian ruang, lalu coba lagi.";
+"The download was damaged. Try again." = "Unduhan rusak. Coba lagi.";
+"Download failed (%@). Try again later." = "Unduhan gagal (%@). Coba lagi nanti.";

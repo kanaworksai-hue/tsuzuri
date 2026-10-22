@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Настройка Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri нужны два разрешения. Все данные остаются на этом Mac.";
 "Microphone" = "Микрофон";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Чтобы слышать вас во время диктовки: пока вы удерживаете сочетание клавиш или от одного нажатия до следующего.";
 "Accessibility" = "Универсальный доступ";
@@ -55,3 +54,27 @@
 "Permissions…" = "Разрешения…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Для сочетания клавиш нужен универсальный доступ · Нажмите, чтобы настроить";
 "Microphone access is off (menu → Permissions…)" = "Доступ к микрофону выключен (меню → Разрешения…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri нужны модель распознавания речи и два разрешения. Ваш голос никогда не покидает этот Mac.";
+"Speech Model" = "Речевая модель";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ преобразует ваш голос в текст на этом Mac. Модель загружается один раз с Hugging Face (huggingface.co); само распознавание никогда не использует интернет.";
+"Download (%@)" = "Загрузить (%@)";
+"Downloaded" = "Загружено";
+"Cancel" = "Отменить";
+"Try Again" = "Повторить";
+"%@ of %@ (%@)" = "%@ из %@ (%@)";
+"Checking the download…" = "Проверка загруженного файла…";
+"Checking the downloaded model…" = "Проверка загруженной модели…";
+"%@ · Download (%@)…" = "%@ · Загрузить (%@)…";
+"%@ · Downloading %@" = "%@ · Загрузка %@";
+"%@ · Checking…" = "%@ · Проверка…";
+"Downloading %@… %@" = "Загрузка %@… %@";
+"Speech model not downloaded · Click to Download" = "Речевая модель не загружена · Нажмите, чтобы загрузить";
+"Downloading the speech model… %@" = "Загрузка речевой модели… %@";
+"Download the speech model first" = "Сначала загрузите речевую модель";
+"No internet connection. Connect and try again." = "Нет подключения к интернету. Подключитесь и повторите попытку.";
+"Not enough disk space. Free up %@ and try again." = "Недостаточно места на диске. Освободите %@ и повторите попытку.";
+"The disk is full. Free up some space and try again." = "Диск заполнен. Освободите место и повторите попытку.";
+"The download was damaged. Try again." = "Загруженный файл поврежден. Повторите попытку.";
+"Download failed (%@). Try again later." = "Не удалось загрузить (%@). Повторите попытку позже.";

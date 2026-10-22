@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Nastavit Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri potřebuje dvě oprávnění. Vše zůstává v tomto Macu.";
 "Microphone" = "Mikrofon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Aby vás slyšel při diktování: když držíte klávesovou zkratku, nebo od jednoho klepnutí do dalšího.";
 "Accessibility" = "Zpřístupnění";
@@ -55,3 +54,27 @@
 "Permissions…" = "Oprávnění…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Zkratka potřebuje oprávnění pro zpřístupnění · Klikněte pro nastavení";
 "Microphone access is off (menu → Permissions…)" = "Přístup k mikrofonu je vypnutý (nabídka → Oprávnění…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri potřebuje řečový model a dvě oprávnění. Váš hlas nikdy neopustí tento Mac.";
+"Speech Model" = "Řečový model";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ převádí váš hlas na text přímo na tomto Macu. Stáhne se jen jednou z Hugging Face (huggingface.co); samotné rozpoznávání nikdy nepoužívá internet.";
+"Download (%@)" = "Stáhnout (%@)";
+"Downloaded" = "Staženo";
+"Cancel" = "Zrušit";
+"Try Again" = "Zkusit znovu";
+"%@ of %@ (%@)" = "%@ z %@ (%@)";
+"Checking the download…" = "Kontrola stažených souborů…";
+"Checking the downloaded model…" = "Kontrola staženého modelu…";
+"%@ · Download (%@)…" = "%@ · Stáhnout (%@)…";
+"%@ · Downloading %@" = "%@ · Stahování %@";
+"%@ · Checking…" = "%@ · Kontrola…";
+"Downloading %@… %@" = "Stahování %@… %@";
+"Speech model not downloaded · Click to Download" = "Řečový model není stažený · Klikněte pro stažení";
+"Downloading the speech model… %@" = "Stahování řečového modelu… %@";
+"Download the speech model first" = "Nejdřív stáhněte řečový model";
+"No internet connection. Connect and try again." = "Nejste připojeni k internetu. Připojte se a zkuste to znovu.";
+"Not enough disk space. Free up %@ and try again." = "Na disku není dost místa. Uvolněte %@ a zkuste to znovu.";
+"The disk is full. Free up some space and try again." = "Disk je plný. Uvolněte trochu místa a zkuste to znovu.";
+"The download was damaged. Try again." = "Stažený soubor je poškozený. Zkuste to znovu.";
+"Download failed (%@). Try again later." = "Stahování selhalo (%@). Zkuste to později.";

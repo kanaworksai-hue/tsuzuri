@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Indstil Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri skal bruge to tilladelser. Alt bliver på denne Mac.";
 "Microphone" = "Mikrofon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "For at høre dig, mens du dikterer: mens du holder genvejstasten nede, eller fra ét tryk til det næste.";
 "Accessibility" = "Tilgængelighed";
@@ -55,3 +54,27 @@
 "Permissions…" = "Tilladelser…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Genvejen kræver tilladelse til tilgængelighed · Klik for at indstille";
 "Microphone access is off (menu → Permissions…)" = "Adgang til mikrofon er slået fra (menu → Tilladelser…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri skal bruge en talemodel og to tilladelser. Din stemme forlader aldrig denne Mac.";
+"Speech Model" = "Talemodel";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ omdanner din stemme til tekst på denne Mac. Den hentes én gang fra Hugging Face (huggingface.co); selve genkendelsen bruger aldrig internettet.";
+"Download (%@)" = "Hent (%@)";
+"Downloaded" = "Hentet";
+"Cancel" = "Annuller";
+"Try Again" = "Prøv igen";
+"%@ of %@ (%@)" = "%@ af %@ (%@)";
+"Checking the download…" = "Kontrollerer det hentede…";
+"Checking the downloaded model…" = "Kontrollerer den hentede model…";
+"%@ · Download (%@)…" = "%@ · Hent (%@)…";
+"%@ · Downloading %@" = "%@ · Henter %@";
+"%@ · Checking…" = "%@ · Kontrollerer…";
+"Downloading %@… %@" = "Henter %@… %@";
+"Speech model not downloaded · Click to Download" = "Talemodellen er ikke hentet · Klik for at hente";
+"Downloading the speech model… %@" = "Henter talemodellen… %@";
+"Download the speech model first" = "Hent talemodellen først";
+"No internet connection. Connect and try again." = "Ingen internetforbindelse. Opret forbindelse, og prøv igen.";
+"Not enough disk space. Free up %@ and try again." = "Der er ikke nok diskplads. Frigør %@, og prøv igen.";
+"The disk is full. Free up some space and try again." = "Disken er fuld. Frigør noget plads, og prøv igen.";
+"The download was damaged. Try again." = "Det hentede er beskadiget. Prøv igen.";
+"Download failed (%@). Try again later." = "Hentning mislykkedes (%@). Prøv igen senere.";

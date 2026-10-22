@@ -7,7 +7,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     private let transcriber = Transcriber()
     private let recorder = AudioRecorder()
     private let overlay = Overlay()
-    private let permissions = PermissionsWindow()
+    private let downloads = ModelDownloads()
+    private lazy var permissions = PermissionsWindow(downloads: downloads)
+    /// Model submenu items, retitled in place with the download progress while the menu is open.
+    private var modelItems: [ASRModel: NSMenuItem] = [:]
     private lazy var hotkey = HotkeyMonitor(trigger: Settings.trigger)
 
     private var statusItem: NSStatusItem!
@@ -59,11 +62,22 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 self, selector: #selector(debugMenu(_:)), name: .init("tsuzuri.debug.menu"), object: nil)
             DistributedNotificationCenter.default().addObserver(
                 self, selector: #selector(debugPermissions(_:)), name: .init("tsuzuri.debug.permissions"), object: nil)
+            DistributedNotificationCenter.default().addObserver(
+                self, selector: #selector(debugDownload(_:)), name: .init("tsuzuri.debug.download"), object: nil)
         }
         #endif
 
-        // The permissions window asks for the microphone and explains Accessibility; without
-        // Accessibility the shortcut key is never seen, so pressing it can't tell the user anything.
+        downloads.onChange = { [weak self] in self?.downloadChanged() }
+        downloads.onFinished = { [weak self] model, sameChoice in self?.downloadFinished(model, sameChoice: sameChoice) }
+        // The chosen model is missing but another one was downloaded (by hand or in an older
+        // version): use that one instead of asking for a download.
+        if !Settings.model.isInstalled, let installed = ASRModel.allCases.first(where: \.isInstalled) {
+            Settings.model = installed
+        }
+
+        // The setup window offers the model download, asks for the microphone and explains
+        // Accessibility; without Accessibility the shortcut key is never seen, so pressing it
+        // can't tell the user anything.
         if PermissionsWindow.needed { showPermissions() }
         waitForAccessibility()
         loadModel(Settings.model)
@@ -92,10 +106,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         // statusLine is reused across rebuilds; AppKit throws if it is still in the old menu.
         statusLine.menu?.removeItem(statusLine)
         statusLine.title = status
-        // While a permission is missing, the status line opens the permissions window.
-        let needsPermission = !Paster.isTrusted
-        statusLine.isEnabled = needsPermission
-        statusLine.action = needsPermission ? #selector(showPermissions) : nil
+        updateStatusLineAction()
         statusLine.target = self
         menu.addItem(statusLine)
         menu.addItem(.separator())
@@ -120,15 +131,18 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
 
         let models = NSMenu()
+        models.autoenablesItems = false
+        modelItems = [:]
         for model in ASRModel.allCases {
-            let item = NSMenuItem(title: model.isInstalled ? model.menuTitle : String(localized: "\(model.menuTitle) (not downloaded)"),
-                                  action: #selector(selectModel(_:)), keyEquivalent: "")
+            // Not downloaded yet: clicking downloads it (and then switches to it).
+            let item = NSMenuItem(title: "", action: #selector(selectModel(_:)), keyEquivalent: "")
             item.representedObject = model.rawValue
             item.state = model == Settings.model ? .on : .off
-            item.isEnabled = model.isInstalled
             item.target = self
+            modelItems[model] = item
             models.addItem(item)
         }
+        updateModelItems()
         addSubmenu(models, title: String(localized: "Model"), to: menu)
 
         let languages = NSMenu()
@@ -167,6 +181,54 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(.separator())
         menu.addItem(item(String(localized: "Quit Tsuzuri"), #selector(quit), key: "q"))
         statusItem.menu = menu
+    }
+
+    /// Titles and enabled state of the model items: installed, downloadable, or downloading.
+    private func updateModelItems() {
+        for (model, item) in modelItems {
+            if model.isInstalled {
+                item.title = model.menuTitle
+                item.isEnabled = true
+            } else if downloads.isDownloading(model) {
+                item.title = downloads.state == .verifying
+                    ? String(localized: "\(model.menuTitle) · Checking…")
+                    : String(localized: "\(model.menuTitle) · Downloading \(downloads.percentText)")
+                item.isEnabled = true  // opens the setup window, which has Cancel
+            } else {
+                item.title = String(localized: "\(model.menuTitle) · Download (\(ModelDownloads.size(model.downloadSize)))…")
+                item.isEnabled = !downloads.isDownloading
+            }
+        }
+    }
+
+    /// While a permission or the model is missing, the status line opens the setup window.
+    private func updateStatusLineAction() {
+        let needsSetup = !Paster.isTrusted || !Settings.model.isInstalled || downloads.isDownloading
+        statusLine.isEnabled = needsSetup
+        statusLine.action = needsSetup ? #selector(showPermissions) : nil
+    }
+
+    private func downloadChanged() {
+        // The silence detector may have arrived with a model download that was then cancelled.
+        if !downloads.isDownloading { Task { await transcriber.loadVADIfNeeded() } }
+        updateModelItems()
+        refreshStatus()
+        updateStatusLineAction()
+        if case .failed(let message) = downloads.state, !permissions.isVisible {
+            overlay.show(.message(message))
+            overlay.hide(after: 3)
+        }
+    }
+
+    private func downloadFinished(_ model: ASRModel, sameChoice: Bool) {
+        // Downloaded from the menu or the setup window: that's the model the user wants, unless
+        // they picked another installed model while it was downloading.
+        if sameChoice || !Settings.model.isInstalled {
+            Settings.model = model
+            loadModel(model)
+        }
+        rebuildMenu()
+        permissions.refresh()
     }
 
     private var polishLanguages: String {
@@ -260,7 +322,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func refreshStatus() {
-        if !Paster.isTrusted {
+        if downloads.isDownloading, let model = downloads.model {
+            status = downloads.state == .verifying
+                ? String(localized: "Checking the downloaded model…")
+                : String(localized: "Downloading \(model.displayName)… \(downloads.percentText)")
+        } else if !Settings.model.isInstalled {
+            status = String(localized: "Speech model not downloaded · Click to Download")
+        } else if !Paster.isTrusted {
             status = String(localized: "Shortcut needs Accessibility permission · Click to Set Up")
         } else if let modelError {
             status = modelError
@@ -292,7 +360,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
                 Log.write("load failed: \(error)")
                 let message = model.isInstalled
                     ? String(localized: "Model failed to load: \(model.rawValue)")
-                    : String(localized: "\(model.menuTitle) (not downloaded)")
+                    : String(localized: "Speech model not downloaded · Click to Download")
                 if modelReady, let current = await transcriber.model {
                     // A switch failed: keep using the model that is still loaded.
                     Settings.model = current
@@ -326,6 +394,19 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     private func startRecording() {
         guard !recording else { return }
+        if !modelReady, !Settings.model.isInstalled {
+            hotkey.reset()
+            if downloads.isDownloading(Settings.model) {
+                overlay.show(.message(String(localized: "Downloading the speech model… \(downloads.percentText)")))
+                overlay.hide(after: 2)
+            } else {
+                // Nothing to recognize with yet: the setup window has the download button.
+                overlay.show(.message(String(localized: "Download the speech model first")))
+                overlay.hide(after: 2.5)
+                showPermissions()
+            }
+            return
+        }
         if let modelError, !modelReady {
             // The user may have downloaded the model since: pick it up without a restart.
             if Settings.model.isInstalled {
@@ -496,6 +577,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     @objc private func selectModel(_ sender: NSMenuItem) {
         guard let raw = sender.representedObject as? String, let model = ASRModel(rawValue: raw) else { return }
+        guard model.isInstalled else {
+            // Download it; the setup window shows the progress and has Cancel.
+            if !downloads.isDownloading { downloads.start(model) }
+            if !modelReady { Settings.model = model }  // nothing loaded yet: this is the one to set up
+            showPermissions()
+            return
+        }
         Settings.model = model
         rebuildMenu()
         loadModel(model)
@@ -568,6 +656,15 @@ extension AppDelegate {
         case "transcribing": overlay.show(.transcribing)
         case "hide", nil: overlay.hide()
         case let text?: overlay.show(.message(text))
+        }
+    }
+
+    /// Debug hook: `scripts/debug.sh download start|cancel` drives the chosen model's download.
+    @objc fileprivate func debugDownload(_ note: Notification) {
+        if note.object as? String == "cancel" {
+            downloads.cancel()
+        } else {
+            downloads.start(Settings.model)
         }
     }
 

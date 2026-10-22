@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Поставување на Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "На Tsuzuri му требаат две дозволи. Сѐ останува на овој Mac.";
 "Microphone" = "Микрофон";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "За да ве слушне додека диктирате: додека го држите копчето за кратенка или од едно притискање до следното.";
 "Accessibility" = "Пристапност";
@@ -55,3 +54,27 @@
 "Permissions…" = "Дозволи…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Кратенката бара дозвола за пристапност · Кликнете за поставување";
 "Microphone access is off (menu → Permissions…)" = "Пристапот до микрофонот е исклучен (мени → Дозволи…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "На Tsuzuri му требаат говорен модел и две дозволи. Вашиот глас никогаш не го напушта овој Mac.";
+"Speech Model" = "Говорен модел";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ го претвора вашиот глас во текст на овој Mac. Се презема само еднаш од Hugging Face (huggingface.co); самото препознавање никогаш не го користи интернетот.";
+"Download (%@)" = "Преземи (%@)";
+"Downloaded" = "Преземено";
+"Cancel" = "Откажи";
+"Try Again" = "Обиди се повторно";
+"%@ of %@ (%@)" = "%@ од %@ (%@)";
+"Checking the download…" = "Се проверува преземањето…";
+"Checking the downloaded model…" = "Се проверува преземениот модел…";
+"%@ · Download (%@)…" = "%@ · Преземи (%@)…";
+"%@ · Downloading %@" = "%@ · Се презема %@";
+"%@ · Checking…" = "%@ · Се проверува…";
+"Downloading %@… %@" = "Се презема %@… %@";
+"Speech model not downloaded · Click to Download" = "Говорниот модел не е преземен · Кликнете за преземање";
+"Downloading the speech model… %@" = "Се презема говорниот модел… %@";
+"Download the speech model first" = "Прво преземете го говорниот модел";
+"No internet connection. Connect and try again." = "Нема интернет-врска. Поврзете се и обидете се повторно.";
+"Not enough disk space. Free up %@ and try again." = "Нема доволно простор на дискот. Ослободете %@ и обидете се повторно.";
+"The disk is full. Free up some space and try again." = "Дискот е полн. Ослободете малку простор и обидете се повторно.";
+"The download was damaged. Try again." = "Преземената датотека е оштетена. Обидете се повторно.";
+"Download failed (%@). Try again later." = "Преземањето не успеа (%@). Обидете се повторно подоцна.";

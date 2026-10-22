@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Configura Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri ha bisogno di due permessi. Tutto resta su questo Mac.";
 "Microphone" = "Microfono";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Per sentirti mentre detti: finché tieni premuta la scorciatoia, oppure da una pressione alla successiva.";
 "Accessibility" = "Accessibilità";
@@ -55,3 +54,27 @@
 "Permissions…" = "Permessi…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "La scorciatoia richiede il permesso di Accessibilità · Fai clic per configurare";
 "Microphone access is off (menu → Permissions…)" = "L’accesso al microfono è disattivato (menu → Permessi…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri ha bisogno di un modello vocale e di due autorizzazioni. La tua voce non lascia mai questo Mac.";
+"Speech Model" = "Modello vocale";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ trasforma la tua voce in testo su questo Mac. Viene scaricato una sola volta da Hugging Face (huggingface.co); il riconoscimento in sé non usa mai Internet.";
+"Download (%@)" = "Scarica (%@)";
+"Downloaded" = "Scaricato";
+"Cancel" = "Annulla";
+"Try Again" = "Riprova";
+"%@ of %@ (%@)" = "%@ di %@ (%@)";
+"Checking the download…" = "Verifica del download…";
+"Checking the downloaded model…" = "Verifica del modello scaricato…";
+"%@ · Download (%@)…" = "%@ · Scarica (%@)…";
+"%@ · Downloading %@" = "%@ · Download in corso: %@";
+"%@ · Checking…" = "%@ · Verifica…";
+"Downloading %@… %@" = "Download di %@… %@";
+"Speech model not downloaded · Click to Download" = "Modello vocale non scaricato · Fai clic per scaricarlo";
+"Downloading the speech model… %@" = "Download del modello vocale… %@";
+"Download the speech model first" = "Scarica prima il modello vocale";
+"No internet connection. Connect and try again." = "Nessuna connessione a Internet. Connettiti e riprova.";
+"Not enough disk space. Free up %@ and try again." = "Spazio su disco insufficiente. Libera %@ e riprova.";
+"The disk is full. Free up some space and try again." = "Il disco è pieno. Libera un po’ di spazio e riprova.";
+"The download was damaged. Try again." = "Il download è danneggiato. Riprova.";
+"Download failed (%@). Try again later." = "Download non riuscito (%@). Riprova più tardi.";

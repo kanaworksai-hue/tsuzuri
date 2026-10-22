@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Ställ in Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri behöver två behörigheter. Allt stannar på den här datorn.";
 "Microphone" = "Mikrofon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "För att höra dig medan du dikterar: medan du håller ned kortkommandot eller från ett tryck till nästa.";
 "Accessibility" = "Hjälpmedel";
@@ -55,3 +54,27 @@
 "Permissions…" = "Behörigheter…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Kortkommandot behöver behörighet för hjälpmedel · Klicka för att ställa in";
 "Microphone access is off (menu → Permissions…)" = "Mikrofonåtkomst är avstängd (menyn → Behörigheter…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri behöver en talmodell och två behörigheter. Din röst lämnar aldrig den här datorn.";
+"Speech Model" = "Talmodell";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ omvandlar din röst till text på den här datorn. Den hämtas en gång från Hugging Face (huggingface.co); själva igenkänningen använder aldrig internet.";
+"Download (%@)" = "Hämta (%@)";
+"Downloaded" = "Hämtad";
+"Cancel" = "Avbryt";
+"Try Again" = "Försök igen";
+"%@ of %@ (%@)" = "%@ av %@ (%@)";
+"Checking the download…" = "Kontrollerar hämtningen…";
+"Checking the downloaded model…" = "Kontrollerar den hämtade modellen…";
+"%@ · Download (%@)…" = "%@ · Hämta (%@)…";
+"%@ · Downloading %@" = "%@ · Hämtar %@";
+"%@ · Checking…" = "%@ · Kontrollerar…";
+"Downloading %@… %@" = "Hämtar %@… %@";
+"Speech model not downloaded · Click to Download" = "Talmodellen är inte hämtad · Klicka för att hämta";
+"Downloading the speech model… %@" = "Hämtar talmodellen… %@";
+"Download the speech model first" = "Hämta talmodellen först";
+"No internet connection. Connect and try again." = "Ingen internetanslutning. Anslut och försök igen.";
+"Not enough disk space. Free up %@ and try again." = "Inte tillräckligt med skivutrymme. Frigör %@ och försök igen.";
+"The disk is full. Free up some space and try again." = "Skivan är full. Frigör lite utrymme och försök igen.";
+"The download was damaged. Try again." = "Den hämtade filen är skadad. Försök igen.";
+"Download failed (%@). Try again later." = "Hämtningen misslyckades (%@). Försök igen senare.";

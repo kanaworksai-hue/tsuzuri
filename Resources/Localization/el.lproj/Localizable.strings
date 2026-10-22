@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Ρύθμιση του Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Το Tsuzuri χρειάζεται δύο άδειες. Όλα μένουν σε αυτό το Mac.";
 "Microphone" = "Μικρόφωνο";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Για να σας ακούει κατά την υπαγόρευση: όσο κρατάτε πατημένο το πλήκτρο συντόμευσης ή από το ένα πάτημα έως το επόμενο.";
 "Accessibility" = "Προσβασιμότητα";
@@ -55,3 +54,27 @@
 "Permissions…" = "Άδειες…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Η συντόμευση χρειάζεται άδεια Προσβασιμότητας · Κάντε κλικ για ρύθμιση";
 "Microphone access is off (menu → Permissions…)" = "Η πρόσβαση στο μικρόφωνο είναι απενεργοποιημένη (μενού → Άδειες…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Το Tsuzuri χρειάζεται ένα μοντέλο ομιλίας και δύο άδειες. Η φωνή σας δεν φεύγει ποτέ από αυτό το Mac.";
+"Speech Model" = "Μοντέλο ομιλίας";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "Το %@ μετατρέπει τη φωνή σας σε κείμενο σε αυτό το Mac. Λαμβάνεται μία φορά από το Hugging Face (huggingface.co)· η ίδια η αναγνώριση δεν χρησιμοποιεί ποτέ το διαδίκτυο.";
+"Download (%@)" = "Λήψη (%@)";
+"Downloaded" = "Έχει ληφθεί";
+"Cancel" = "Ακύρωση";
+"Try Again" = "Δοκιμή ξανά";
+"%@ of %@ (%@)" = "%@ από %@ (%@)";
+"Checking the download…" = "Έλεγχος της λήψης…";
+"Checking the downloaded model…" = "Έλεγχος του μοντέλου που λήφθηκε…";
+"%@ · Download (%@)…" = "%@ · Λήψη (%@)…";
+"%@ · Downloading %@" = "%@ · Λήψη %@";
+"%@ · Checking…" = "%@ · Έλεγχος…";
+"Downloading %@… %@" = "Λήψη %@… %@";
+"Speech model not downloaded · Click to Download" = "Το μοντέλο ομιλίας δεν έχει ληφθεί · Κάντε κλικ για λήψη";
+"Downloading the speech model… %@" = "Λήψη μοντέλου ομιλίας… %@";
+"Download the speech model first" = "Πραγματοποιήστε πρώτα λήψη του μοντέλου ομιλίας";
+"No internet connection. Connect and try again." = "Δεν υπάρχει σύνδεση στο διαδίκτυο. Συνδεθείτε και δοκιμάστε ξανά.";
+"Not enough disk space. Free up %@ and try again." = "Δεν υπάρχει αρκετός χώρος στον δίσκο. Ελευθερώστε %@ και δοκιμάστε ξανά.";
+"The disk is full. Free up some space and try again." = "Ο δίσκος είναι πλήρης. Ελευθερώστε λίγο χώρο και δοκιμάστε ξανά.";
+"The download was damaged. Try again." = "Το αρχείο που λήφθηκε είναι κατεστραμμένο. Δοκιμάστε ξανά.";
+"Download failed (%@). Try again later." = "Η λήψη απέτυχε (%@). Δοκιμάστε ξανά αργότερα.";

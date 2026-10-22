@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Tsuzuri 설정";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri에는 두 가지 권한이 필요합니다. 모든 데이터는 이 Mac에만 남습니다.";
 "Microphone" = "마이크";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "받아쓰기 중에 목소리를 듣기 위해 필요합니다(단축키를 누르고 있는 동안 또는 한 번 탭한 후 다음 탭까지).";
 "Accessibility" = "손쉬운 사용";
@@ -55,3 +54,27 @@
 "Permissions…" = "권한…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "단축키에 손쉬운 사용 권한이 필요함 · 클릭하여 설정";
 "Microphone access is off (menu → Permissions…)" = "마이크 접근이 꺼져 있음(메뉴 → 권한…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri를 사용하려면 음성 모델 하나와 두 가지 권한이 필요합니다. 사용자의 음성은 이 Mac 밖으로 나가지 않습니다.";
+"Speech Model" = "음성 모델";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@은(는) 이 Mac에서 음성을 텍스트로 변환합니다. Hugging Face(huggingface.co)에서 한 번만 다운로드하며, 인식 자체에는 인터넷을 전혀 사용하지 않습니다.";
+"Download (%@)" = "다운로드(%@)";
+"Downloaded" = "다운로드됨";
+"Cancel" = "취소";
+"Try Again" = "다시 시도";
+"%@ of %@ (%@)" = "%@ / %@(%@)";
+"Checking the download…" = "다운로드 확인 중…";
+"Checking the downloaded model…" = "다운로드한 모델 확인 중…";
+"%@ · Download (%@)…" = "%@ · 다운로드(%@)…";
+"%@ · Downloading %@" = "%@ · 다운로드 중 %@";
+"%@ · Checking…" = "%@ · 확인 중…";
+"Downloading %@… %@" = "%@ 다운로드 중… %@";
+"Speech model not downloaded · Click to Download" = "음성 모델이 다운로드되지 않음 · 클릭하여 다운로드";
+"Downloading the speech model… %@" = "음성 모델 다운로드 중… %@";
+"Download the speech model first" = "먼저 음성 모델을 다운로드하십시오";
+"No internet connection. Connect and try again." = "인터넷에 연결되어 있지 않습니다. 연결한 후 다시 시도하십시오.";
+"Not enough disk space. Free up %@ and try again." = "디스크 공간이 부족합니다. %@을(를) 확보한 후 다시 시도하십시오.";
+"The disk is full. Free up some space and try again." = "디스크가 가득 찼습니다. 공간을 확보한 후 다시 시도하십시오.";
+"The download was damaged. Try again." = "다운로드한 파일이 손상되었습니다. 다시 시도하십시오.";
+"Download failed (%@). Try again later." = "다운로드에 실패했습니다(%@). 나중에 다시 시도하십시오.";

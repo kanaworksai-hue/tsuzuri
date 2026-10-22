@@ -43,9 +43,21 @@ Recognition runs entirely on your Mac with [Qwen3-ASR](https://github.com/QwenLM
 
 Download `Tsuzuri-<version>.dmg` from the [latest release](https://github.com/kanaworksai-hue/tsuzuri/releases/latest), open it and drag **Tsuzuri** into **Applications**. The app is signed and notarized by Apple.
 
-### 2. Download a speech model
+### 2. First run
 
-The models are not included in the app. Tsuzuri looks for them in `~/Library/Application Support/Tsuzuri/Models/`. The easiest way to download them is with [uv](https://docs.astral.sh/uv/) (`brew install uv`). Paste this into Terminal:
+1. Open **Tsuzuri** from Applications. A small icon appears in the menu bar, and a **Set Up Tsuzuri** window opens.
+2. **Speech Model:** click **Download (1.6 GB)**. The window shows the progress; you can cancel and resume later. When it is done, the row turns green and the model loads by itself.
+3. **Microphone:** click **Allow…**.
+4. **Accessibility:** click **Open System Settings…** and turn on Tsuzuri under **Accessibility**. Tsuzuri needs it to notice the shortcut key and to paste; until it is on, the shortcut does nothing and the menu bar icon shows a warning badge.
+
+The window turns green when everything is ready. You can open it again from the menu (**Permissions…**). Other models (the faster 0.6B, or the 8bit versions) can be downloaded from the **Model** menu.
+
+The model download is the only time Tsuzuri uses the internet: it fetches the model files from [Hugging Face](https://huggingface.co/mlx-community) once, only when you click **Download**, and checks them against fixed checksums. Recording and recognition never go online. Behind a firewall or in a region where Hugging Face is slow, you can point it at a mirror: `defaults write com.kanaworks.tsuzuri hfEndpoint https://hf-mirror.com`.
+
+<details>
+<summary>Download the models in Terminal instead</summary>
+
+Tsuzuri looks for the models in `~/Library/Application Support/Tsuzuri/Models/`. With [uv](https://docs.astral.sh/uv/) (`brew install uv`):
 
 ```bash
 M="$HOME/Library/Application Support/Tsuzuri/Models"
@@ -54,15 +66,9 @@ for repo in Qwen3-ASR-1.7B-4bit silero-vad; do
 done
 ```
 
-This downloads about 1.6 GB. For the faster, smaller model, add `Qwen3-ASR-0.6B-8bit` to the list (about 1 GB). You can switch between installed models from the menu.
+Add `Qwen3-ASR-0.6B-8bit` to the list for the faster, smaller model (about 1 GB). If Tsuzuri was running, just press the shortcut: it picks the model up.
 
-> If you already have the Hugging Face CLI (`hf`), you can use `hf download mlx-community/<repo> --local-dir "$M/<repo>"` instead.
-
-### 3. First run
-
-1. Open **Tsuzuri** from Applications. A small icon appears in the menu bar.
-2. A **Set Up Tsuzuri** window asks for two permissions: click **Allow…** for the **Microphone**, then **Open System Settings…** and turn on Tsuzuri under **Accessibility**. Tsuzuri needs Accessibility to notice the shortcut key and to paste; until it is on, the shortcut does nothing and the menu bar icon shows a warning badge. The window turns green when both are allowed, and you can open it again from the menu (**Permissions…**).
-3. If you downloaded the speech model while Tsuzuri was running, just press the shortcut: Tsuzuri picks it up (or quit and reopen it).
+</details>
 
 ## 🎙️ Use it
 
@@ -94,7 +100,7 @@ The model was trained on **English, German, Spanish, French, Chinese, Russian an
 
 If the result looks wrong (much longer, a different script, words or numbers you didn't say, or slower than 1 second), Tsuzuri pastes the raw transcript instead. Polish is skipped in terminal apps, where you usually dictate commands. It adds about 0.35 GB of memory.
 
-There is no ready-made MLX version of this model, so convert it once on your Mac (downloads the 1.2 GB original):
+There is no ready-made MLX version of this model, so it can't be downloaded from the app yet. Convert it once on your Mac (downloads the 1.2 GB original):
 
 ```bash
 uvx --from 'mlx-lm==0.32.*' mlx_lm.convert --hf-path spokenly/cleanup-1 -q --q-bits 4 \
@@ -136,13 +142,14 @@ If `xcode-select` points at the Command Line Tools, the scripts use `DEVELOPER_D
 .build/release/tsuzuri-cli --jsonl *.wav                      # one JSON line per file, with timings
 .build/release/tsuzuri-cli --polish recording.wav             # recognition, then Polish
 .build/release/tsuzuri-cli --polish-text lines.txt            # Polish text only
+.build/release/tsuzuri-cli --download --model Qwen3-ASR-0.6B-8bit   # download a model, like the app does
 ```
 
 Run `tsuzuri-cli --help` for all options. Set `TSUZURI_MODELS_DIR` to use a different models folder.
 
 ## ❓ FAQ
 
-**Does anything leave my Mac?** No. Recording, recognition and Polish all run locally. Tsuzuri only uses the network when *you* run the download commands above.
+**Does anything leave my Mac?** No. Recording, recognition and Polish all run locally. Tsuzuri only uses the network to download a model, when *you* click **Download** (or run the commands above).
 
 **Is my speech saved anywhere?** Audio is never written to disk. Recent results are kept in memory for the menu and are gone when you quit. `~/Library/Logs/Tsuzuri.log` records timings and errors but not what you said (`defaults write com.kanaworks.tsuzuri logText -bool true` adds the text, for debugging).
 

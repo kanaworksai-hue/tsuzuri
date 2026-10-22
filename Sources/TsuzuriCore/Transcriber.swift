@@ -83,6 +83,13 @@ public actor Transcriber {
         return Date().timeIntervalSince(start)
     }
 
+    /// Picks up the silence detector when it was downloaded after the model loaded.
+    public func loadVADIfNeeded() {
+        if vad == nil, ModelStore.isInstalled(ModelStore.vadDirectory) {
+            vad = try? SileroVAD.fromModelDirectory(ModelStore.vadDirectory)
+        }
+    }
+
     public func unload() {
         asr = nil
         model = nil

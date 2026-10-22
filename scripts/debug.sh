@@ -9,6 +9,7 @@
 #   scripts/debug.sh overlay listening   # show the overlay (also: transcribing, hide, or any text)
 #   scripts/debug.sh menu main           # open the menu for 4 s (or: languages, the Spoken Language submenu)
 #   scripts/debug.sh permissions         # open the permissions window
+#   scripts/debug.sh download start      # download the chosen model (also: cancel)
 set -euo pipefail
 cmd=$1; arg=${2:-}
 case $cmd in
@@ -16,7 +17,8 @@ case $cmd in
   overlay) name=tsuzuri.debug.overlay ;;
   menu) name=tsuzuri.debug.menu ;;
   permissions) name=tsuzuri.debug.permissions ;;
-  *) echo "usage: $0 dictate FILE | overlay STATE | menu main|languages | permissions" >&2; exit 2 ;;
+  download) name=tsuzuri.debug.download ;;
+  *) echo "usage: $0 dictate FILE | overlay STATE | menu main|languages | permissions | download start|cancel" >&2; exit 2 ;;
 esac
 /usr/bin/swift -e "import Foundation
 DistributedNotificationCenter.default().postNotificationName(.init(\"$name\"), object: \"$arg\", userInfo: nil, deliverImmediately: true)"

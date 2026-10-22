@@ -24,7 +24,7 @@ public enum ASRModel: String, CaseIterable, Sendable {
     }
 
     public var localDirectory: URL { ModelStore.root.appendingPathComponent(directoryName) }
-    public var isInstalled: Bool { ModelStore.isInstalled(localDirectory) }
+    public var isInstalled: Bool { package.isInstalled }
 }
 
 public enum ModelStore {

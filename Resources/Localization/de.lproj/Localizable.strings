@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Tsuzuri einrichten";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri benötigt zwei Berechtigungen. Alles bleibt auf diesem Mac.";
 "Microphone" = "Mikrofon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Damit Tsuzuri dich beim Diktieren hört: solange du den Kurzbefehl gedrückt hältst oder vom einen Tippen bis zum nächsten.";
 "Accessibility" = "Bedienungshilfen";
@@ -55,3 +54,27 @@
 "Permissions…" = "Berechtigungen …";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Kurzbefehl braucht Bedienungshilfen-Zugriff · Zum Einrichten klicken";
 "Microphone access is off (menu → Permissions…)" = "Mikrofonzugriff ist deaktiviert (Menü → Berechtigungen …)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri braucht ein Sprachmodell und zwei Berechtigungen. Deine Stimme verlässt diesen Mac nie.";
+"Speech Model" = "Sprachmodell";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ wandelt deine Stimme auf diesem Mac in Text um. Es wird einmalig von Hugging Face (huggingface.co) heruntergeladen; die Erkennung selbst nutzt nie das Internet.";
+"Download (%@)" = "Herunterladen (%@)";
+"Downloaded" = "Heruntergeladen";
+"Cancel" = "Abbrechen";
+"Try Again" = "Erneut versuchen";
+"%@ of %@ (%@)" = "%@ von %@ (%@)";
+"Checking the download…" = "Download wird überprüft …";
+"Checking the downloaded model…" = "Heruntergeladenes Modell wird überprüft …";
+"%@ · Download (%@)…" = "%@ · Herunterladen (%@) …";
+"%@ · Downloading %@" = "%@ · Wird heruntergeladen: %@";
+"%@ · Checking…" = "%@ · Wird überprüft …";
+"Downloading %@… %@" = "%@ wird heruntergeladen … %@";
+"Speech model not downloaded · Click to Download" = "Sprachmodell nicht heruntergeladen · Zum Herunterladen klicken";
+"Downloading the speech model… %@" = "Sprachmodell wird heruntergeladen … %@";
+"Download the speech model first" = "Lade zuerst das Sprachmodell herunter";
+"No internet connection. Connect and try again." = "Keine Internetverbindung. Stelle eine Verbindung her und versuche es erneut.";
+"Not enough disk space. Free up %@ and try again." = "Nicht genug Speicherplatz. Gib %@ frei und versuche es erneut.";
+"The disk is full. Free up some space and try again." = "Das Volume ist voll. Gib etwas Speicherplatz frei und versuche es erneut.";
+"The download was damaged. Try again." = "Der Download ist beschädigt. Versuche es erneut.";
+"Download failed (%@). Try again later." = "Download fehlgeschlagen (%@). Versuche es später erneut.";

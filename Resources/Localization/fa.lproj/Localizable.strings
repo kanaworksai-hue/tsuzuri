@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "راه‌اندازی Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri به دو اجازه نیاز دارد. همه‌چیز روی همین Mac می‌ماند.";
 "Microphone" = "میکروفون";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "برای شنیدن صدای شما هنگام دیکته: تا وقتی کلید میان‌بر را نگه داشته‌اید، یا از یک ضربه تا ضربهٔ بعدی.";
 "Accessibility" = "دسترس‌پذیری";
@@ -55,3 +54,27 @@
 "Permissions…" = "اجازه‌ها…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "میان‌بر به اجازهٔ دسترس‌پذیری نیاز دارد · برای تنظیم کلیک کنید";
 "Microphone access is off (menu → Permissions…)" = "دسترسی به میکروفون خاموش است (منو ← اجازه‌ها…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri به یک مدل گفتار و دو اجازه نیاز دارد. صدای شما هرگز از این Mac خارج نمی‌شود.";
+"Speech Model" = "مدل گفتار";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ صدای شما را روی همین Mac به متن تبدیل می‌کند. فقط یک بار از Hugging Face (huggingface.co) دانلود می‌شود؛ خودِ تشخیص گفتار هرگز از اینترنت استفاده نمی‌کند.";
+"Download (%@)" = "دانلود (%@)";
+"Downloaded" = "دانلود شد";
+"Cancel" = "لغو";
+"Try Again" = "تلاش دوباره";
+"%@ of %@ (%@)" = "%@ از %@ (%@)";
+"Checking the download…" = "در حال بررسی فایل دانلودشده…";
+"Checking the downloaded model…" = "در حال بررسی مدل دانلودشده…";
+"%@ · Download (%@)…" = "%@ · دانلود (%@)…";
+"%@ · Downloading %@" = "%@ · در حال دانلود %@";
+"%@ · Checking…" = "%@ · در حال بررسی…";
+"Downloading %@… %@" = "در حال دانلود %@… %@";
+"Speech model not downloaded · Click to Download" = "مدل گفتار دانلود نشده است · برای دانلود کلیک کنید";
+"Downloading the speech model… %@" = "در حال دانلود مدل گفتار… %@";
+"Download the speech model first" = "ابتدا مدل گفتار را دانلود کنید";
+"No internet connection. Connect and try again." = "اتصال اینترنت برقرار نیست. متصل شوید و دوباره تلاش کنید.";
+"Not enough disk space. Free up %@ and try again." = "فضای دیسک کافی نیست. %@ فضا آزاد کنید و دوباره تلاش کنید.";
+"The disk is full. Free up some space and try again." = "دیسک پر است. مقداری فضا آزاد کنید و دوباره تلاش کنید.";
+"The download was damaged. Try again." = "فایل دانلودشده آسیب دیده است. دوباره تلاش کنید.";
+"Download failed (%@). Try again later." = "دانلود ناموفق بود (%@). بعداً دوباره تلاش کنید.";

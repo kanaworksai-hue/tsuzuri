@@ -43,9 +43,21 @@
 
 [最新リリース](https://github.com/kanaworksai-hue/tsuzuri/releases/latest) から `Tsuzuri-<バージョン>.dmg` をダウンロードして開き、**Tsuzuri** を **アプリケーション** フォルダにドラッグします。アプリは Apple の署名・公証済みです。
 
-### 2. 音声認識モデルをダウンロード
+### 2. 初回の起動
 
-モデルはアプリに含まれていません。Tsuzuri は `~/Library/Application Support/Tsuzuri/Models/` からモデルを読み込みます。[uv](https://docs.astral.sh/uv/)（`brew install uv` でインストール）を使うのがいちばん簡単です。ターミナルに次を貼り付けてください：
+1. アプリケーションフォルダから **Tsuzuri** を開きます。メニューバーに小さなアイコンが表示され、「Tsuzuri の設定」ウインドウが開きます。
+2. **音声モデル：** 「ダウンロード（1.6 GB）」をクリックします。進み具合がウインドウに表示され、キャンセルしてあとで続きから再開することもできます。終わると緑の表示に変わり、モデルが自動で読み込まれます。
+3. **マイク：** 「許可…」をクリックします。
+4. **アクセシビリティ：** 「システム設定を開く…」から Tsuzuri をオンにします。ショートカットキーの検知と貼り付けに必要で、オンにするまではキーを押しても反応せず、メニューバーのアイコンに警告マークが付きます。
+
+すべて緑になれば準備完了です。メニューの「権限…」からいつでも開き直せます。ほかのモデル（より速い 0.6B や 8bit 版）はメニューの「モデル」からダウンロードできます。
+
+Tsuzuri がインターネットを使うのはモデルのダウンロードのときだけです。「ダウンロード」をクリックしたときに一度だけ [Hugging Face](https://huggingface.co/mlx-community) からモデルを取得し、固定のチェックサムで検証します。録音と認識がネットに接続することはありません。Hugging Face につながりにくい環境では、ミラーを指定できます：`defaults write com.kanaworks.tsuzuri hfEndpoint https://hf-mirror.com`
+
+<details>
+<summary>ターミナルでモデルをダウンロードする場合</summary>
+
+Tsuzuri は `~/Library/Application Support/Tsuzuri/Models/` からモデルを読み込みます。[uv](https://docs.astral.sh/uv/)（`brew install uv`）を使う場合：
 
 ```bash
 M="$HOME/Library/Application Support/Tsuzuri/Models"
@@ -54,15 +66,9 @@ for repo in Qwen3-ASR-1.7B-4bit silero-vad; do
 done
 ```
 
-ダウンロード量は約 1.6 GB です。より速く軽いモデルも使いたい場合は、リストに `Qwen3-ASR-0.6B-8bit` を追加してください（約 1 GB）。インストール済みのモデルはメニューから切り替えられます。
+より速く軽いモデルも使う場合は、リストに `Qwen3-ASR-0.6B-8bit` を追加してください（約 1 GB）。Tsuzuri の起動中なら、そのままショートカットキーを押せば読み込まれます。
 
-> Hugging Face CLI（`hf`）をお持ちなら、`hf download mlx-community/<repo> --local-dir "$M/<repo>"` でも構いません。
-
-### 3. 初回の起動
-
-1. アプリケーションフォルダから **Tsuzuri** を開きます。メニューバーに小さなアイコンが表示されます。
-2. 「Tsuzuri の設定」ウインドウが開き、2 つの許可を求めます。**マイク** は「許可…」、**アクセシビリティ** は「システム設定を開く…」から Tsuzuri をオンにします。アクセシビリティはショートカットキーの検知と貼り付けに必要で、オンにするまではキーを押しても反応せず、メニューバーのアイコンに警告マークが付きます。両方許可されるとウインドウが緑の表示に変わります。メニューの「権限…」からいつでも開き直せます。
-3. Tsuzuri の起動中に音声認識モデルをダウンロードした場合は、そのままショートカットキーを押せば読み込まれます（終了して開き直しても構いません）。
+</details>
 
 ## 🎙️ 使い方
 
@@ -94,7 +100,7 @@ Qwen3-ASR が対応するすべての言語を認識します。既定の **自�
 
 結果がおかしいとき（極端に長い、文字の種類が変わった、話していない単語や数字が出てきた、1 秒以上かかった）は、整形前の認識結果をそのまま貼り付けます。コマンドを話すことが多いターミナルアプリでは整形しません。メモリは約 0.35 GB 増えます。
 
-このモデルには MLX 版が用意されていないので、一度だけ Mac 上で変換してください（元のモデル 1.2 GB をダウンロードします）：
+このモデルには MLX 版が用意されていないため、まだアプリからはダウンロードできません。一度だけ Mac 上で変換してください（元のモデル 1.2 GB をダウンロードします）：
 
 ```bash
 uvx --from 'mlx-lm==0.32.*' mlx_lm.convert --hf-path spokenly/cleanup-1 -q --q-bits 4 \
@@ -136,13 +142,14 @@ rm -rf /Applications/Tsuzuri.app && ditto build/Tsuzuri.app /Applications/Tsuzur
 .build/release/tsuzuri-cli --jsonl *.wav                      # ファイルごとに 1 行の JSON（処理時間付き）
 .build/release/tsuzuri-cli --polish recording.wav             # 認識してからテキスト整形
 .build/release/tsuzuri-cli --polish-text lines.txt            # テキスト整形のみ
+.build/release/tsuzuri-cli --download --model Qwen3-ASR-0.6B-8bit   # モデルをダウンロード（アプリと同じ処理）
 ```
 
 すべてのオプションは `tsuzuri-cli --help` で確認できます。モデルを別のフォルダに置く場合は `TSUZURI_MODELS_DIR` を設定してください。
 
 ## ❓ よくある質問
 
-**Mac の外に何か送られますか？** いいえ。録音、認識、テキスト整形はすべてローカルで動きます。ネットワークを使うのは、上のダウンロードコマンドを*ご自身で*実行するときだけです。
+**Mac の外に何か送られますか？** いいえ。録音、認識、テキスト整形はすべてローカルで動きます。ネットワークを使うのは、*ご自身で*「ダウンロード」をクリックした（または上のコマンドを実行した）ときのモデルのダウンロードだけです。
 
 **話した内容はどこかに保存されますか？** 音声がディスクに書き込まれることはありません。最近の認識結果はメニュー用にメモリ上に置くだけで、終了すると消えます。`~/Library/Logs/Tsuzuri.log` には処理時間とエラーを記録しますが、話した内容は記録しません（デバッグ用に `defaults write com.kanaworks.tsuzuri logText -bool true` で記録するようにもできます）。
 

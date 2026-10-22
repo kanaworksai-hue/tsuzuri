@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Ota Tsuzuri käyttöön";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri tarvitsee kaksi lupaa. Kaikki pysyy tällä Macilla.";
 "Microphone" = "Mikrofoni";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Jotta Tsuzuri kuulee sinut sanelun aikana: kun pidät pikanäppäintä painettuna tai yhdestä napautuksesta seuraavaan.";
 "Accessibility" = "Käyttöapu";
@@ -55,3 +54,27 @@
 "Permissions…" = "Luvat…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Pikanäppäin tarvitsee Käyttöapu-luvan · Määritä klikkaamalla";
 "Microphone access is off (menu → Permissions…)" = "Mikrofonin käyttö on pois päältä (valikko → Luvat…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri tarvitsee puhemallin ja kaksi lupaa. Äänesi ei koskaan poistu tältä Macilta.";
+"Speech Model" = "Puhemalli";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ muuntaa äänesi tekstiksi tällä Macilla. Se ladataan kerran Hugging Facesta (huggingface.co); itse tunnistus ei koskaan käytä internetiä.";
+"Download (%@)" = "Lataa (%@)";
+"Downloaded" = "Ladattu";
+"Cancel" = "Kumoa";
+"Try Again" = "Yritä uudelleen";
+"%@ of %@ (%@)" = "%@ / %@ (%@)";
+"Checking the download…" = "Tarkistetaan latausta…";
+"Checking the downloaded model…" = "Tarkistetaan ladattua mallia…";
+"%@ · Download (%@)…" = "%@ · Lataa (%@)…";
+"%@ · Downloading %@" = "%@ · Ladataan %@";
+"%@ · Checking…" = "%@ · Tarkistetaan…";
+"Downloading %@… %@" = "Ladataan %@… %@";
+"Speech model not downloaded · Click to Download" = "Puhemallia ei ole ladattu · Lataa klikkaamalla";
+"Downloading the speech model… %@" = "Ladataan puhemallia… %@";
+"Download the speech model first" = "Lataa ensin puhemalli";
+"No internet connection. Connect and try again." = "Ei internetyhteyttä. Muodosta yhteys ja yritä uudelleen.";
+"Not enough disk space. Free up %@ and try again." = "Levytilaa ei ole tarpeeksi. Vapauta %@ ja yritä uudelleen.";
+"The disk is full. Free up some space and try again." = "Levy on täynnä. Vapauta tilaa ja yritä uudelleen.";
+"The download was damaged. Try again." = "Ladattu tiedosto on vioittunut. Yritä uudelleen.";
+"Download failed (%@). Try again later." = "Lataus epäonnistui (%@). Yritä myöhemmin uudelleen.";

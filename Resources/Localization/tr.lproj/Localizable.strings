@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Tsuzuri’yi Ayarla";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri’nin iki izne ihtiyacı var. Her şey bu Mac’te kalır.";
 "Microphone" = "Mikrofon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Dikte sırasında sizi duyabilmek için: kısayol tuşunu basılı tuttuğunuz sürece veya bir dokunuştan bir sonrakine kadar.";
 "Accessibility" = "Erişilebilirlik";
@@ -55,3 +54,27 @@
 "Permissions…" = "İzinler…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Kısayol için Erişilebilirlik izni gerekli · Ayarlamak için tıklayın";
 "Microphone access is off (menu → Permissions…)" = "Mikrofon erişimi kapalı (menü → İzinler…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri’nin bir konuşma modeline ve iki izne ihtiyacı var. Sesiniz asla bu Mac’ten dışarı çıkmaz.";
+"Speech Model" = "Konuşma Modeli";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ sesinizi bu Mac’te metne dönüştürür. Hugging Face’ten (huggingface.co) yalnızca bir kez indirilir; tanımanın kendisi asla internet kullanmaz.";
+"Download (%@)" = "İndir (%@)";
+"Downloaded" = "İndirildi";
+"Cancel" = "Vazgeç";
+"Try Again" = "Yeniden Dene";
+"%@ of %@ (%@)" = "%@ / %@ (%@)";
+"Checking the download…" = "İndirilen dosya denetleniyor…";
+"Checking the downloaded model…" = "İndirilen model denetleniyor…";
+"%@ · Download (%@)…" = "%@ · İndir (%@)…";
+"%@ · Downloading %@" = "%@ · İndiriliyor %@";
+"%@ · Checking…" = "%@ · Denetleniyor…";
+"Downloading %@… %@" = "%@ indiriliyor… %@";
+"Speech model not downloaded · Click to Download" = "Konuşma modeli indirilmedi · İndirmek için tıklayın";
+"Downloading the speech model… %@" = "Konuşma modeli indiriliyor… %@";
+"Download the speech model first" = "Önce konuşma modelini indirin";
+"No internet connection. Connect and try again." = "İnternet bağlantısı yok. Bağlanıp yeniden deneyin.";
+"Not enough disk space. Free up %@ and try again." = "Yeterli disk alanı yok. %@ boşaltıp yeniden deneyin.";
+"The disk is full. Free up some space and try again." = "Disk dolu. Biraz alan boşaltıp yeniden deneyin.";
+"The download was damaged. Try again." = "İndirilen dosya hasarlı. Yeniden deneyin.";
+"Download failed (%@). Try again later." = "İndirme başarısız oldu (%@). Daha sonra yeniden deneyin.";

@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "I-set Up ang Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Kailangan ng Tsuzuri ng dalawang pahintulot. Nananatili ang lahat sa Mac na ito.";
 "Microphone" = "Microphone";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Para marinig ka habang nagdidikta: habang pinipindot mo nang matagal ang shortcut key, o mula sa isang tap hanggang sa susunod.";
 "Accessibility" = "Accessibility";
@@ -55,3 +54,27 @@
 "Permissions…" = "Mga Pahintulot…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Kailangan ng shortcut ang Accessibility permission · I-click para i-set up";
 "Microphone access is off (menu → Permissions…)" = "Naka-off ang access sa mikropono (menu → Mga Pahintulot…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Kailangan ng Tsuzuri ng speech model at dalawang pahintulot. Hindi kailanman lumalabas sa Mac na ito ang boses mo.";
+"Speech Model" = "Speech Model";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "Ginagawang text ng %@ ang boses mo sa Mac na ito. Isang beses lang itong dina-download mula sa Hugging Face (huggingface.co); hindi kailanman gumagamit ng internet ang mismong pagkilala.";
+"Download (%@)" = "I-download (%@)";
+"Downloaded" = "Na-download na";
+"Cancel" = "Kanselahin";
+"Try Again" = "Subukang Muli";
+"%@ of %@ (%@)" = "%@ sa %@ (%@)";
+"Checking the download…" = "Sinusuri ang download…";
+"Checking the downloaded model…" = "Sinusuri ang na-download na model…";
+"%@ · Download (%@)…" = "%@ · I-download (%@)…";
+"%@ · Downloading %@" = "%@ · Dina-download %@";
+"%@ · Checking…" = "%@ · Sinusuri…";
+"Downloading %@… %@" = "Dina-download ang %@… %@";
+"Speech model not downloaded · Click to Download" = "Hindi pa na-download ang speech model · I-click para i-download";
+"Downloading the speech model… %@" = "Dina-download ang speech model… %@";
+"Download the speech model first" = "I-download muna ang speech model";
+"No internet connection. Connect and try again." = "Walang koneksyon sa internet. Kumonekta at subukang muli.";
+"Not enough disk space. Free up %@ and try again." = "Kulang ang espasyo sa disk. Magbakante ng %@ at subukang muli.";
+"The disk is full. Free up some space and try again." = "Puno na ang disk. Magbakante ng kaunting espasyo at subukang muli.";
+"The download was damaged. Try again." = "Sira ang na-download na file. Subukang muli.";
+"Download failed (%@). Try again later." = "Hindi na-download (%@). Subukang muli mamaya.";

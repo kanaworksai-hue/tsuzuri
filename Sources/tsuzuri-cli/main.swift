@@ -7,6 +7,7 @@ import TsuzuriCore
 //               [--context "hot words"] [--no-vad] [--polish] [--app NAME] [--jsonl] [--repeat N] FILE...
 //   tsuzuri-cli --polish-text [--app NAME] [--jsonl] TEXTFILE...   # polish only, no ASR
 //   tsuzuri-cli --guard-only RESULTS.jsonl...                      # re-run PolishGuard on {"in","out"} lines
+//   tsuzuri-cli --download [--model NAME]                          # download a speech model (and Silero VAD)
 
 struct Options {
     var model: ASRModel = .default
@@ -19,6 +20,7 @@ struct Options {
     var polish = false
     var polishText = false
     var guardOnly = false
+    var download = false
     var polishDir: URL?
     var app: String?
     var timeout = 1.0
@@ -32,6 +34,7 @@ func usage(exitCode: Int32 = 2) -> Never {
                        [--no-vad] [--polish] [--app NAME] [--jsonl] [--repeat N] AUDIO...
            tsuzuri-cli --polish-text [--app NAME] [--jsonl] TEXTFILE...
            tsuzuri-cli --guard-only RESULTS.jsonl...
+           tsuzuri-cli --download [--model NAME]
       --model NAME    speech model (default \(ASRModel.default.rawValue))
       --model-dir DIR load the speech model from DIR instead of the models dir
       --language NAME spoken language, e.g. English, Japanese, German (default: auto-detect)
@@ -44,6 +47,8 @@ func usage(exitCode: Int32 = 2) -> Never {
       --app NAME      app name passed to the polish model
       --polish-text   polish each line of TEXTFILE; JSONL lines use "in" (and pass id/cat/ref through)
       --guard-only    apply the polish guard to existing {"in","out"} records, no model
+      --download      download the speech model (and Silero VAD) from Hugging Face into the models dir;
+                      resumes an interrupted download. HF_ENDPOINT selects a mirror
       --polish-dir    polish model directory (default: models dir/\(PolishModel.directoryName))
       --timeout S     polish timeout in seconds (default 1.0)
       models: \(models)
@@ -74,6 +79,7 @@ func parse() -> Options {
         case "--polish": o.polish = true
         case "--polish-text": o.polishText = true
         case "--guard-only": o.guardOnly = true
+        case "--download": o.download = true
         case "--polish-dir":
             guard let v = it.next() else { usage() }
             o.polishDir = URL(fileURLWithPath: v)
@@ -94,7 +100,7 @@ func parse() -> Options {
             o.files.append(URL(fileURLWithPath: arg))
         }
     }
-    if o.files.isEmpty { usage() }
+    if o.files.isEmpty, !o.download { usage() }
     return o
 }
 
@@ -141,6 +147,38 @@ func polishFields(_ p: Polish) -> [String: Any] {
 }
 
 let options = parse()
+
+if options.download {
+    let model = options.model
+    if model.isInstalled, ModelPackage.vad.isInstalled {
+        stderr("\(model.rawValue) is already installed in \(ModelStore.root.path)")
+        exit(0)
+    }
+    let start = Date()
+    final class LastPercent: @unchecked Sendable { var value = -1; let lock = NSLock() }
+    let last = LastPercent()
+    do {
+        try await ModelDownloader().download(model.downloadPackages) { done, total in
+            let percent = total > 0 ? Int(done * 100 / total) : 100
+            let changed = last.lock.withLock {
+                defer { last.value = percent }
+                return percent != last.value
+            }
+            if changed {
+                stderr("\(percent)% \(done / 1_000_000) / \(total / 1_000_000) MB")
+                if options.jsonl { emit(["event": "progress", "done": done, "total": total]) }
+            }
+        }
+    } catch {
+        stderr("error: download failed: \(error)")
+        if options.jsonl { emit(["event": "error", "error": "\(error)"]) }
+        exit(1)
+    }
+    let seconds = Date().timeIntervalSince(start)
+    stderr(String(format: "downloaded %@ to %@ in %.1fs", model.rawValue, model.localDirectory.path, seconds))
+    if options.jsonl { emit(["event": "done", "model": model.rawValue, "seconds": seconds]) }
+    exit(0)
+}
 let transcriber = Transcriber()
 var failed = 0
 

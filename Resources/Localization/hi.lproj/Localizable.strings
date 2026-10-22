@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Tsuzuri सेट अप करें";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri को दो अनुमतियाँ चाहिए। सब कुछ इसी Mac पर रहता है।";
 "Microphone" = "माइक्रोफ़ोन";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "डिक्टेट करते समय आपकी आवाज़ सुनने के लिए: जब तक आप शॉर्टकट कुंजी दबाए रखते हैं, या एक टैप से अगले टैप तक।";
 "Accessibility" = "ऐक्सेसिबिलिटी";
@@ -55,3 +54,27 @@
 "Permissions…" = "अनुमतियाँ…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "शॉर्टकट के लिए ऐक्सेसिबिलिटी अनुमति चाहिए · सेट अप करने के लिए क्लिक करें";
 "Microphone access is off (menu → Permissions…)" = "माइक्रोफ़ोन ऐक्सेस बंद है (मेनू → अनुमतियाँ…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri को एक स्पीच मॉडल और दो अनुमतियों की ज़रूरत है। आपकी आवाज़ कभी इस Mac से बाहर नहीं जाती।";
+"Speech Model" = "स्पीच मॉडल";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ इस Mac पर आपकी आवाज़ को टेक्स्ट में बदलता है। इसे Hugging Face (huggingface.co) से सिर्फ़ एक बार डाउनलोड किया जाता है; पहचान के लिए कभी इंटरनेट का उपयोग नहीं होता।";
+"Download (%@)" = "डाउनलोड करें (%@)";
+"Downloaded" = "डाउनलोड हो गया";
+"Cancel" = "रद्द करें";
+"Try Again" = "फिर से कोशिश करें";
+"%@ of %@ (%@)" = "%@ / %@ (%@)";
+"Checking the download…" = "डाउनलोड की जाँच हो रही है…";
+"Checking the downloaded model…" = "डाउनलोड किए गए मॉडल की जाँच हो रही है…";
+"%@ · Download (%@)…" = "%@ · डाउनलोड करें (%@)…";
+"%@ · Downloading %@" = "%@ · डाउनलोड हो रहा है %@";
+"%@ · Checking…" = "%@ · जाँच हो रही है…";
+"Downloading %@… %@" = "%@ डाउनलोड हो रहा है… %@";
+"Speech model not downloaded · Click to Download" = "स्पीच मॉडल डाउनलोड नहीं हुआ है · डाउनलोड करने के लिए क्लिक करें";
+"Downloading the speech model… %@" = "स्पीच मॉडल डाउनलोड हो रहा है… %@";
+"Download the speech model first" = "पहले स्पीच मॉडल डाउनलोड करें";
+"No internet connection. Connect and try again." = "इंटरनेट कनेक्शन नहीं है। कनेक्ट करके फिर से कोशिश करें।";
+"Not enough disk space. Free up %@ and try again." = "डिस्क पर पर्याप्त जगह नहीं है। %@ जगह खाली करके फिर से कोशिश करें।";
+"The disk is full. Free up some space and try again." = "डिस्क भर गई है। कुछ जगह खाली करके फिर से कोशिश करें।";
+"The download was damaged. Try again." = "डाउनलोड की गई फ़ाइल खराब हो गई है। फिर से कोशिश करें।";
+"Download failed (%@). Try again later." = "डाउनलोड विफल रहा (%@)। बाद में फिर से कोशिश करें।";

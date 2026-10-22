@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Thiết lập Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri cần hai quyền. Mọi dữ liệu chỉ ở lại trên máy Mac này.";
 "Microphone" = "Micrô";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Để nghe bạn nói khi đọc chính tả: trong lúc bạn giữ phím tắt, hoặc từ lần nhấn nhanh này đến lần nhấn tiếp theo.";
 "Accessibility" = "Trợ năng";
@@ -55,3 +54,27 @@
 "Permissions…" = "Quyền…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Phím tắt cần quyền Trợ năng · Bấm để thiết lập";
 "Microphone access is off (menu → Permissions…)" = "Quyền truy cập micrô đang tắt (menu → Quyền…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri cần một mô hình giọng nói và hai quyền. Giọng nói của bạn không bao giờ rời khỏi máy Mac này.";
+"Speech Model" = "Mô hình giọng nói";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ chuyển giọng nói của bạn thành văn bản trên máy Mac này. Mô hình được tải về một lần duy nhất từ Hugging Face (huggingface.co); bản thân quá trình nhận dạng không bao giờ dùng Internet.";
+"Download (%@)" = "Tải về (%@)";
+"Downloaded" = "Đã tải về";
+"Cancel" = "Hủy";
+"Try Again" = "Thử lại";
+"%@ of %@ (%@)" = "%@ / %@ (%@)";
+"Checking the download…" = "Đang kiểm tra tệp đã tải về…";
+"Checking the downloaded model…" = "Đang kiểm tra mô hình đã tải về…";
+"%@ · Download (%@)…" = "%@ · Tải về (%@)…";
+"%@ · Downloading %@" = "%@ · Đang tải về %@";
+"%@ · Checking…" = "%@ · Đang kiểm tra…";
+"Downloading %@… %@" = "Đang tải về %@… %@";
+"Speech model not downloaded · Click to Download" = "Chưa tải về mô hình giọng nói · Bấm để tải về";
+"Downloading the speech model… %@" = "Đang tải về mô hình giọng nói… %@";
+"Download the speech model first" = "Hãy tải về mô hình giọng nói trước";
+"No internet connection. Connect and try again." = "Không có kết nối Internet. Hãy kết nối rồi thử lại.";
+"Not enough disk space. Free up %@ and try again." = "Không đủ dung lượng ổ đĩa. Hãy giải phóng %@ rồi thử lại.";
+"The disk is full. Free up some space and try again." = "Ổ đĩa đã đầy. Hãy giải phóng bớt dung lượng rồi thử lại.";
+"The download was damaged. Try again." = "Tệp đã tải về bị hỏng. Hãy thử lại.";
+"Download failed (%@). Try again later." = "Tải về không thành công (%@). Hãy thử lại sau.";

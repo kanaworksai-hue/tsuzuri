@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Configurar o Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "O Tsuzuri precisa de duas permissões. Tudo fica neste Mac.";
 "Microphone" = "Microfone";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Para ouvir você enquanto dita: enquanto mantém o atalho pressionado ou de um toque até o seguinte.";
 "Accessibility" = "Acessibilidade";
@@ -55,3 +54,27 @@
 "Permissions…" = "Permissões…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "O atalho precisa da permissão de Acessibilidade · Clique para configurar";
 "Microphone access is off (menu → Permissions…)" = "O acesso ao microfone está desativado (menu → Permissões…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "O Tsuzuri precisa de um modelo de fala e de duas permissões. Sua voz nunca sai deste Mac.";
+"Speech Model" = "Modelo de Fala";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "O %@ converte sua voz em texto neste Mac. Ele é baixado uma única vez do Hugging Face (huggingface.co); o reconhecimento em si nunca usa a internet.";
+"Download (%@)" = "Baixar (%@)";
+"Downloaded" = "Baixado";
+"Cancel" = "Cancelar";
+"Try Again" = "Tentar Novamente";
+"%@ of %@ (%@)" = "%@ de %@ (%@)";
+"Checking the download…" = "Verificando o download…";
+"Checking the downloaded model…" = "Verificando o modelo baixado…";
+"%@ · Download (%@)…" = "%@ · Baixar (%@)…";
+"%@ · Downloading %@" = "%@ · Baixando %@";
+"%@ · Checking…" = "%@ · Verificando…";
+"Downloading %@… %@" = "Baixando %@… %@";
+"Speech model not downloaded · Click to Download" = "Modelo de fala não baixado · Clique para Baixar";
+"Downloading the speech model… %@" = "Baixando o modelo de fala… %@";
+"Download the speech model first" = "Baixe o modelo de fala primeiro";
+"No internet connection. Connect and try again." = "Sem conexão com a internet. Conecte-se e tente novamente.";
+"Not enough disk space. Free up %@ and try again." = "Espaço em disco insuficiente. Libere %@ e tente novamente.";
+"The disk is full. Free up some space and try again." = "O disco está cheio. Libere espaço e tente novamente.";
+"The download was damaged. Try again." = "O arquivo baixado está danificado. Tente novamente.";
+"Download failed (%@). Try again later." = "Falha no download (%@). Tente novamente mais tarde.";

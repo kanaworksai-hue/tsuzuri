@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "Configurează Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "Tsuzuri are nevoie de două permisiuni. Totul rămâne pe acest Mac.";
 "Microphone" = "Microfon";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "Pentru a vă auzi în timp ce dictați: cât timp țineți apăsată scurtătura sau de la o apăsare scurtă până la următoarea.";
 "Accessibility" = "Accesibilitate";
@@ -55,3 +54,27 @@
 "Permissions…" = "Permisiuni…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "Scurtătura necesită permisiunea de accesibilitate · Faceți clic pentru configurare";
 "Microphone access is off (menu → Permissions…)" = "Accesul la microfon este dezactivat (meniu → Permisiuni…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "Tsuzuri are nevoie de un model de vorbire și de două permisiuni. Vocea dvs. nu părăsește niciodată acest Mac.";
+"Speech Model" = "Model de vorbire";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "%@ transformă vocea dvs. în text pe acest Mac. Este descărcat o singură dată de pe Hugging Face (huggingface.co); recunoașterea propriu-zisă nu folosește niciodată internetul.";
+"Download (%@)" = "Descarcă (%@)";
+"Downloaded" = "Descărcat";
+"Cancel" = "Anulează";
+"Try Again" = "Încercați din nou";
+"%@ of %@ (%@)" = "%@ din %@ (%@)";
+"Checking the download…" = "Se verifică descărcarea…";
+"Checking the downloaded model…" = "Se verifică modelul descărcat…";
+"%@ · Download (%@)…" = "%@ · Descarcă (%@)…";
+"%@ · Downloading %@" = "%@ · Se descarcă %@";
+"%@ · Checking…" = "%@ · Se verifică…";
+"Downloading %@… %@" = "Se descarcă %@… %@";
+"Speech model not downloaded · Click to Download" = "Modelul de vorbire nu este descărcat · Faceți clic pentru a descărca";
+"Downloading the speech model… %@" = "Se descarcă modelul de vorbire… %@";
+"Download the speech model first" = "Descărcați mai întâi modelul de vorbire";
+"No internet connection. Connect and try again." = "Nu există conexiune la internet. Conectați-vă și încercați din nou.";
+"Not enough disk space. Free up %@ and try again." = "Spațiu insuficient pe disc. Eliberați %@ și încercați din nou.";
+"The disk is full. Free up some space and try again." = "Discul este plin. Eliberați puțin spațiu și încercați din nou.";
+"The download was damaged. Try again." = "Fișierul descărcat este deteriorat. Încercați din nou.";
+"Download failed (%@). Try again later." = "Descărcarea a eșuat (%@). Încercați din nou mai târziu.";

@@ -40,7 +40,6 @@
 
 /* Permissions */
 "Set Up Tsuzuri" = "إعداد Tsuzuri";
-"Tsuzuri needs two permissions. Everything stays on this Mac." = "يحتاج Tsuzuri إلى إذنين. تبقى جميع البيانات على هذا الـ Mac.";
 "Microphone" = "الميكروفون";
 "To hear you while you dictate: while you hold the shortcut key, or from one tap to the next." = "لسماعك أثناء الإملاء: طوال ضغطك مع الاستمرار على مفتاح الاختصار، أو من ضغطة قصيرة حتى الضغطة التالية.";
 "Accessibility" = "تسهيلات الاستخدام";
@@ -55,3 +54,27 @@
 "Permissions…" = "الأذونات…";
 "Shortcut needs Accessibility permission · Click to Set Up" = "الاختصار يحتاج إلى إذن تسهيلات الاستخدام · انقر للإعداد";
 "Microphone access is off (menu → Permissions…)" = "الوصول إلى الميكروفون متوقف (القائمة ← الأذونات…)";
+
+/* Model download */
+"Tsuzuri needs a speech model and two permissions. Your voice never leaves this Mac." = "يحتاج Tsuzuri إلى نموذج كلام وإذنين. لا يغادر صوتك جهاز Mac هذا أبدًا.";
+"Speech Model" = "نموذج الكلام";
+"%@ turns your voice into text on this Mac. It is downloaded once from Hugging Face (huggingface.co); recognition itself never uses the internet." = "يحوّل %@ صوتك إلى نص على جهاز Mac هذا. يُنزَّل مرة واحدة فقط من Hugging Face (huggingface.co)، أما التعرّف نفسه فلا يستخدم الإنترنت أبدًا.";
+"Download (%@)" = "تنزيل (%@)";
+"Downloaded" = "تم التنزيل";
+"Cancel" = "إلغاء";
+"Try Again" = "إعادة المحاولة";
+"%@ of %@ (%@)" = "%@ من %@ (%@)";
+"Checking the download…" = "جارٍ التحقق من التنزيل…";
+"Checking the downloaded model…" = "جارٍ التحقق من النموذج الذي تم تنزيله…";
+"%@ · Download (%@)…" = "%@ · تنزيل (%@)…";
+"%@ · Downloading %@" = "%@ · جارٍ التنزيل %@";
+"%@ · Checking…" = "%@ · جارٍ التحقق…";
+"Downloading %@… %@" = "جارٍ تنزيل %@… %@";
+"Speech model not downloaded · Click to Download" = "لم يتم تنزيل نموذج الكلام · انقر للتنزيل";
+"Downloading the speech model… %@" = "جارٍ تنزيل نموذج الكلام… %@";
+"Download the speech model first" = "نزّل نموذج الكلام أولاً";
+"No internet connection. Connect and try again." = "لا يوجد اتصال بالإنترنت. اتصل ثم أعد المحاولة.";
+"Not enough disk space. Free up %@ and try again." = "لا توجد مساحة كافية على القرص. وفّر %@ ثم أعد المحاولة.";
+"The disk is full. Free up some space and try again." = "القرص ممتلئ. وفّر بعض المساحة ثم أعد المحاولة.";
+"The download was damaged. Try again." = "الملف الذي تم تنزيله تالف. أعد المحاولة.";
+"Download failed (%@). Try again later." = "فشل التنزيل (%@). أعد المحاولة لاحقًا.";
