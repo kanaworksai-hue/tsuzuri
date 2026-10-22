@@ -1,0 +1,41 @@
+/* Menu */
+"Starting…" = "起動中…";
+"Recent (Click to Copy)" = "最近の認識結果（クリックでコピー）";
+"(None yet)" = "（まだありません）";
+"Clear" = "消去";
+"Model" = "モデル";
+"%@ (not downloaded)" = "%@（未ダウンロード）";
+"Accurate" = "高精度";
+"Fast" = "高速";
+"Spoken Language" = "認識する言語";
+"Auto (Mixed Languages)" = "自動（混在可）";
+"Polish" = "テキスト整形";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Skipped in terminals." = "認識後、ローカルの小型モデルで句読点を付け、フィラーを取り除き、言い直しを反映し、数字を算用数字にします。ターミナルでは整形しません。";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "ショートカット（長押しで話す / 短押しで切り替え）";
+"Right Option ⌥" = "右 Option ⌥";
+"Right Command ⌘" = "右 Command ⌘";
+"Open Accessibility Settings…" = "アクセシビリティ設定を開く…";
+"Open Microphone Settings…" = "マイク設定を開く…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "貼り付けテスト（3 秒後に現在のウインドウへ貼り付け）";
+"Tsuzuri paste test" = "Tsuzuri 貼り付けテスト";
+"Quit Tsuzuri" = "Tsuzuri を終了";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "アクセシビリティの許可が必要です（システム設定 → プライバシーとセキュリティ）";
+"Loading model…" = "モデルを読み込み中…";
+"Ready · hold %@ to talk" = "準備完了 · %@ を押しながら話す";
+"Model failed to load: %@" = "モデルを読み込めませんでした：%@";
+
+/* Overlay */
+"Listening…" = "聞き取り中…";
+"Transcribing…" = "認識中…";
+"Model is still loading…" = "モデルを読み込み中です…";
+"Can't record" = "録音できません";
+"No microphone found" = "マイクが見つかりません";
+"Microphone access is off (menu → Open Microphone Settings…)" = "マイクへのアクセスがオフです（メニュー → マイク設定を開く…）";
+"Canceled" = "キャンセルしました";
+"No speech heard" = "音声が聞き取れませんでした";
+"Recognition failed" = "認識できませんでした";
+"Copied: %@" = "コピーしました：%@";
+"Copied · ⌘V to paste: %@" = "コピーしました · ⌘V で貼り付け：%@";
+"Copied (Accessibility not granted)" = "コピーしました（アクセシビリティ未許可）";

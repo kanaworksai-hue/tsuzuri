@@ -1,0 +1,41 @@
+/* Menu */
+"Starting…" = "启动中…";
+"Recent (Click to Copy)" = "最近识别（点击复制）";
+"(None yet)" = "（还没有）";
+"Clear" = "清空";
+"Model" = "模型";
+"%@ (not downloaded)" = "%@（未下载）";
+"Accurate" = "准确";
+"Fast" = "快速";
+"Spoken Language" = "识别语言";
+"Auto (Mixed Languages)" = "自动（混说）";
+"Polish" = "润色";
+"After recognition, a small local model adds punctuation, removes filler words, applies self-corrections and writes numbers as digits. Skipped in terminals." = "识别后用本地小模型加标点、去口头禅、处理改口、数字写成阿拉伯数字。终端里不润色。";
+"Shortcut (Hold to Talk / Tap to Toggle)" = "快捷键（按住说话 / 轻按切换）";
+"Right Option ⌥" = "右 Option ⌥";
+"Right Command ⌘" = "右 Command ⌘";
+"Open Accessibility Settings…" = "打开辅助功能设置…";
+"Open Microphone Settings…" = "打开麦克风设置…";
+"Paste Test (Pastes into the Current Window in 3 s)" = "粘贴自检（3 秒后粘贴到当前窗口）";
+"Tsuzuri paste test" = "Tsuzuri 粘贴自检";
+"Quit Tsuzuri" = "退出 Tsuzuri";
+
+/* Status line */
+"Accessibility permission needed (System Settings → Privacy & Security)" = "需要辅助功能权限（系统设置 → 隐私与安全性）";
+"Loading model…" = "加载模型中…";
+"Ready · hold %@ to talk" = "就绪 · 按住 %@ 说话";
+"Model failed to load: %@" = "模型加载失败：%@";
+
+/* Overlay */
+"Listening…" = "聆听中…";
+"Transcribing…" = "识别中…";
+"Model is still loading…" = "模型还在加载…";
+"Can't record" = "无法录音";
+"No microphone found" = "没有找到麦克风";
+"Microphone access is off (menu → Open Microphone Settings…)" = "麦克风权限未开启（菜单 → 打开麦克风设置…）";
+"Canceled" = "已取消";
+"No speech heard" = "没有听到声音";
+"Recognition failed" = "识别失败";
+"Copied: %@" = "已复制：%@";
+"Copied · ⌘V to paste: %@" = "已复制 · ⌘V 粘贴：%@";
+"Copied (Accessibility not granted)" = "已复制（未授权辅助功能）";

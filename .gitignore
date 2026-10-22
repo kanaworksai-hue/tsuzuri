@@ -1,0 +1,22 @@
+# Build output
+.build/
+build/
+*.metallib
+.swiftpm/
+DerivedData/
+
+# Model weights never go into git (they live in ~/Library/Application Support/Tsuzuri/Models)
+*.safetensors
+models/
+
+# Signing / notarization secrets must never be committed
+*.p8
+*.p12
+*.cer
+*.certSigningRequest
+AuthKey_*
+
+# OS / editor / agent folders
+.DS_Store
+__pycache__/
+.claude/
